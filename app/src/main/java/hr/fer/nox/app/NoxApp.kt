@@ -6,6 +6,7 @@ import hr.fer.nox.BuildConfig
 import hr.fer.nox.app.di.AppModule
 import hr.fer.nox.core.di.ThreadingModule
 import hr.fer.nox.navigation.di.NavigationModule
+import hr.fer.nox.splash.di.SplashModule
 import org.koin.android.ext.android.startKoin
 
 class NoxApp: Application() {
@@ -20,13 +21,13 @@ class NoxApp: Application() {
 
     private val coreModules = listOf(AppModule, NavigationModule, ThreadingModule)
 
-    //private val featureModules = listOf()
+    private val featureModules = listOf(SplashModule)
 
     override fun onCreate() {
         super.onCreate()
 
         instance = this
-        startKoin(this, coreModules)
+        startKoin(this, coreModules + featureModules)
         initStetho()
     }
 

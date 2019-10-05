@@ -21,6 +21,7 @@ class ContainerActivity : BaseActivity() {
     override fun onStart() {
         super.onStart()
         routingActionsSource.setActiveRoutingActionConsumer(this)
+        router.showSplash()
     }
 
     override fun onStop() {
