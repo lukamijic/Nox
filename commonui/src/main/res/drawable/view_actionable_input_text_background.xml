@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android">
+    <padding
+            android:bottom="@dimen/actionable_input_bottom_margin"
+            android:left="@dimen/normal_margin"
+            android:right="@dimen/normal_margin"
+            android:top="@dimen/normal_margin"/>
+</shape>

@@ -34,6 +34,9 @@ dependencies {
     implementation "org.koin:koin-android:$versions.koin"
     implementation "org.koin:koin-android-scope:$versions.koin"
 
+    // Networking
+    implementation "com.github.pwittchen:reactivenetwork-rx2:$versions.reactiveNetwork"
+
     // RxJava
     implementation "io.reactivex.rxjava2:rxandroid:$versions.rxAndroid"
     implementation "io.reactivex.rxjava2:rxjava:$versions.rxJava"

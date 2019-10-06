@@ -3,8 +3,10 @@ package hr.fer.nox.app.router
 import android.app.Activity
 import androidx.annotation.IdRes
 import androidx.fragment.app.FragmentManager
+import androidx.fragment.app.FragmentTransaction
 import hr.fer.nox.R
 import hr.fer.nox.app.util.inTransaction
+import hr.fer.nox.login.ui.LoginFragment
 import hr.fer.nox.navigation.router.Router
 import hr.fer.nox.splash.ui.SplashFragment
 
@@ -22,7 +24,22 @@ class RouterImpl(
         fragmentManager.inTransaction { replace(MAIN_CONTAINER_ID, SplashFragment.newInstance(), SplashFragment.TAG) }
     }
 
+    override fun showLogin() {
+        fragmentManager.inTransaction {
+            applyFadeInFadoOutAnimation()
+            replace(MAIN_CONTAINER_ID, LoginFragment.newInstance(), LoginFragment.TAG)
+        }
+    }
+
     override fun goBack() = if (fragmentManager.backStackEntryCount == LAST_FRAGMENT) closeScreen() else fragmentManager.popBackStack()
 
     private fun closeScreen() = activity.finish()
+
+    private fun FragmentTransaction.applyFadeInFadoOutAnimation() {
+        setCustomAnimations(R.anim.fragment_fade_in, R.anim.fragment_fade_out)
+    }
+
+    fun FragmentTransaction.applySlideInSlideOutAnimation() {
+        setCustomAnimations(R.anim.fragment_right_enter, R.anim.fragment_left_exit, R.anim.fragment_left_enter, R.anim.fragment_right_exit)
+    }
 }

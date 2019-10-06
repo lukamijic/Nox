@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="ActionableInputView">
+        <attr name="errorTextColor" format="color"/>
+        <attr name="borderColor" format="color"/>
+        <attr name="inputTextSize" format="dimension"/>
+        <attr name="hintText" format="string"/>
+        <attr name="actionIcon" format="reference"/>
+        <attr name="actionIconIfContent" format="boolean"/>
+        <attr name="android:inputType"/>
+        <attr name="fontFamily"/>
+    </declare-styleable>
+
+    <declare-styleable name="SearchBarView">
+        <attr name="searchText" format="string"/>
+        <attr name="searchTextColor" format="color"/>
+        <attr name="searchTextSize" format="dimension"/>
+        <attr name="searchHint" format="string"/>
+        <attr name="searchHintColor" format="color"/>
+        <attr name="searchHintTextSize" format="dimension"/>
+        <attr name="searchIcon" format="reference"/>
+        <attr name="searchFontFamily"/>
+    </declare-styleable>
+</resources>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="view_actionable_input_margin">2dp</dimen>
+    <dimen name="view_actionable_input_border_height">2dp</dimen>
+    <dimen name="view_actionable_input_radius">4dp</dimen>
+
+    <dimen name="actionable_input_error_text">12sp</dimen>
+    <dimen name="actionable_input_elevation">1dp</dimen>
+    <dimen name="actionable_input_bottom_margin">12dp</dimen>
+
+    <!-- Search Bar -->
+    <dimen name="search_bar_background_radius">24dp</dimen>
+    <dimen name="search_bar_edit_text_start_margin">24dp</dimen>
+    <dimen name="search_bar_icon_end_margin">24dp</dimen>
+</resources>

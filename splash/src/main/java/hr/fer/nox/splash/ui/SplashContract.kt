@@ -7,8 +7,5 @@ interface SplashContract {
 
     interface View : BaseView
 
-    interface Presenter: ViewPresenter<View, SplashViewState> {
-
-       fun showLogin()
-    }
+    interface Presenter : ViewPresenter<View, SplashViewState>
 }
