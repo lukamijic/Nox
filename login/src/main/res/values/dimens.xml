@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="login_logo_size">96dp</dimen>
+    <dimen name="login_create_account_height">64dp</dimen>
+    <dimen name="login_rounded_top_background_corners">8dp</dimen>
+</resources>

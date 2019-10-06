@@ -4,7 +4,9 @@ import android.app.Application
 import com.facebook.stetho.Stetho
 import hr.fer.nox.BuildConfig
 import hr.fer.nox.app.di.AppModule
+import hr.fer.nox.core.di.NetworkingModule
 import hr.fer.nox.core.di.ThreadingModule
+import hr.fer.nox.login.di.LoginModule
 import hr.fer.nox.navigation.di.NavigationModule
 import hr.fer.nox.splash.di.SplashModule
 import org.koin.android.ext.android.startKoin
@@ -19,9 +21,9 @@ class NoxApp: Application() {
             private set
     }
 
-    private val coreModules = listOf(AppModule, NavigationModule, ThreadingModule)
+    private val coreModules = listOf(AppModule, NavigationModule, ThreadingModule, NetworkingModule)
 
-    private val featureModules = listOf(SplashModule)
+    private val featureModules = listOf(SplashModule, LoginModule)
 
     override fun onCreate() {
         super.onCreate()

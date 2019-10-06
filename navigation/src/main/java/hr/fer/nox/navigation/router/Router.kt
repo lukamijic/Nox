@@ -4,5 +4,7 @@ interface Router {
 
     fun showSplash()
 
+    fun showLogin()
+
     fun goBack()
 }

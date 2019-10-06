@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorPrimaryDark">
+
+    <View
+        android:id="@+id/focusView"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:focusable="true"
+        android:focusableInTouchMode="true">
+
+        <requestFocus/>
+    </View>
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/login_horizontalGuideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.10"/>
+
+    <ImageView
+        android:id="@+id/login_logo"
+        android:layout_width="@dimen/login_logo_size"
+        android:layout_height="@dimen/login_logo_size"
+        android:src="@drawable/ic_logo_accent_dark"
+        android:visibility="visible"
+        app:layout_constraintTop_toTopOf="@id/login_horizontalGuideline"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <hr.fer.nox.ui.ActionableInputView
+        android:id="@+id/login_usernameInput"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:hintText="@string/login_username_hint"
+        app:inputTextSize="@dimen/subtitle_text_size"
+        app:borderColor="@color/login_actionable_input_view_border_color"
+        app:errorTextColor="@color/text_color_error"
+        app:actionIcon="@drawable/ic_close"
+        app:actionIconIfContent="true"
+        app:fontFamily="@font/roboto_regular"
+        android:layout_marginBottom="@dimen/normal_margin"
+        android:layout_marginEnd="@dimen/extra_large_margin"
+        android:layout_marginStart="@dimen/extra_large_margin"
+        android:layout_marginTop="@dimen/large_margin"
+        app:layout_constraintTop_toBottomOf="@id/login_logo"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <hr.fer.nox.ui.ActionableInputView
+        android:id="@+id/login_passwordInput"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:actionIcon="@drawable/ic_eye_inactive"
+        app:actionIconIfContent="true"
+        app:hintText="@string/login_password_hint"
+        app:inputTextSize="@dimen/subtitle_text_size"
+        app:borderColor="@color/login_actionable_input_view_border_color"
+        app:errorTextColor="@color/text_color_error"
+        app:fontFamily="@font/roboto_regular"
+        android:layout_marginBottom="@dimen/normal_margin"
+        android:layout_marginEnd="@dimen/extra_large_margin"
+        android:layout_marginStart="@dimen/extra_large_margin"
+        android:layout_marginTop="@dimen/normal_margin"
+        app:layout_constraintTop_toBottomOf="@id/login_usernameInput"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <TextView
+        android:id="@+id/login_errorText"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        style="@style/NormalTextStyle"
+        android:textColor="@color/text_color_error"
+        android:gravity="center"
+        android:visibility="gone"
+        android:layout_marginTop="@dimen/small_margin"
+        android:layout_marginEnd="@dimen/extra_large_margin"
+        android:layout_marginStart="@dimen/extra_large_margin"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/login_passwordInput"/>
+
+    <androidx.constraintlayout.widget.Group
+        android:id="@+id/focusGroup"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:constraint_referenced_ids="login_logo, login_createAccount"/>
+
+    <Button
+        android:id="@+id/login_button"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/rounded_background"
+        style="@style/NormalTextStyle"
+        android:textColor="@color/colorAccent"
+        android:text="@string/login_log_in_text"
+        android:layout_marginEnd="@dimen/extra_large_margin"
+        android:layout_marginStart="@dimen/extra_large_margin"
+        android:layout_marginTop="@dimen/large_margin"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/login_passwordInput"/>
+
+    <Button
+        android:id="@+id/login_createAccount"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/login_create_account_height"
+        android:background="@drawable/rounded_top_background"
+        android:text="@string/login_create_account_text"
+        style="@style/SubtitleTextStyle"
+        android:textColor="@color/colorAccent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"/>
+
+    <hr.fer.nox.ui.AnimatedProgressView
+        android:id="@+id/login_progressView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:elevation="@dimen/normal_elevation"
+        android:clickable="true"
+        android:focusable="true"
+        android:visibility="gone"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

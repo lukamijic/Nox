@@ -16,12 +16,12 @@ class ContainerActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_container)
+        router.showSplash()
     }
 
     override fun onStart() {
         super.onStart()
         routingActionsSource.setActiveRoutingActionConsumer(this)
-        router.showSplash()
     }
 
     override fun onStop() {

@@ -12,11 +12,13 @@
             <option value="$PROJECT_DIR$/commonui" />
             <option value="$PROJECT_DIR$/core" />
             <option value="$PROJECT_DIR$/coreui" />
+            <option value="$PROJECT_DIR$/login" />
             <option value="$PROJECT_DIR$/navigation" />
             <option value="$PROJECT_DIR$/splash" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />
+        <option name="testRunner" value="PLATFORM" />
       </GradleProjectSettings>
     </option>
   </component>

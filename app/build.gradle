@@ -28,6 +28,7 @@ dependencies {
     implementation project(':commonui')
     implementation project(':coreui')
     implementation project(':core')
+    implementation project(':login')
     implementation project(':splash')
 
     // Kotlin
