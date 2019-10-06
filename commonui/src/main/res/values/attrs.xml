@@ -11,6 +11,16 @@
         <attr name="fontFamily"/>
     </declare-styleable>
 
+    <declare-styleable name="NavigationItemView">
+        <attr name="navigationItemTitleActiveTextColor" format="color"/>
+        <attr name="navigationItemTitleInactiveTextColor" format="color"/>
+        <attr name="navigationItemTitleText" format="string"/>
+        <attr name="navigationItemTitleTextSize" format="dimension"/>
+        <attr name="navigationItemActiveIcon" format="reference"/>
+        <attr name="navigationItemInactiveIcon" format="reference"/>
+        <attr name="navigationItemUnderlineColor" format="color"/>
+    </declare-styleable>
+
     <declare-styleable name="SearchBarView">
         <attr name="searchText" format="string"/>
         <attr name="searchTextColor" format="color"/>

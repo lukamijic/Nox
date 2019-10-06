@@ -7,23 +7,23 @@ buildscript {
     ]
 
     ext.versions = [
-            'ktx'               : "1.1.0",
-            'jUnit'             : "4.12",
-            'testRunner'        : "1.2.0",
-            'espresso'          : "3.2.0",
-            'constraintLayout'  : "1.1.3",
-            'appCompat'         : "1.1.0",
-            'rxJava'            : "2.2.3",
-            'rxAndroid'         : "2.1.0",
-            'koin'              : "1.0.1",
-            'stetho'            : "1.5.1",
-            'annotation'        : "1.0.1",
-            'glide'             : "4.9.0",
-            'lifecycle'         : "2.0.0",
-            'rxJavaAnimations'  : "0.9.1",
+            'ktx'             : "1.1.0",
+            'jUnit'           : "4.12",
+            'testRunner'      : "1.2.0",
+            'espresso'        : "3.2.0",
+            'constraintLayout': "1.1.3",
+            'appCompat'       : "1.1.0",
+            'rxJava'          : "2.2.3",
+            'rxAndroid'       : "2.1.0",
+            'koin'            : "1.0.1",
+            'stetho'          : "1.5.1",
+            'annotation'      : "1.0.1",
+            'glide'           : "4.9.0",
+            'lifecycle'       : "2.0.0",
+            'rxJavaAnimations': "0.9.1",
             'lottie'          : "2.8.0",
             'reactiveNetwork' : "3.0.2",
-            'rxBinding'         : "3.0.0-alpha2"
+            'rxBinding'       : "3.0.0-alpha2"
     ]
 
     repositories {

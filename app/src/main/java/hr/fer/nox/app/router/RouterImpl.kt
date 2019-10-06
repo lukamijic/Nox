@@ -6,6 +6,7 @@ import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
 import hr.fer.nox.R
 import hr.fer.nox.app.util.inTransaction
+import hr.fer.nox.home.ui.HomeFragment
 import hr.fer.nox.login.ui.LoginFragment
 import hr.fer.nox.navigation.router.Router
 import hr.fer.nox.splash.ui.SplashFragment
@@ -28,6 +29,13 @@ class RouterImpl(
         fragmentManager.inTransaction {
             applyFadeInFadoOutAnimation()
             replace(MAIN_CONTAINER_ID, LoginFragment.newInstance(), LoginFragment.TAG)
+        }
+    }
+
+    override fun showHome() {
+        fragmentManager.inTransaction {
+            applyFadeInFadoOutAnimation()
+            replace(MAIN_CONTAINER_ID, HomeFragment.newInstance(), HomeFragment.TAG)
         }
     }
 

@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">home</string>
+
+    <string name="home_movies_navigation_item">Movies</string>
+    <string name="home_explore_navigation_item">Explore</string>
+    <string name="home_profile_navigation_item">Profile</string>
+    <string name="home_settings_navigation_item">Settings</string>
+</resources>

@@ -6,5 +6,7 @@ interface Router {
 
     fun showLogin()
 
+    fun showHome()
+
     fun goBack()
 }
