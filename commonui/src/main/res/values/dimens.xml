@@ -8,6 +8,9 @@
     <dimen name="actionable_input_elevation">1dp</dimen>
     <dimen name="actionable_input_bottom_margin">12dp</dimen>
 
+    <dimen name="navigation_item_underline_height">3dp</dimen>
+    <dimen name="navigation_item_icon_size">16dp</dimen>
+
     <!-- Search Bar -->
     <dimen name="search_bar_background_radius">24dp</dimen>
     <dimen name="search_bar_edit_text_start_margin">24dp</dimen>

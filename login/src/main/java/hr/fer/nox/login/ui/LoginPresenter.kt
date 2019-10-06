@@ -5,6 +5,7 @@ import hr.fer.nox.core.networking.NetworkUtils
 import hr.fer.nox.core.networking.NoConnection
 import hr.fer.nox.coreui.base.BasePresenter
 import hr.fer.nox.login.resources.LoginResources
+import hr.fer.nox.navigation.router.Router
 import io.reactivex.Completable
 
 class LoginPresenter(
@@ -45,6 +46,6 @@ class LoginPresenter(
                 }
             }
         } else {
-            Completable.fromAction {  }
+            Completable.fromAction {  dispatchRoutingAction(Router::showHome) }
         }
 }

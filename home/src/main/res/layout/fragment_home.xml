@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/colorPrimaryDark">
+
+    <View
+        android:id="@+id/home_bottomNavigation"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/home_bottom_navigation_height"
+        android:background="@color/colorPrimary"
+        android:elevation="@dimen/normal_elevation"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <hr.fer.nox.ui.NavigationItemView
+        android:id="@+id/home_moviesNavigationItem"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:elevation="@dimen/normal_elevation"
+        app:navigationItemTitleText="@string/home_movies_navigation_item"
+        app:navigationItemTitleTextSize="@dimen/tiny_text_size"
+        app:navigationItemTitleActiveTextColor="@color/colorAccentDark"
+        app:navigationItemUnderlineColor="@color/colorAccentDark"
+        app:navigationItemActiveIcon="@drawable/ic_movie_accent_dark"
+        app:navigationItemInactiveIcon="@drawable/ic_movie_gray"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/home_exploreNavigationItem"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="@id/home_bottomNavigation"/>
+
+    <hr.fer.nox.ui.NavigationItemView
+        android:id="@+id/home_exploreNavigationItem"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:elevation="@dimen/normal_elevation"
+        app:navigationItemTitleText="@string/home_explore_navigation_item"
+        app:navigationItemTitleTextSize="@dimen/tiny_text_size"
+        app:navigationItemTitleActiveTextColor="@color/colorAccentDark"
+        app:navigationItemUnderlineColor="@color/colorAccentDark"
+        app:navigationItemActiveIcon="@drawable/ic_search_accent_dark"
+        app:navigationItemInactiveIcon="@drawable/ic_search_gray"
+        app:layout_constraintStart_toEndOf="@id/home_moviesNavigationItem"
+        app:layout_constraintEnd_toStartOf="@id/home_profileNavigationItem"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="@id/home_bottomNavigation"/>
+
+    <hr.fer.nox.ui.NavigationItemView
+        android:id="@+id/home_profileNavigationItem"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:elevation="@dimen/normal_elevation"
+        app:navigationItemTitleText="@string/home_profile_navigation_item"
+        app:navigationItemTitleTextSize="@dimen/tiny_text_size"
+        app:navigationItemTitleActiveTextColor="@color/colorAccentDark"
+        app:navigationItemUnderlineColor="@color/colorAccentDark"
+        app:navigationItemActiveIcon="@drawable/ic_user_accent_dark"
+        app:navigationItemInactiveIcon="@drawable/ic_user_gray"
+        app:layout_constraintStart_toEndOf="@id/home_exploreNavigationItem"
+        app:layout_constraintEnd_toStartOf="@id/home_settingsNavigationItem"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="@id/home_bottomNavigation"/>
+
+    <hr.fer.nox.ui.NavigationItemView
+        android:id="@+id/home_settingsNavigationItem"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:elevation="@dimen/normal_elevation"
+        app:navigationItemTitleText="@string/home_settings_navigation_item"
+        app:navigationItemTitleTextSize="@dimen/tiny_text_size"
+        app:navigationItemTitleActiveTextColor="@color/colorAccentDark"
+        app:navigationItemUnderlineColor="@color/colorAccentDark"
+        app:navigationItemActiveIcon="@drawable/ic_settings_accent_dark"
+        app:navigationItemInactiveIcon="@drawable/ic_settings_gray"
+        app:layout_constraintStart_toEndOf="@id/home_profileNavigationItem"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="@id/home_bottomNavigation"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
