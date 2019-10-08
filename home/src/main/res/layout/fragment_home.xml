@@ -5,6 +5,15 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/colorPrimaryDark">
 
+    <FrameLayout
+        android:id="@+id/home_container"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/home_moviesNavigationItem"/>
+
     <View
         android:id="@+id/home_bottomNavigation"
         android:layout_width="0dp"
@@ -43,6 +52,22 @@
         app:navigationItemActiveIcon="@drawable/ic_search_accent_dark"
         app:navigationItemInactiveIcon="@drawable/ic_search_gray"
         app:layout_constraintStart_toEndOf="@id/home_moviesNavigationItem"
+        app:layout_constraintEnd_toStartOf="@id/home_recommendationsNavigationItem"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="@id/home_bottomNavigation"/>
+
+    <hr.fer.nox.ui.NavigationItemView
+        android:id="@+id/home_recommendationsNavigationItem"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:elevation="@dimen/normal_elevation"
+        app:navigationItemTitleText="@string/home_recommendations_navigation_item"
+        app:navigationItemTitleTextSize="@dimen/tiny_text_size"
+        app:navigationItemTitleActiveTextColor="@color/colorAccentDark"
+        app:navigationItemUnderlineColor="@color/colorAccentDark"
+        app:navigationItemActiveIcon="@drawable/ic_settings_accent_dark"
+        app:navigationItemInactiveIcon="@drawable/ic_settings_gray"
+        app:layout_constraintStart_toEndOf="@id/home_exploreNavigationItem"
         app:layout_constraintEnd_toStartOf="@id/home_profileNavigationItem"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toTopOf="@id/home_bottomNavigation"/>
@@ -58,23 +83,7 @@
         app:navigationItemUnderlineColor="@color/colorAccentDark"
         app:navigationItemActiveIcon="@drawable/ic_user_accent_dark"
         app:navigationItemInactiveIcon="@drawable/ic_user_gray"
-        app:layout_constraintStart_toEndOf="@id/home_exploreNavigationItem"
-        app:layout_constraintEnd_toStartOf="@id/home_settingsNavigationItem"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toTopOf="@id/home_bottomNavigation"/>
-
-    <hr.fer.nox.ui.NavigationItemView
-        android:id="@+id/home_settingsNavigationItem"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:elevation="@dimen/normal_elevation"
-        app:navigationItemTitleText="@string/home_settings_navigation_item"
-        app:navigationItemTitleTextSize="@dimen/tiny_text_size"
-        app:navigationItemTitleActiveTextColor="@color/colorAccentDark"
-        app:navigationItemUnderlineColor="@color/colorAccentDark"
-        app:navigationItemActiveIcon="@drawable/ic_settings_accent_dark"
-        app:navigationItemInactiveIcon="@drawable/ic_settings_gray"
-        app:layout_constraintStart_toEndOf="@id/home_profileNavigationItem"
+        app:layout_constraintStart_toEndOf="@id/home_recommendationsNavigationItem"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toTopOf="@id/home_bottomNavigation"/>

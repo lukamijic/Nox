@@ -8,6 +8,7 @@ import hr.fer.nox.core.di.NetworkingModule
 import hr.fer.nox.core.di.ThreadingModule
 import hr.fer.nox.home.di.HomeModule
 import hr.fer.nox.login.di.LoginModule
+import hr.fer.nox.movies.di.MoviesModule
 import hr.fer.nox.navigation.di.NavigationModule
 import hr.fer.nox.splash.di.SplashModule
 import org.koin.android.ext.android.startKoin
@@ -24,7 +25,7 @@ class NoxApp: Application() {
 
     private val coreModules = listOf(AppModule, NavigationModule, ThreadingModule, NetworkingModule)
 
-    private val featureModules = listOf(SplashModule, LoginModule, HomeModule)
+    private val featureModules = listOf(SplashModule, LoginModule, HomeModule, MoviesModule)
 
     override fun onCreate() {
         super.onCreate()

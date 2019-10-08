@@ -8,5 +8,7 @@ interface Router {
 
     fun showHome()
 
+    fun showMovies()
+
     fun goBack()
 }

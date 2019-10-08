@@ -26,8 +26,8 @@ class HomeFragment: BaseFragment<HomeViewState>(), HomeContract.View {
 
         private const val MOVIES = 0
         private const val EXPLORE = 1
-        private const val PROFILE = 2
-        private const val SETTINGS = 3
+        private const val RECOMMENDATIONS = 2
+        private const val PROFILE = 3
     }
 
     private val presenter: HomeContract.Presenter by inject()
@@ -35,8 +35,17 @@ class HomeFragment: BaseFragment<HomeViewState>(), HomeContract.View {
         mapOf<Int, NavigationItemView>(
             MOVIES to home_moviesNavigationItem,
             EXPLORE to home_exploreNavigationItem,
-            PROFILE to home_profileNavigationItem,
-            SETTINGS to home_settingsNavigationItem
+            RECOMMENDATIONS to home_recommendationsNavigationItem,
+            PROFILE to home_profileNavigationItem
+        )
+    }
+
+    private val bottomNavigationClickActionMap by lazy {
+        mapOf<Int, (HomeContract.Presenter) -> Unit>(
+            MOVIES to HomeContract.Presenter::showMovies,
+            EXPLORE to HomeContract.Presenter::showExplore,
+            RECOMMENDATIONS to HomeContract.Presenter::showRecommendations,
+            PROFILE to HomeContract.Presenter::showProfile
         )
     }
 
@@ -44,9 +53,11 @@ class HomeFragment: BaseFragment<HomeViewState>(), HomeContract.View {
         super.initialiseView(view, savedInstanceState)
 
         home_moviesNavigationItem.activate()
-        bottomNavigationItemMap.entries.forEach { e ->
-            e.value.setOnClickListener {
-                activateBottomNavigationItem(e.key)
+        bottomNavigationItemMap.entries.forEach { entry ->
+            val (key, value) = entry
+            value.setOnClickListener {
+                activateBottomNavigationItem(key)
+                bottomNavigationClickActionMap[key]?.invoke(presenter)
             }
         }
     }
