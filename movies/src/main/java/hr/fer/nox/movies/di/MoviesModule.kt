@@ -9,62 +9,74 @@ import hr.fer.nox.movies.ui.container.MoviesContainerContract
 import hr.fer.nox.movies.ui.container.MoviesContainerPresenter
 import hr.fer.nox.movies.ui.movies.MoviesContract
 import hr.fer.nox.movies.ui.movies.MoviesPresenter
-import org.koin.dsl.module.module
+import org.koin.core.qualifier.named
+import org.koin.dsl.module
 
 val MoviesModule = module {
 
-    scope(MOVIES_CONTAINER_VIEW_SCOPE) {
-        val presenter = MoviesContainerPresenter().apply {
-            mainThreadScheduler = get(name = MAIN_SCHEDULER)
-            backgroundScheduler = get(name = BACKGROUND_SCHEDULER)
-            routingActionsDispatcher = get()
-            start()
+    scope(named(MOVIES_CONTAINER_VIEW_SCOPE)) {
+
+        scoped {
+            val presenter = MoviesContainerPresenter().apply {
+                mainThreadScheduler = get(named(MAIN_SCHEDULER))
+                backgroundScheduler = get(named(BACKGROUND_SCHEDULER))
+                routingActionsDispatcher = get()
+                start()
+            }
+            presenter as MoviesContainerContract.Presenter
         }
-        presenter as MoviesContainerContract.Presenter
     }
 
-    scope(POPULAR_MOVIES_VIEW_SCOPE) {
-        val presenter = MoviesPresenter(get(scopeId = POPULAR_MOVIES_VIEW_SCOPE)).apply {
-            mainThreadScheduler = get(name = MAIN_SCHEDULER)
-            backgroundScheduler = get(name = BACKGROUND_SCHEDULER)
-            routingActionsDispatcher = get()
-            start()
+    scope(named(POPULAR_MOVIES_VIEW_SCOPE)) {
+
+        scoped {
+            val presenter = MoviesPresenter(get()).apply {
+                mainThreadScheduler = get(named(MAIN_SCHEDULER))
+                backgroundScheduler = get(named(BACKGROUND_SCHEDULER))
+                routingActionsDispatcher = get()
+                start()
+            }
+            presenter as MoviesContract.Presenter
         }
-        presenter as MoviesContract.Presenter
-    }
 
-    scope(POPULAR_MOVIES_VIEW_SCOPE) {
-        PopularMoviesResources(get()) as MoviesResources
-    }
-
-    scope(NEW_RELEASES_MOVIES_VIEW_SCOPE) {
-        val presenter = MoviesPresenter(get(scopeId = NEW_RELEASES_MOVIES_VIEW_SCOPE)).apply {
-            mainThreadScheduler = get(name = MAIN_SCHEDULER)
-            backgroundScheduler = get(name = BACKGROUND_SCHEDULER)
-            routingActionsDispatcher = get()
-            start()
+        scoped {
+            PopularMoviesResources(get()) as MoviesResources
         }
-        presenter as MoviesContract.Presenter
     }
 
-    scope(NEW_RELEASES_MOVIES_VIEW_SCOPE) {
-        NewReleasesMoviesResources(get()) as MoviesResources
-    }
+    scope(named(NEW_RELEASES_MOVIES_VIEW_SCOPE)) {
 
-    /*scope(COMING_SOON_MOVIES_VIEW_SCOPE) {
-        val presenter = MoviesPresenter(get(scopeId = COMING_SOON_MOVIES_VIEW_SCOPE)).apply {
-            mainThreadScheduler = get(name = MAIN_SCHEDULER)
-            backgroundScheduler = get(name = BACKGROUND_SCHEDULER)
-            routingActionsDispatcher = get()
-            start()
+        scoped {
+            val presenter = MoviesPresenter(get()).apply {
+                mainThreadScheduler = get(named(MAIN_SCHEDULER))
+                backgroundScheduler = get(named(BACKGROUND_SCHEDULER))
+                routingActionsDispatcher = get()
+                start()
+            }
+            presenter as MoviesContract.Presenter
         }
-        presenter as MoviesContract.Presenter
+
+        scoped {
+            NewReleasesMoviesResources(get()) as MoviesResources
+        }
     }
 
-    scope(COMING_SOON_MOVIES_VIEW_SCOPE) {
-        PopularMoviesResources(get()) as MoviesResources
-    }*/
+    scope(named(COMING_SOON_MOVIES_VIEW_SCOPE)) {
 
+        scoped {
+            val presenter = MoviesPresenter(get()).apply {
+                mainThreadScheduler = get(named(MAIN_SCHEDULER))
+                backgroundScheduler = get(named(BACKGROUND_SCHEDULER))
+                routingActionsDispatcher = get()
+                start()
+            }
+            presenter as MoviesContract.Presenter
+        }
+
+        scoped {
+            PopularMoviesResources(get()) as MoviesResources
+        }
+    }
 }
 
 const val MOVIES_CONTAINER_VIEW_SCOPE = "MoviesContainer view scope"

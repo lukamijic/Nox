@@ -17,6 +17,7 @@ import hr.fer.nox.login.di.LOGIN_VIEW_SCOPE
 import hr.fer.nox.ui.ActionableInputView
 import io.reactivex.disposables.CompositeDisposable
 import kotlinx.android.synthetic.main.fragment_login.*
+import org.koin.android.ext.android.getKoin
 import org.koin.android.ext.android.inject
 import org.koin.core.parameter.parametersOf
 
@@ -32,7 +33,7 @@ class LoginFragment: BaseFragment<LoginViewState>(), LoginContract.View {
         fun newInstance(): Fragment = LoginFragment()
     }
 
-    private val presenter: LoginContract.Presenter by inject()
+    private val presenter: LoginContract.Presenter by scope().inject()
     private val keyboardUtils: KeyboardUtils by inject()
     private val keyboardWatcher: KeyboardWatcher by inject(parameters = { parametersOf(requireActivity()) })
 

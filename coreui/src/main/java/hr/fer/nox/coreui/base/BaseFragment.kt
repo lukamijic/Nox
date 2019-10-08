@@ -13,6 +13,7 @@ import hr.fer.nox.navigation.routing.BackPropagatingFragment
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.disposables.Disposable
 import org.koin.android.ext.android.getKoin
+import org.koin.core.qualifier.named
 
 abstract class BaseFragment<ViewState> : Fragment(), BaseView, BackPropagatingFragment {
 
@@ -61,7 +62,7 @@ abstract class BaseFragment<ViewState> : Fragment(), BaseView, BackPropagatingFr
         return true
     }
 
-    fun scope() = getKoin().getScope(getScopeName())
+    fun scope() = getKoin().getOrCreateScope(getScopeName(), named(getScopeName()))
 
     /**
      * Override to initialise view

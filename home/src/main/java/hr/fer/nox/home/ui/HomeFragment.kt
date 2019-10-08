@@ -11,7 +11,9 @@ import hr.fer.nox.home.R
 import hr.fer.nox.home.di.HOME_VIEW_SCOPE
 import hr.fer.nox.ui.NavigationItemView
 import kotlinx.android.synthetic.main.fragment_home.*
+import org.koin.android.ext.android.getKoin
 import org.koin.android.ext.android.inject
+import org.koin.core.qualifier.named
 
 class HomeFragment: BaseFragment<HomeViewState>(), HomeContract.View {
 
@@ -30,7 +32,7 @@ class HomeFragment: BaseFragment<HomeViewState>(), HomeContract.View {
         private const val PROFILE = 3
     }
 
-    private val presenter: HomeContract.Presenter by inject()
+    private val presenter: HomeContract.Presenter by scope().inject()
     private val bottomNavigationItemMap by lazy {
         mapOf<Int, NavigationItemView>(
             MOVIES to home_moviesNavigationItem,

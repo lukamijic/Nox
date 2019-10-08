@@ -27,7 +27,7 @@ class MoviesContainerFragment: BaseFragment<MoviesContainerViewState>(), MoviesC
 
     }
 
-    private val presenter: MoviesContainerContract.Presenter by inject()
+    private val presenter: MoviesContainerContract.Presenter by scope().inject()
     private val resourceUtils: ResourceUtils by inject()
 
     private lateinit var moviesContainerPagerAdaper: MoviesContainerPagerAdapter
