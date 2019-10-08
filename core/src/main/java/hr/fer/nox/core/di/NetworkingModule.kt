@@ -7,7 +7,7 @@ import hr.fer.nox.core.networking.ConnectivityManagerWrapperImpl
 import hr.fer.nox.core.networking.NetworkUtils
 import hr.fer.nox.core.networking.NetworkUtilsImpl
 import org.koin.android.ext.koin.androidApplication
-import org.koin.dsl.module.module
+import org.koin.dsl.module
 
 val NetworkingModule = module {
 

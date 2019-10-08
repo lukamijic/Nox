@@ -9,7 +9,7 @@ import hr.fer.nox.coreui.util.*
 import hr.fer.nox.navigation.router.Router
 import org.koin.android.ext.koin.androidApplication
 import org.koin.android.ext.koin.androidContext
-import org.koin.dsl.module.module
+import org.koin.dsl.module
 
 val AppModule = module {
 

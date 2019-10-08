@@ -4,17 +4,21 @@ import hr.fer.nox.core.di.BACKGROUND_SCHEDULER
 import hr.fer.nox.core.di.MAIN_SCHEDULER
 import hr.fer.nox.home.ui.HomeContract
 import hr.fer.nox.home.ui.HomePresenter
-import org.koin.dsl.module.module
+import org.koin.core.qualifier.named
+import org.koin.dsl.module
 
 val HomeModule = module {
-    scope(HOME_VIEW_SCOPE) {
-        val presenter = HomePresenter().apply {
-            mainThreadScheduler = get(name = MAIN_SCHEDULER)
-            backgroundScheduler = get(name = BACKGROUND_SCHEDULER)
-            routingActionsDispatcher = get()
-            start()
+    scope(named(HOME_VIEW_SCOPE)) {
+
+        scoped {
+            val presenter = HomePresenter().apply {
+                mainThreadScheduler = get(named(MAIN_SCHEDULER))
+                backgroundScheduler = get(named(BACKGROUND_SCHEDULER))
+                routingActionsDispatcher = get()
+                start()
+            }
+            presenter as HomeContract.Presenter
         }
-        presenter as HomeContract.Presenter
     }
 }
 

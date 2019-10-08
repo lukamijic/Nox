@@ -4,7 +4,7 @@ import hr.fer.nox.navigation.routing.RoutingActionDispatcher
 import hr.fer.nox.navigation.routing.RoutingActionSource
 import hr.fer.nox.navigation.routing.RoutingMediator
 import hr.fer.nox.navigation.routing.RoutingMediatorImpl
-import org.koin.dsl.module.module
+import org.koin.dsl.module
 
 val NavigationModule = module {
 

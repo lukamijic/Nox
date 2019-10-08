@@ -5,7 +5,8 @@ import io.reactivex.Scheduler
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
-import org.koin.dsl.module.module
+import org.koin.core.qualifier.named
+import org.koin.dsl.module
 import java.util.concurrent.TimeUnit
 
 const val BACKGROUND_SCHEDULER = "BACKGROUND_SCHEDULER"
@@ -13,9 +14,9 @@ const val MAIN_SCHEDULER = "MAIN_SCHEDULER"
 
 val ThreadingModule =  module {
 
-    single(BACKGROUND_SCHEDULER) { Schedulers.io() }
+    single(named(BACKGROUND_SCHEDULER)) { Schedulers.io() }
 
-    single<Scheduler> (MAIN_SCHEDULER) {
+    single<Scheduler> (named(MAIN_SCHEDULER)) {
         OnRescheduleNotifyMainScheduler { throw IllegalStateException("RxChain already on MainThread!") }
     }
 

@@ -9,5 +9,12 @@ interface HomeContract {
 
     interface Presenter : ViewPresenter<View, HomeViewState> {
 
+        fun showMovies()
+
+        fun showExplore()
+
+        fun showRecommendations()
+
+        fun showProfile()
     }
 }

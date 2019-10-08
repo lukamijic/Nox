@@ -31,6 +31,7 @@ dependencies {
     implementation project(':login')
     implementation project(':home')
     implementation project(':splash')
+    implementation project(':movies')
 
     // Kotlin
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
