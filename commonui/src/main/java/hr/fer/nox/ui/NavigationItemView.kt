@@ -38,12 +38,14 @@ class NavigationItemView: ConstraintLayout {
         navigationItemUnderline.visibility = View.VISIBLE
         navigationItemIcon.setImageResource(activeIconRes)
         navigationItemTitle.setTextColor(activeTextColor)
+        isClickable = false
     }
 
     fun deactivate() {
         navigationItemUnderline.visibility = View.GONE
         navigationItemIcon.setImageResource(inactiveIconRes)
         navigationItemTitle.setTextColor(inactiveTextColor)
+        isClickable = true
     }
 
     private fun init(context: Context, attrs: AttributeSet?, defStyleAttr: Int) {

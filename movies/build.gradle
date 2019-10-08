@@ -47,6 +47,9 @@ dependencies {
     //AndroidKtx
     implementation "androidx.core:core-ktx:$versions.ktx"
 
+    //Overscroll
+    implementation "me.everything:overscroll-decor-android:$versions.overscroll"
+
     // RxJava
     implementation "io.reactivex.rxjava2:rxandroid:$versions.rxAndroid"
     implementation "io.reactivex.rxjava2:rxjava:$versions.rxJava"

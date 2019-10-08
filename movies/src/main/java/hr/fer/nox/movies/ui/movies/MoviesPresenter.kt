@@ -7,5 +7,5 @@ class MoviesPresenter(
     private val moviesResources: MoviesResources
 ): BasePresenter<MoviesContract.View, MoviesViewState>(), MoviesContract.Presenter {
 
-    override fun initialViewState(): MoviesViewState = MoviesViewState(moviesResources.getTitle())
+    override fun initialViewState(): MoviesViewState = MoviesViewState(DEFAULT())
 }

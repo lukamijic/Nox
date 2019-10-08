@@ -70,10 +70,11 @@ class HomeFragment: BaseFragment<HomeViewState>(), HomeContract.View {
 
     private fun activateBottomNavigationItem(id: Int) {
         bottomNavigationItemMap.entries.forEach {
-            if (id != it.key ) {
-                it.value.deactivate()
+            val (key, value) = it
+            if (id != key ) {
+                value.deactivate()
             } else {
-                it.value.activate()
+                value.activate()
             }
         }
     }
