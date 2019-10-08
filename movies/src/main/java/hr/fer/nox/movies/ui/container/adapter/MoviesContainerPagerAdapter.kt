@@ -10,7 +10,7 @@ import hr.fer.nox.movies.di.NEW_RELEASES_MOVIES_VIEW_SCOPE
 import hr.fer.nox.movies.di.POPULAR_MOVIES_VIEW_SCOPE
 import hr.fer.nox.movies.ui.movies.MoviesFragment
 
-private const val TAB_COUNT = 1
+private const val TAB_COUNT = 3
 
 class MoviesContainerPagerAdapter(
     private val resourceUtils: ResourceUtils,

@@ -16,7 +16,7 @@ buildscript {
             'appCompat'       : "1.1.0",
             'rxJava'          : "2.2.3",
             'rxAndroid'       : "2.1.0",
-            'koin'            : "1.0.1",
+            'koin'            : "2.0.1",
             'stetho'          : "1.5.1",
             'annotation'      : "1.0.1",
             'glide'           : "4.9.0",

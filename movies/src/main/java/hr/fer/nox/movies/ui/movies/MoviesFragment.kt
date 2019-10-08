@@ -31,7 +31,7 @@ class MoviesFragment: BaseFragment<MoviesViewState>(), MoviesContract.View {
     }
 
 
-    private val presenter: MoviesContract.Presenter by inject()
+    private val presenter: MoviesContract.Presenter by lazy { scope().get() as MoviesContract.Presenter }
 
     override fun render(viewState: MoviesViewState) {
         movies_title.text = viewState.title

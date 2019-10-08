@@ -3,10 +3,11 @@ package hr.fer.nox.coreui.base
 import androidx.lifecycle.ViewModel
 import hr.fer.nox.coreui.lifecycle.Destroyable
 import hr.fer.nox.coreui.lifecycle.Destroyables
-import org.koin.core.KoinContext
+import org.koin.core.Koin
+import org.koin.core.qualifier.named
 
 class ScopeRetainer(
-    private val koin: KoinContext
+    val koin: Koin
 ): ViewModel() {
 
     private lateinit var definedScope: String
@@ -22,7 +23,7 @@ class ScopeRetainer(
         }
 
         definedScope = scope
-        koin.getOrCreateScope(definedScope)
+        koin.getOrCreateScope(definedScope, named(definedScope))
     }
 
     fun addDestroyable(destroyable: Destroyable) {

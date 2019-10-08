@@ -11,7 +11,8 @@ import hr.fer.nox.login.di.LoginModule
 import hr.fer.nox.movies.di.MoviesModule
 import hr.fer.nox.navigation.di.NavigationModule
 import hr.fer.nox.splash.di.SplashModule
-import org.koin.android.ext.android.startKoin
+import org.koin.android.ext.koin.androidContext
+import org.koin.core.context.startKoin
 
 class NoxApp: Application() {
 
@@ -31,7 +32,10 @@ class NoxApp: Application() {
         super.onCreate()
 
         instance = this
-        startKoin(this, coreModules + featureModules)
+        startKoin {
+            androidContext(this@NoxApp)
+            modules(coreModules + featureModules)
+        }
         initStetho()
     }
 
