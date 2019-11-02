@@ -1,0 +1,4 @@
+<resources>
+    <string name="moviedetails_synopsis">Synopsis</string>
+    <string name="moviedetails_director">Director</string>
+</resources>

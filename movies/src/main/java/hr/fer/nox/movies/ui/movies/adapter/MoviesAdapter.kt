@@ -12,7 +12,8 @@ import hr.fer.nox.movies.model.MovieItemViewModel
 import kotlinx.android.synthetic.main.item_movies_movie.view.*
 
 class MoviesAdapter(
-    private val layoutInflater: LayoutInflater
+    private val layoutInflater: LayoutInflater,
+    private val movieSelectedAction: (MovieItemViewModel) -> Unit
 ): ListAdapter<MovieItemViewModel, MoviesAdapter.MovieViewHolder>(DiffUtilCallback()) {
 
     companion object {
@@ -32,6 +33,7 @@ class MoviesAdapter(
 
         fun fillView(item: MovieItemViewModel) {
             itemView.movies_moviePoster.setImageResource(item.moviePosterResId)
+            itemView.setOnClickListener { movieSelectedAction(item) }
         }
     }
 }

@@ -26,7 +26,8 @@ buildscript {
             'overscroll'      : "1.0.4",
             'lottie'          : "2.8.0",
             'reactiveNetwork' : "3.0.2",
-            'rxBinding'       : "3.0.0-alpha2"
+            'rxBinding'       : "3.0.0-alpha2",
+            'youtube'         : "10.0.5"
     ]
 
     repositories {

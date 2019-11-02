@@ -7,5 +7,8 @@ interface MoviesContract {
 
     interface View : BaseView
 
-    interface Presenter : ViewPresenter<View, MoviesViewState>
+    interface Presenter : ViewPresenter<View, MoviesViewState> {
+
+        fun showMovieDetails(movieId: String)
+    }
 }

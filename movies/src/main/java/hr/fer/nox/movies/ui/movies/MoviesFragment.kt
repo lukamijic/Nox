@@ -11,13 +11,14 @@ import hr.fer.nox.coreui.base.BaseFragment
 import hr.fer.nox.coreui.base.BaseView
 import hr.fer.nox.coreui.base.ViewPresenter
 import hr.fer.nox.movies.R
+import hr.fer.nox.movies.model.MovieItemViewModel
 import hr.fer.nox.movies.ui.movies.adapter.MoviesAdapter
 import kotlinx.android.synthetic.main.fragment_movies.*
 import me.everything.android.ui.overscroll.OverScrollDecoratorHelper
 import org.koin.android.ext.android.getKoin
 import org.koin.android.ext.android.inject
 
-class MoviesFragment: BaseFragment<MoviesViewState>(), MoviesContract.View {
+class MoviesFragment : BaseFragment<MoviesViewState>(), MoviesContract.View {
 
     companion object {
 
@@ -38,13 +39,15 @@ class MoviesFragment: BaseFragment<MoviesViewState>(), MoviesContract.View {
             }
     }
 
-
     private val presenter: MoviesContract.Presenter by scopedInject()
 
     private lateinit var moviesAdapter: MoviesAdapter
 
     override fun initialiseView(view: View, savedInstanceState: Bundle?) {
-        moviesAdapter = MoviesAdapter(LayoutInflater.from(context))
+        moviesAdapter = MoviesAdapter(
+            LayoutInflater.from(context)
+        ) { movieItemViewModel: MovieItemViewModel -> presenter.showMovieDetails("") }
+
 
         movies_recyclerView.apply {
             layoutManager = GridLayoutManager(context, COLUMN_COUNT, RecyclerView.VERTICAL, false)
