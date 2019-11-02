@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:elevation="@dimen/normal_elevation"
+    android:background="@color/colorPrimaryDark"
+    android:layout_margin="@dimen/tiny_margin">
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/moviedetails_actorImageContainer"
+        android:layout_width="@dimen/moviedetails_actor_width"
+        android:layout_height="@dimen/moviedetails_actor_height"
+        app:cardCornerRadius="@dimen/big_round_corners"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <ImageView
+            android:id="@+id/moviedetails_actorImage"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="centerCrop"
+            android:background="@color/colorPrimaryDark"
+            android:src="@drawable/placeholder_actor"/>
+    </androidx.cardview.widget.CardView>
+
+    <TextView
+        android:id="@+id/moviedetails_actorName"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        style="@style/NormalTextStyle"
+        android:layout_marginStart="@dimen/tiny_margin"
+        android:layout_marginEnd="@dimen/tiny_margin"
+        android:layout_marginTop="@dimen/tiny_margin"
+        app:layout_constraintTop_toBottomOf="@+id/moviedetails_actorImageContainer"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        tools:text="Joaquin Phoenix"/>
+
+    <TextView
+        android:id="@+id/moviedetails_actorRoleName"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        style="@style/NormalGrayTextStyle"
+        android:layout_margin="@dimen/tiny_margin"
+        app:layout_constraintTop_toBottomOf="@+id/moviedetails_actorName"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        tools:text="Arthur Fleck"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

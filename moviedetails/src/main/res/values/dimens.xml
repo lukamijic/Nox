@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="moviedetails_toolbar_height">48dp</dimen>
+    <dimen name="moviedetails_back_arrow_size">24dp</dimen>
+    <dimen name="moviedetails_border_height">0.5dp</dimen>
+    <dimen name="moviedetails_small_poster_width">90dp</dimen>
+    <dimen name="moviedetails_small_poster_height">135dp</dimen>
+    <dimen name="moviedetails_score_icon_size">48dp</dimen>
+    <dimen name="moviedetails_like_icon_size">24dp</dimen>
+    <dimen name="moviedetails_add_to_watchlist_icon_size">24dp</dimen>
+    <dimen name="moviedetails_watched_icon_size">24dp</dimen>
+    <dimen name="moviedetails_actor_width">120dp</dimen>
+    <dimen name="moviedetails_actor_height">180dp</dimen>
+</resources>

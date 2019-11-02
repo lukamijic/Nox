@@ -1,0 +1,364 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/colorPrimaryDark"
+    android:animateLayoutChanges="true">
+
+    <LinearLayout
+        android:id="@+id/moviedetails_toolbar"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/moviedetails_toolbar_height"
+        android:elevation="@dimen/normal_elevation"
+        android:background="@color/colorPrimary"
+        android:orientation="horizontal"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <Button
+            android:id="@+id/moviedetails_backButton"
+            android:layout_width="@dimen/moviedetails_back_arrow_size"
+            android:layout_height="@dimen/moviedetails_back_arrow_size"
+            android:layout_gravity="center_vertical"
+            android:background="@drawable/ic_back_arrow_white"
+            android:layout_marginStart="@dimen/normal_margin"/>
+
+    </LinearLayout>
+
+    <hr.fer.nox.ui.AnimatedProgressView
+        android:id="@+id/moviedetails_progressView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:elevation="@dimen/big_elevation"
+        android:visibility="invisible"
+        app:layout_constraintTop_toBottomOf="@id/moviedetails_toolbar"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+
+    <ScrollView
+        android:id="@+id/moviedetails_synopsisContainer"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@color/colorPrimaryDark"
+        android:visibility="gone"
+        android:elevation="@dimen/normal_elevation"
+        app:layout_constraintTop_toBottomOf="@id/moviedetails_toolbar"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                style="@style/TitleTextStyle"
+                android:text="@string/moviedetails_synopsis"
+                android:layout_margin="@dimen/normal_margin"/>
+
+            <TextView
+                android:id="@+id/moviedetails_fullSynopsis"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                style="@style/NormalTextStyle"
+                android:layout_marginStart="@dimen/normal_margin"
+                android:layout_marginEnd="@dimen/normal_margin"
+                android:layout_marginBottom="@dimen/normal_margin"
+                tools:text="Arthur Fleck is a wannabe stand-up comic who suffers from many mental illnesses, including one which causes him to laugh uncontrollably when he is nervous, and often gets him into bad situations. Arthur's mental health causes almost all people in society to reject and look down upon him, even though all he wants is to be accepted by others. After being brutally beaten, having his medication cut off, Arthur's life begins to spiral downward out-of-control into delusions, violence, and anarchy until he eventually transforms into Gotham's infamous Clown-Prince of Crime." />
+
+        </LinearLayout>
+    </ScrollView>
+
+    <FrameLayout
+        android:id="@+id/moviedetails_moviePosterContainer"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@color/colorPrimaryDark"
+        android:elevation="@dimen/normal_elevation"
+        app:layout_constraintTop_toBottomOf="@id/moviedetails_toolbar"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:visibility="gone">
+
+        <ImageView
+            android:id="@+id/moviedetails_bigMoviePoster"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@drawable/default_movie_poster"/>
+    </FrameLayout>
+
+    <ScrollView
+        android:id="@+id/moviedetails_detailsContainer"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@color/colorPrimaryDark"
+        app:layout_constraintTop_toBottomOf="@id/moviedetails_toolbar"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView
+                android:id="@+id/moviedetails_youtubePlayer"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:showFullScreenButton="false"
+                app:autoPlay="false"
+                app:videoId="zAGVQLHvwOY"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"/>
+
+            <TextView
+                android:id="@+id/moviedetails_movieTitle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                style="@style/TitleTextStyle"
+                android:maxLines="2"
+                android:layout_marginStart="@dimen/small_margin"
+                android:layout_marginEnd="@dimen/small_margin"
+                android:layout_marginTop="@dimen/small_margin"
+                app:layout_constraintTop_toBottomOf="@id/moviedetails_youtubePlayer"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                tools:text="Joker"/>
+
+            <TextView
+                android:id="@+id/moviedetails_releaseYear"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/NormalGrayTextStyle"
+                android:layout_marginStart="@dimen/small_margin"
+                app:layout_constraintTop_toBottomOf="@id/moviedetails_movieTitle"
+                app:layout_constraintStart_toStartOf="parent"
+                tools:text="2019"/>
+
+            <TextView
+                android:id="@+id/moviedetails_movieDuration"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/NormalGrayTextStyle"
+                android:layout_marginStart="@dimen/small_margin"
+                app:layout_constraintTop_toBottomOf="@id/moviedetails_movieTitle"
+                app:layout_constraintStart_toEndOf="@id/moviedetails_releaseYear"
+                tools:text="2h 2m"/>
+
+            <TextView
+                android:id="@+id/moviedetails_movieGenres"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/NormalGrayTextStyle"
+                android:maxLines="1"
+                android:ellipsize="end"
+                android:layout_marginStart="@dimen/small_margin"
+                app:layout_constraintTop_toBottomOf="@id/moviedetails_movieTitle"
+                app:layout_constraintStart_toEndOf="@id/moviedetails_movieDuration"
+                tools:text="Crime, Drama, Thriller"/>
+
+            <View
+                android:id="@+id/moviedetails_firstBorder"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/moviedetails_border_height"
+                android:background="@android:color/white"
+                android:layout_marginTop="@dimen/tiny_margin"
+                app:layout_constraintTop_toBottomOf="@id/moviedetails_movieGenres"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"/>
+
+            <ImageView
+                android:id="@+id/moviedetails_likeIcon"
+                android:layout_width="@dimen/moviedetails_like_icon_size"
+                android:layout_height="@dimen/moviedetails_like_icon_size"
+                android:src="@drawable/ic_like"
+                android:layout_marginTop="@dimen/small_margin"
+                app:layout_constraintTop_toBottomOf="@id/moviedetails_firstBorder"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/moviedetails_addToWatchListIcon"/>
+
+            <ImageView
+                android:id="@+id/moviedetails_addToWatchListIcon"
+                android:layout_width="@dimen/moviedetails_add_to_watchlist_icon_size"
+                android:layout_height="@dimen/moviedetails_add_to_watchlist_icon_size"
+                android:src="@drawable/ic_add_to_watchlist"
+                android:layout_marginTop="@dimen/small_margin"
+                app:layout_constraintStart_toEndOf="@id/moviedetails_likeIcon"
+                app:layout_constraintEnd_toStartOf="@id/moviedetails_watchedIcon"
+                app:layout_constraintTop_toBottomOf="@id/moviedetails_firstBorder"/>
+
+            <ImageView
+                android:id="@+id/moviedetails_watchedIcon"
+                android:layout_width="@dimen/moviedetails_watched_icon_size"
+                android:layout_height="@dimen/moviedetails_watched_icon_size"
+                android:src="@drawable/ic_watch"
+                android:layout_marginTop="@dimen/small_margin"
+                app:layout_constraintTop_toBottomOf="@id/moviedetails_firstBorder"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/moviedetails_addToWatchListIcon"/>
+
+            <View
+                android:id="@+id/moviedetails_secondBorder"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/moviedetails_border_height"
+                android:background="@android:color/white"
+                android:layout_marginTop="@dimen/tiny_margin"
+                app:layout_constraintTop_toBottomOf="@id/moviedetails_addToWatchListIcon"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"/>
+            
+            <ImageView
+                android:id="@+id/moviedetails_smallPoster"
+                android:layout_width="@dimen/moviedetails_small_poster_width"
+                android:layout_height="@dimen/moviedetails_small_poster_height"
+                app:layout_constraintHorizontal_bias="0"
+                android:src="@drawable/default_movie_poster"
+                android:layout_marginStart="@dimen/normal_margin"
+                android:layout_marginTop="@dimen/normal_margin"
+                app:layout_constraintTop_toBottomOf="@id/moviedetails_secondBorder"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent" />
+
+            <TextView
+                android:id="@+id/moviedetails_smallSynopsis"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                style="@style/NormalTextStyle"
+                android:ellipsize="end"
+                android:layout_marginTop="@dimen/tiny_margin"
+                android:layout_marginBottom="@dimen/tiny_margin"
+                android:layout_marginStart="@dimen/normal_margin"
+                android:layout_marginEnd="@dimen/normal_margin"
+                app:layout_constraintStart_toEndOf="@id/moviedetails_smallPoster"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@id/moviedetails_smallPoster"
+                app:layout_constraintBottom_toBottomOf="@id/moviedetails_smallPoster"
+                tools:text="Arthur Fleck is a wannabe stand-up comic who suffers from many mental illnesses, including one which causes him to laugh uncontrollably when he is nervous, and often gets him into bad situations. Arthur's mental health causes almost all people in society to reject and look down upon him, even though all he wants is to be accepted by others. After being brutally beaten, having his medication cut off, Arthur's life begins to spiral downward out-of-control into delusions, violence, and anarchy until he eventually transforms into Gotham's infamous Clown-Prince of Crime."/>
+
+            <View
+                android:id="@+id/moviedetails_thirdBorder"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/moviedetails_border_height"
+                android:background="@android:color/white"
+                android:layout_marginTop="@dimen/tiny_margin"
+                app:layout_constraintTop_toBottomOf="@id/moviedetails_smallPoster"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"/>
+
+            <ImageView
+                android:id="@+id/moviedetails_imdbScoreIcon"
+                android:layout_width="@dimen/moviedetails_score_icon_size"
+                android:layout_height="@dimen/moviedetails_score_icon_size"
+                android:src="@drawable/ic_imdb"
+                app:layout_constraintTop_toBottomOf="@id/moviedetails_thirdBorder"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/moviedetails_tomatoScoreIcon"/>
+
+            <ImageView
+                android:id="@+id/moviedetails_tomatoScoreIcon"
+                android:layout_width="@dimen/moviedetails_score_icon_size"
+                android:layout_height="@dimen/moviedetails_score_icon_size"
+                android:src="@drawable/ic_tomato"
+                android:padding="@dimen/small_margin"
+                app:layout_constraintTop_toBottomOf="@id/moviedetails_thirdBorder"
+                app:layout_constraintStart_toEndOf="@id/moviedetails_imdbScoreIcon"
+                app:layout_constraintEnd_toStartOf="@id/moviedetails_metacriticScoreIcon"/>
+
+            <ImageView
+                android:id="@+id/moviedetails_metacriticScoreIcon"
+                android:layout_width="@dimen/moviedetails_score_icon_size"
+                android:layout_height="@dimen/moviedetails_score_icon_size"
+                android:src="@drawable/ic_metacritic"
+                android:padding="@dimen/small_margin"
+                app:layout_constraintTop_toBottomOf="@id/moviedetails_thirdBorder"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/moviedetails_tomatoScoreIcon"/>
+
+            <TextView
+                android:id="@+id/moviedetails_imdbScore"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/SubtitleTextStyle"
+                app:layout_constraintTop_toBottomOf="@id/moviedetails_imdbScoreIcon"
+                app:layout_constraintStart_toStartOf="@id/moviedetails_imdbScoreIcon"
+                app:layout_constraintEnd_toEndOf="@id/moviedetails_imdbScoreIcon"
+                tools:text="8.8/10"/>
+
+            <TextView
+                android:id="@+id/moviedetails_tomatoScore"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/SubtitleTextStyle"
+                app:layout_constraintTop_toBottomOf="@id/moviedetails_tomatoScoreIcon"
+                app:layout_constraintStart_toStartOf="@id/moviedetails_tomatoScoreIcon"
+                app:layout_constraintEnd_toEndOf="@id/moviedetails_tomatoScoreIcon"
+                tools:text="69%"/>
+
+            <TextView
+                android:id="@+id/moviedetails_metacriticScore"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/SubtitleTextStyle"
+                app:layout_constraintTop_toBottomOf="@id/moviedetails_metacriticScoreIcon"
+                app:layout_constraintStart_toStartOf="@id/moviedetails_metacriticScoreIcon"
+                app:layout_constraintEnd_toEndOf="@id/moviedetails_metacriticScoreIcon"
+                tools:text="59"/>
+
+            <View
+                android:id="@+id/moviedetails_forthBorder"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/moviedetails_border_height"
+                android:background="@android:color/white"
+                android:layout_marginTop="@dimen/tiny_margin"
+                app:layout_constraintTop_toBottomOf="@id/moviedetails_metacriticScore"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"/>
+
+            <TextView
+                android:id="@+id/moviedetails_directorTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/SubtitleTextStyle"
+                android:text="@string/moviedetails_director"
+                android:layout_marginTop="@dimen/small_margin"
+                android:layout_marginStart="@dimen/small_margin"
+                app:layout_constraintTop_toBottomOf="@id/moviedetails_forthBorder"
+                app:layout_constraintStart_toStartOf="parent"/>
+
+            <TextView
+                android:id="@+id/moviedetails_directorName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/NormalGrayTextStyle"
+                android:layout_marginTop="@dimen/tiny_margin"
+                android:layout_marginStart="@dimen/small_margin"
+                app:layout_constraintTop_toBottomOf="@id/moviedetails_directorTitle"
+                app:layout_constraintStart_toStartOf="parent"
+                tools:text="Todd Philips"/>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/moviedetails_actorsRecyclerView"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/normal_margin"
+                android:layout_marginBottom="@dimen/normal_margin"
+                app:layout_constraintTop_toBottomOf="@id/moviedetails_directorName"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </ScrollView>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
