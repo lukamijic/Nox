@@ -27,14 +27,14 @@ class MoviesContainerFragment: BaseFragment<MoviesContainerViewState>(), MoviesC
 
     }
 
-    private val presenter: MoviesContainerContract.Presenter by scope().inject()
+    private val presenter: MoviesContainerContract.Presenter by scopedInject()
     private val resourceUtils: ResourceUtils by inject()
 
-    private lateinit var moviesContainerPagerAdaper: MoviesContainerPagerAdapter
+    private lateinit var moviesContainerPagerAdapter: MoviesContainerPagerAdapter
 
     override fun initialiseView(view: View, savedInstanceState: Bundle?) {
-        moviesContainerPagerAdaper = MoviesContainerPagerAdapter(resourceUtils, childFragmentManager)
-        movies_viewPager.adapter = moviesContainerPagerAdaper
+        moviesContainerPagerAdapter = MoviesContainerPagerAdapter(resourceUtils, childFragmentManager)
+        movies_viewPager.adapter = moviesContainerPagerAdapter
         movies_tabLayout.setupWithViewPager(movies_viewPager)
     }
 

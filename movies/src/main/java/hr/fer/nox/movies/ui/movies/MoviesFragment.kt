@@ -39,7 +39,7 @@ class MoviesFragment: BaseFragment<MoviesViewState>(), MoviesContract.View {
     }
 
 
-    private val presenter: MoviesContract.Presenter by lazy { scope().get() as MoviesContract.Presenter }
+    private val presenter: MoviesContract.Presenter by scopedInject()
 
     private lateinit var moviesAdapter: MoviesAdapter
 

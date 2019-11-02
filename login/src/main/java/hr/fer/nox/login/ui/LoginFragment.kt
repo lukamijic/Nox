@@ -33,7 +33,7 @@ class LoginFragment: BaseFragment<LoginViewState>(), LoginContract.View {
         fun newInstance(): Fragment = LoginFragment()
     }
 
-    private val presenter: LoginContract.Presenter by scope().inject()
+    private val presenter: LoginContract.Presenter by scopedInject()
     private val keyboardUtils: KeyboardUtils by inject()
     private val keyboardWatcher: KeyboardWatcher by inject(parameters = { parametersOf(requireActivity()) })
 

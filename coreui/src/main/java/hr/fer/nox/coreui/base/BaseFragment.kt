@@ -13,13 +13,15 @@ import hr.fer.nox.navigation.routing.BackPropagatingFragment
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.disposables.Disposable
 import org.koin.android.ext.android.getKoin
+import org.koin.core.parameter.ParametersDefinition
+import org.koin.core.qualifier.Qualifier
 import org.koin.core.qualifier.named
 
 abstract class BaseFragment<ViewState> : Fragment(), BaseView, BackPropagatingFragment {
 
     private var disposables = CompositeDisposable()
 
-    private val scopeRetainer by lazy {
+    val scopeRetainer by lazy {
         ViewModelProviders.of(this, object : ViewModelProvider.Factory {
             override fun <T : ViewModel?> create(modelClass: Class<T>): T = ScopeRetainer(getKoin()) as T
         }).get(ScopeRetainer::class.java)
@@ -62,7 +64,10 @@ abstract class BaseFragment<ViewState> : Fragment(), BaseView, BackPropagatingFr
         return true
     }
 
-    fun scope() = getKoin().getOrCreateScope(getScopeName(), named(getScopeName()))
+    protected inline fun <reified T> scopedInject(
+        qualifier: Qualifier? = null,
+        noinline parameters: ParametersDefinition? = null
+    ): Lazy<T> = lazy { scopeRetainer.getScope().get<T>(qualifier = qualifier, parameters = parameters) }
 
     /**
      * Override to initialise view

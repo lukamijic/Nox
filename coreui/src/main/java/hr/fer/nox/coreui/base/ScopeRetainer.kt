@@ -5,37 +5,36 @@ import hr.fer.nox.coreui.lifecycle.Destroyable
 import hr.fer.nox.coreui.lifecycle.Destroyables
 import org.koin.core.Koin
 import org.koin.core.qualifier.named
+import org.koin.core.scope.Scope
+import java.util.*
 
-class ScopeRetainer(
-    val koin: Koin
-): ViewModel() {
+class ScopeRetainer(private val koin: Koin) : ViewModel() {
 
     private lateinit var definedScope: String
+    private lateinit var scope: Scope
 
     private val destroyables = Destroyables()
 
-    fun setScope(scope: String) {
+    fun setScope(scopeName: String) {
         if (this::definedScope.isInitialized) {
-            if (definedScope != scope) {
-                throw IllegalStateException("Invalid new scope $scope for scoped VM with scope $definedScope")
+            if (definedScope != scopeName) {
+                throw IllegalStateException("Invalid new scope $scopeName for scoped VM with scope $definedScope")
             }
             return
         }
 
-        definedScope = scope
-        koin.getOrCreateScope(definedScope, named(definedScope))
+        definedScope = scopeName
+        scope = koin.createScope(UUID.randomUUID().toString(), named(definedScope))
     }
+
+    fun getScope() = scope
 
     fun addDestroyable(destroyable: Destroyable) {
         destroyables.addDestroyable(destroyable)
     }
 
     override fun onCleared() {
-        try {
-            koin.getScope(definedScope).close()
-            destroyables.destroy()
-        } catch (e: Exception) {
-            e.printStackTrace()
-        }
+        scope.close()
+        destroyables.destroy()
     }
 }

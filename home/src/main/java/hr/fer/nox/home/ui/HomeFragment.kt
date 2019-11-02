@@ -32,7 +32,7 @@ class HomeFragment: BaseFragment<HomeViewState>(), HomeContract.View {
         private const val PROFILE = 3
     }
 
-    private val presenter: HomeContract.Presenter by scope().inject()
+    private val presenter: HomeContract.Presenter by scopedInject()
     private val bottomNavigationItemMap by lazy {
         mapOf<Int, NavigationItemView>(
             MOVIES to home_moviesNavigationItem,

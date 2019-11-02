@@ -28,7 +28,7 @@ class SplashFragment : BaseFragment<SplashViewState>(), SplashContract.View {
         private const val FADE_IN_DURATION = 2500
     }
 
-    private val presenter: SplashContract.Presenter by scope().inject(parameters = { parametersOf(FADE_IN_DURATION)} )
+    private val presenter: SplashContract.Presenter by scopedInject(parameters = { parametersOf(FADE_IN_DURATION)} )
 
     override fun initialiseView(view: View, savedInstanceState: Bundle?) {
         splash_logo.apply {

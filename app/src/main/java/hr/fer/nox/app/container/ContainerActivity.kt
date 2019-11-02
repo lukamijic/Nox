@@ -16,7 +16,7 @@ class ContainerActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_container)
-        router.showHome()
+        router.showLogin()
     }
 
     override fun onStart() {
