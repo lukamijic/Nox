@@ -1,0 +1,8 @@
+<resources>
+    <string name="createaccount_username">Username</string>
+    <string name="createaccount_email">Email</string>
+    <string name="createaccount_password">Password</string>
+    <string name="createaccount_create_account">Create Account</string>
+    <string name="createaccount_no_connection_error_message">No internet connection</string>
+    <string name="createaccount_credentials_empty_error_message">Username/Email/Password fields are empty</string>
+</resources>

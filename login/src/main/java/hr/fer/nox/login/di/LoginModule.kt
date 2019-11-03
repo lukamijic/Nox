@@ -10,6 +10,7 @@ import org.koin.core.qualifier.named
 import org.koin.dsl.module
 
 val LoginModule = module {
+
     scope(named(LOGIN_VIEW_SCOPE)) {
 
         scoped {

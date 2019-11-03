@@ -7,6 +7,7 @@ import androidx.fragment.app.FragmentTransaction
 import hr.fer.nox.R
 import hr.fer.nox.app.util.inTransaction
 import hr.fer.nox.app.util.inTransactionAndAddToBackStack
+import hr.fer.nox.createaccount.ui.CreateAccountFragment
 import hr.fer.nox.home.ui.HomeFragment
 import hr.fer.nox.login.ui.LoginFragment
 import hr.fer.nox.moviedetails.ui.MovieDetailsFragment
@@ -32,6 +33,12 @@ class RouterImpl(
         fragmentManager.inTransaction {
             applyFadeInFadoOutAnimation()
             replace(MAIN_CONTAINER_ID, LoginFragment.newInstance(), LoginFragment.TAG)
+        }
+    }
+
+    override fun showCreateAccount() {
+        fragmentManager.inTransactionAndAddToBackStack {
+            add(MAIN_CONTAINER_ID, CreateAccountFragment.newInstance(), CreateAccountFragment.TAG)
         }
     }
 

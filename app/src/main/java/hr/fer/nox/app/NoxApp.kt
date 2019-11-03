@@ -6,6 +6,7 @@ import hr.fer.nox.BuildConfig
 import hr.fer.nox.app.di.AppModule
 import hr.fer.nox.core.di.NetworkingModule
 import hr.fer.nox.core.di.ThreadingModule
+import hr.fer.nox.createaccount.di.CreateAccountModule
 import hr.fer.nox.home.di.HomeModule
 import hr.fer.nox.login.di.LoginModule
 import hr.fer.nox.moviedetails.di.MovieDetailsModule
@@ -27,7 +28,7 @@ class NoxApp: Application() {
 
     private val coreModules = listOf(AppModule, NavigationModule, ThreadingModule, NetworkingModule)
 
-    private val featureModules = listOf(SplashModule, LoginModule, HomeModule, MoviesModule, MovieDetailsModule)
+    private val featureModules = listOf(SplashModule, LoginModule, HomeModule, MoviesModule, MovieDetailsModule, CreateAccountModule)
 
     override fun onCreate() {
         super.onCreate()

@@ -25,7 +25,7 @@ class LoginPresenter(
     }
 
     override fun showCreateAccount() {
-
+        dispatchRoutingAction(Router::showCreateAccount)
     }
 
     private fun loginCommand(username: String, password: String): Completable {

@@ -6,6 +6,8 @@ interface Router {
 
     fun showLogin()
 
+    fun showCreateAccount()
+
     fun showHome()
 
     fun showMovies()
