@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorPrimaryDark">
+
+    <View
+        android:id="@+id/focusView"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:focusable="true"
+        android:focusableInTouchMode="true">
+
+        <requestFocus/>
+    </View>
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/createaccount_horizontalGuideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.10"/>
+
+    <hr.fer.nox.ui.ActionableInputView
+        android:id="@+id/createaccount_usernameInput"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:hintText="@string/createaccount_username"
+        app:inputTextSize="@dimen/subtitle_text_size"
+        app:borderColor="@color/createaccount_actionable_input_view_border_color"
+        app:errorTextColor="@color/text_color_error"
+        app:actionIcon="@drawable/ic_close"
+        app:actionIconIfContent="true"
+        app:fontFamily="@font/roboto_regular"
+        android:layout_marginBottom="@dimen/normal_margin"
+        android:layout_marginEnd="@dimen/extra_large_margin"
+        android:layout_marginStart="@dimen/extra_large_margin"
+        android:layout_marginTop="@dimen/large_margin"
+        app:layout_constraintTop_toBottomOf="@id/createaccount_horizontalGuideline"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <hr.fer.nox.ui.ActionableInputView
+        android:id="@+id/createaccount_emailInput"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:hintText="@string/createaccount_email"
+        app:inputTextSize="@dimen/subtitle_text_size"
+        app:borderColor="@color/createaccount_actionable_input_view_border_color"
+        app:errorTextColor="@color/text_color_error"
+        app:actionIcon="@drawable/ic_close"
+        app:actionIconIfContent="true"
+        app:fontFamily="@font/roboto_regular"
+        android:layout_marginBottom="@dimen/normal_margin"
+        android:layout_marginEnd="@dimen/extra_large_margin"
+        android:layout_marginStart="@dimen/extra_large_margin"
+        android:layout_marginTop="@dimen/large_margin"
+        app:layout_constraintTop_toBottomOf="@id/createaccount_usernameInput"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <hr.fer.nox.ui.ActionableInputView
+        android:id="@+id/createaccount_passwordInput"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:actionIcon="@drawable/ic_eye_inactive"
+        app:actionIconIfContent="true"
+        app:hintText="@string/createaccount_password"
+        app:inputTextSize="@dimen/subtitle_text_size"
+        app:borderColor="@color/createaccount_actionable_input_view_border_color"
+        app:errorTextColor="@color/text_color_error"
+        app:fontFamily="@font/roboto_regular"
+        android:layout_marginBottom="@dimen/normal_margin"
+        android:layout_marginEnd="@dimen/extra_large_margin"
+        android:layout_marginStart="@dimen/extra_large_margin"
+        android:layout_marginTop="@dimen/normal_margin"
+        app:layout_constraintTop_toBottomOf="@id/createaccount_emailInput"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <TextView
+        android:id="@+id/createaccount_errorText"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        style="@style/NormalTextStyle"
+        android:textColor="@color/text_color_error"
+        android:gravity="center"
+        android:visibility="gone"
+        android:layout_marginTop="@dimen/small_margin"
+        android:layout_marginEnd="@dimen/extra_large_margin"
+        android:layout_marginStart="@dimen/extra_large_margin"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/createaccount_passwordInput"/>
+
+    <Button
+        android:id="@+id/createaccount_createAccountButton"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/rounded_background"
+        style="@style/NormalTextStyle"
+        android:textColor="@color/colorAccent"
+        android:text="@string/createaccount_create_account"
+        android:layout_marginEnd="@dimen/extra_large_margin"
+        android:layout_marginStart="@dimen/extra_large_margin"
+        android:layout_marginTop="@dimen/large_margin"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/createaccount_passwordInput"/>
+
+    <hr.fer.nox.ui.AnimatedProgressView
+        android:id="@+id/createaccount_progressView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:elevation="@dimen/normal_elevation"
+        android:clickable="true"
+        android:focusable="true"
+        android:visibility="gone"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

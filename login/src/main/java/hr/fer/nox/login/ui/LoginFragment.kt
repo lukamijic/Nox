@@ -42,8 +42,6 @@ class LoginFragment: BaseFragment<LoginViewState>(), LoginContract.View {
     private var isPasswordShown = false
 
     override fun initialiseView(view: View, savedInstanceState: Bundle?) {
-        super.initialiseView(view, savedInstanceState)
-
         login_usernameInput.setButtonClickListener(View.OnClickListener { login_usernameInput.setText("") })
         login_passwordInput.setButtonClickListener(View.OnClickListener { togglePassword(!isPasswordShown) })
         login_passwordInput.showActionButton()
