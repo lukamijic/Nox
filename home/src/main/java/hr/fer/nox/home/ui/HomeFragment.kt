@@ -62,6 +62,8 @@ class HomeFragment: BaseFragment<HomeViewState>(), HomeContract.View {
                 bottomNavigationClickActionMap[key]?.invoke(presenter)
             }
         }
+
+        presenter.showMovies()
     }
 
     override fun render(viewState: HomeViewState) {

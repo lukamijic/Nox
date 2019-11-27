@@ -17,6 +17,7 @@
             <option value="$PROJECT_DIR$/login" />
             <option value="$PROJECT_DIR$/moviedetails" />
             <option value="$PROJECT_DIR$/movies" />
+            <option value="$PROJECT_DIR$/movieslib" />
             <option value="$PROJECT_DIR$/navigation" />
             <option value="$PROJECT_DIR$/splash" />
           </set>

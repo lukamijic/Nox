@@ -1,4 +1,5 @@
 <resources>
     <string name="moviedetails_synopsis">Synopsis</string>
     <string name="moviedetails_director">Director</string>
+    <string name="moviedetails_duration_format">%dh%dm</string>
 </resources>

@@ -7,12 +7,14 @@ import androidx.annotation.LayoutRes
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import hr.fer.nox.coreui.util.DiffUtilCallback
+import hr.fer.nox.coreui.util.ImageUtils
 import hr.fer.nox.movies.R
 import hr.fer.nox.movies.model.MovieItemViewModel
 import kotlinx.android.synthetic.main.item_movies_movie.view.*
 
 class MoviesAdapter(
     private val layoutInflater: LayoutInflater,
+    private val imageUtils: ImageUtils,
     private val movieSelectedAction: (MovieItemViewModel) -> Unit
 ): ListAdapter<MovieItemViewModel, MoviesAdapter.MovieViewHolder>(DiffUtilCallback()) {
 
@@ -32,7 +34,7 @@ class MoviesAdapter(
     inner class MovieViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
         fun fillView(item: MovieItemViewModel) {
-            itemView.movies_moviePoster.setImageResource(item.moviePosterResId)
+            item.moviePosterPath?.run { imageUtils.loadInto(this, itemView.movies_moviePoster) }
             itemView.setOnClickListener { movieSelectedAction(item) }
         }
     }

@@ -56,7 +56,7 @@ class RouterImpl(
         }
     }
 
-    override fun showMovieDetails(movieId: String) {
+    override fun showMovieDetails(movieId: Int) {
         fragmentManager.inTransactionAndAddToBackStack {
             add(MAIN_CONTAINER_ID, MovieDetailsFragment.newInstance(movieId), MovieDetailsFragment.TAG)
         }

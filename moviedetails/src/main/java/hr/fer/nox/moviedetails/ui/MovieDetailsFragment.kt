@@ -17,7 +17,7 @@ import kotlinx.android.synthetic.main.fragment_movie_details.*
 import org.koin.android.ext.android.inject
 import org.koin.core.parameter.parametersOf
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.YouTubePlayer
-import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.AbstractYouTubePlayerListener
+import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.YouTubePlayerCallback
 import hr.fer.nox.moviedetails.ui.adapter.ActorsAdapter
 import me.everything.android.ui.overscroll.OverScrollDecoratorHelper
 
@@ -32,10 +32,10 @@ class MovieDetailsFragment: BaseFragment<MovieDetailsViewState>(), MovieDetailsC
 
         private const val MOVIE_ID_KEY = "movie_id"
 
-        fun newInstance(movieId: String): Fragment =
+        fun newInstance(movieId: Int): Fragment =
             MovieDetailsFragment().apply {
                 arguments = Bundle().apply {
-                    putString(MOVIE_ID_KEY, movieId)
+                    putInt(MOVIE_ID_KEY, movieId)
                 }
             }
     }
@@ -73,11 +73,17 @@ class MovieDetailsFragment: BaseFragment<MovieDetailsViewState>(), MovieDetailsC
             moviedetails_progressView.isVisible = false
             moviedetails_detailsContainer.isVisible = true
 
-            moviedetails_youtubePlayer.addYouTubePlayerListener(object : AbstractYouTubePlayerListener() {
-                override fun onReady(youTubePlayer: YouTubePlayer) {
-                    youTubePlayer.loadVideo(videoId, 0f)
-                }
-            })
+            if(videoId.isEmpty()) {
+                moviedetails_youtubePlayer.isVisible = false
+            } else {
+                moviedetails_youtubePlayer.isVisible= true
+                moviedetails_youtubePlayer.getYouTubePlayerWhenReady(object: YouTubePlayerCallback {
+                    override fun onYouTubePlayer(youTubePlayer: YouTubePlayer) {
+                        youTubePlayer.loadVideo(videoId, 0.0f)
+                        youTubePlayer.pause()
+                    }
+                })
+            }
 
             moviedetails_movieTitle.text = movieTitle
             moviedetails_releaseYear.text = movieYearRelease.toString()
@@ -123,7 +129,7 @@ class MovieDetailsFragment: BaseFragment<MovieDetailsViewState>(), MovieDetailsC
         }
     }
 
-    private fun getMovieIdFromBundle(): String = arguments?.getString(MOVIE_ID_KEY) ?: throw IllegalArgumentException("Movie id not found")
+    private fun getMovieIdFromBundle(): Int = arguments?.getInt(MOVIE_ID_KEY) ?: throw IllegalArgumentException("Movie id not found")
 
     override fun getLayoutResource(): Int = LAYOUT_RESOURCE
     override fun getScopeName(): String = MOVIES_DETAILS_VIEW_SCOPE
