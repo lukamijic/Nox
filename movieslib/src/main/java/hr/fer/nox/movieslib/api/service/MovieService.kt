@@ -3,6 +3,7 @@ package hr.fer.nox.movieslib.api.service
 import hr.fer.nox.movieslib.api.models.ApiMovieDetails
 import hr.fer.nox.movieslib.api.models.ApiMoviesList
 import io.reactivex.Flowable
+import io.reactivex.Single
 
 interface MovieService {
 
@@ -13,4 +14,6 @@ interface MovieService {
     fun getNewReleasesMovies(): Flowable<ApiMoviesList>
 
     fun getUpcomingMovies(): Flowable<ApiMoviesList>
+
+    fun searchMovies(searchTerm: String): Single<ApiMoviesList>
 }

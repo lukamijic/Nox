@@ -13,6 +13,7 @@ import hr.fer.nox.login.ui.LoginFragment
 import hr.fer.nox.moviedetails.ui.MovieDetailsFragment
 import hr.fer.nox.movies.ui.container.MoviesContainerFragment
 import hr.fer.nox.navigation.router.Router
+import hr.fer.nox.search.ui.container.SearchContainerFragment
 import hr.fer.nox.splash.ui.SplashFragment
 
 private const val LAST_FRAGMENT = 0
@@ -59,6 +60,13 @@ class RouterImpl(
     override fun showMovieDetails(movieId: Int) {
         fragmentManager.inTransactionAndAddToBackStack {
             add(MAIN_CONTAINER_ID, MovieDetailsFragment.newInstance(movieId), MovieDetailsFragment.TAG)
+        }
+    }
+
+    override fun showSearch() {
+        fragmentManager.inTransaction {
+            applyFadeInFadoOutAnimation()
+            replace(R.id.home_container, SearchContainerFragment.newInstance(), SearchContainerFragment.TAG)
         }
     }
 

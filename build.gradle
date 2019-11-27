@@ -31,7 +31,7 @@ buildscript {
             'moshi'           : "1.8.0",
             'moshiConverter'  : "2.4.0",
             'retrofit'        : "2.5.0",
-            'kotlinCodegen'   :"1.8.0",
+            'kotlinCodegen'   : "1.8.0",
             'okHttp'          : "4.0.0"
     ]
 

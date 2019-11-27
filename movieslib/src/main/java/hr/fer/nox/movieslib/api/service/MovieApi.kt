@@ -5,6 +5,7 @@ import hr.fer.nox.movieslib.api.models.ApiMoviesList
 import io.reactivex.Single
 import retrofit2.http.GET
 import retrofit2.http.Path
+import retrofit2.http.Query
 
 interface MovieApi {
 
@@ -19,4 +20,7 @@ interface MovieApi {
 
     @GET("3/movie/upcoming?language=en-US")
     fun getUpcomingMovies(): Single<ApiMoviesList>
+
+    @GET("3/search/movie?language=en-US&include_adult=false")
+    fun searchMovies(@Query("query") searchTerm: String): Single<ApiMoviesList>
 }

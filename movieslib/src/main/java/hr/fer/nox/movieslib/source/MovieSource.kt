@@ -1,8 +1,8 @@
 package hr.fer.nox.movieslib.source
 
-import hr.fer.nox.movieslib.api.models.ApiMoviesList
 import hr.fer.nox.movieslib.model.Movie
 import hr.fer.nox.movieslib.model.MovieDetails
+import io.reactivex.Completable
 import io.reactivex.Flowable
 
 interface MovieSource {
@@ -14,4 +14,8 @@ interface MovieSource {
     fun getNewReleasesMovies(): Flowable<List<Movie>>
 
     fun getUpcomingMovies(): Flowable<List<Movie>>
+
+    fun querySearchMovies(): Flowable<List<Movie>>
+
+    fun searchMovies(searchTerm: String): Completable
 }
