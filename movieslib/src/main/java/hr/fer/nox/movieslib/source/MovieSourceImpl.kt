@@ -5,13 +5,17 @@ import hr.fer.nox.movieslib.mapper.MovieDetailsMapper
 import hr.fer.nox.movieslib.mapper.MovieMapper
 import hr.fer.nox.movieslib.model.Movie
 import hr.fer.nox.movieslib.model.MovieDetails
+import io.reactivex.Completable
 import io.reactivex.Flowable
+import io.reactivex.processors.PublishProcessor
 
 class MovieSourceImpl(
     private val movieService: MovieService,
     private val movieDetailsMapper: MovieDetailsMapper,
     private val movieMapper: MovieMapper
 ): MovieSource {
+
+    private val searchMoviesPublishProcessor: PublishProcessor<List<Movie>> = PublishProcessor.create()
 
     override fun getMovieDetails(movieId: Int): Flowable<MovieDetails> = movieService.getMovieDetails(movieId).map { movieDetailsMapper.map(it, true) }
 
@@ -20,4 +24,12 @@ class MovieSourceImpl(
     override fun getNewReleasesMovies(): Flowable<List<Movie>> = movieService.getNewReleasesMovies().map { movieMapper.map(it.results) }
 
     override fun getUpcomingMovies(): Flowable<List<Movie>> = movieService.getUpcomingMovies().map { movieMapper.map(it.results) }
+
+    override fun querySearchMovies(): Flowable<List<Movie>> = searchMoviesPublishProcessor
+
+    override fun searchMovies(searchTerm: String): Completable =
+        movieService
+            .searchMovies(searchTerm)
+            .map { movieMapper.map(it.results) }
+            .flatMapCompletable { movies -> Completable.fromAction { searchMoviesPublishProcessor.onNext(movies) }}
 }

@@ -13,6 +13,7 @@ import hr.fer.nox.moviedetails.di.MovieDetailsModule
 import hr.fer.nox.movies.di.MoviesModule
 import hr.fer.nox.movieslib.di.MoviesLibModule
 import hr.fer.nox.navigation.di.NavigationModule
+import hr.fer.nox.search.di.SearchModule
 import hr.fer.nox.splash.di.SplashModule
 import org.koin.android.ext.koin.androidContext
 import org.koin.core.context.startKoin
@@ -29,7 +30,7 @@ class NoxApp: Application() {
 
     private val coreModules = listOf(AppModule, NavigationModule, ThreadingModule, NetworkingModule)
 
-    private val featureModules = listOf(SplashModule, LoginModule, HomeModule, MoviesModule, MovieDetailsModule, CreateAccountModule)
+    private val featureModules = listOf(SplashModule, LoginModule, HomeModule, MoviesModule, MovieDetailsModule, CreateAccountModule, SearchModule)
 
     private val libModules = listOf(MoviesLibModule)
 

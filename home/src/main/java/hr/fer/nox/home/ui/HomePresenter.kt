@@ -12,6 +12,7 @@ class HomePresenter: BasePresenter<HomeContract.View, HomeViewState>(), HomeCont
     }
 
     override fun showExplore() {
+        dispatchRoutingAction(Router::showSearch)
     }
 
     override fun showRecommendations() {

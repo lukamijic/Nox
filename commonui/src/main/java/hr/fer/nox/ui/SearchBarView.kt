@@ -1,4 +1,4 @@
-package hr.fer.socialnetwork.commonui.ui
+package hr.fer.nox.ui
 
 import android.content.Context
 import android.text.Spannable
@@ -26,7 +26,7 @@ class SearchBarView : ConstraintLayout {
 
     companion object {
         private const val TAG = "SearchBarView"
-        private const val SEARCH_THROTTLE_TIME = 400L
+        private const val SEARCH_THROTTLE_TIME = 1000L
     }
 
     var searchConsumer: (String) -> Unit = {}
