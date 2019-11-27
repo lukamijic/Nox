@@ -2,6 +2,7 @@ package hr.fer.nox.movies.di
 
 import hr.fer.nox.core.di.BACKGROUND_SCHEDULER
 import hr.fer.nox.core.di.MAIN_SCHEDULER
+import hr.fer.nox.movies.resources.ComingSoonMoviesResources
 import hr.fer.nox.movies.resources.MoviesResources
 import hr.fer.nox.movies.resources.NewReleasesMoviesResources
 import hr.fer.nox.movies.resources.PopularMoviesResources
@@ -9,6 +10,10 @@ import hr.fer.nox.movies.ui.container.MoviesContainerContract
 import hr.fer.nox.movies.ui.container.MoviesContainerPresenter
 import hr.fer.nox.movies.ui.movies.MoviesContract
 import hr.fer.nox.movies.ui.movies.MoviesPresenter
+import hr.fer.nox.movies.usecase.QueryMovieList
+import hr.fer.nox.movies.usecase.QueryNewReleasesMovies
+import hr.fer.nox.movies.usecase.QueryPopularMovies
+import hr.fer.nox.movies.usecase.QueryUpcomingMovies
 import org.koin.core.qualifier.named
 import org.koin.dsl.module
 
@@ -30,7 +35,7 @@ val MoviesModule = module {
     scope(named(POPULAR_MOVIES_VIEW_SCOPE)) {
 
         scoped {
-            val presenter = MoviesPresenter(get()).apply {
+            val presenter = MoviesPresenter(get(), get()).apply {
                 mainThreadScheduler = get(named(MAIN_SCHEDULER))
                 backgroundScheduler = get(named(BACKGROUND_SCHEDULER))
                 routingActionsDispatcher = get()
@@ -42,12 +47,16 @@ val MoviesModule = module {
         scoped {
             PopularMoviesResources(get()) as MoviesResources
         }
+
+        scoped<QueryMovieList> {
+            QueryPopularMovies(get())
+        }
     }
 
     scope(named(NEW_RELEASES_MOVIES_VIEW_SCOPE)) {
 
         scoped {
-            val presenter = MoviesPresenter(get()).apply {
+            val presenter = MoviesPresenter(get(), get()).apply {
                 mainThreadScheduler = get(named(MAIN_SCHEDULER))
                 backgroundScheduler = get(named(BACKGROUND_SCHEDULER))
                 routingActionsDispatcher = get()
@@ -59,12 +68,16 @@ val MoviesModule = module {
         scoped {
             NewReleasesMoviesResources(get()) as MoviesResources
         }
+
+        scoped<QueryMovieList> {
+            QueryNewReleasesMovies(get())
+        }
     }
 
     scope(named(COMING_SOON_MOVIES_VIEW_SCOPE)) {
 
         scoped {
-            val presenter = MoviesPresenter(get()).apply {
+            val presenter = MoviesPresenter(get(), get()).apply {
                 mainThreadScheduler = get(named(MAIN_SCHEDULER))
                 backgroundScheduler = get(named(BACKGROUND_SCHEDULER))
                 routingActionsDispatcher = get()
@@ -74,7 +87,11 @@ val MoviesModule = module {
         }
 
         scoped {
-            PopularMoviesResources(get()) as MoviesResources
+            ComingSoonMoviesResources(get()) as MoviesResources
+        }
+
+        scoped<QueryMovieList> {
+            QueryUpcomingMovies(get())
         }
     }
 }

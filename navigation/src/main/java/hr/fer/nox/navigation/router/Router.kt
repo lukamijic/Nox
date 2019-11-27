@@ -12,7 +12,7 @@ interface Router {
 
     fun showMovies()
 
-    fun showMovieDetails(movieId: String)
+    fun showMovieDetails(movieId: Int)
 
     fun goBack()
 }

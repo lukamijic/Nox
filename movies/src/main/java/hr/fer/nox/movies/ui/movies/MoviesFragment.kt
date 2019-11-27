@@ -4,12 +4,14 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import androidx.annotation.LayoutRes
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import hr.fer.nox.coreui.base.BaseFragment
 import hr.fer.nox.coreui.base.BaseView
 import hr.fer.nox.coreui.base.ViewPresenter
+import hr.fer.nox.coreui.util.ImageUtils
 import hr.fer.nox.movies.R
 import hr.fer.nox.movies.model.MovieItemViewModel
 import hr.fer.nox.movies.ui.movies.adapter.MoviesAdapter
@@ -40,14 +42,15 @@ class MoviesFragment : BaseFragment<MoviesViewState>(), MoviesContract.View {
     }
 
     private val presenter: MoviesContract.Presenter by scopedInject()
+    private val imageUtils: ImageUtils by inject()
 
     private lateinit var moviesAdapter: MoviesAdapter
 
     override fun initialiseView(view: View, savedInstanceState: Bundle?) {
         moviesAdapter = MoviesAdapter(
-            LayoutInflater.from(context)
-        ) { movieItemViewModel: MovieItemViewModel -> presenter.showMovieDetails("") }
-
+            LayoutInflater.from(context),
+            imageUtils
+        ) { movieItemViewModel: MovieItemViewModel -> presenter.showMovieDetails(movieItemViewModel.movieId) }
 
         movies_recyclerView.apply {
             layoutManager = GridLayoutManager(context, COLUMN_COUNT, RecyclerView.VERTICAL, false)
@@ -57,6 +60,7 @@ class MoviesFragment : BaseFragment<MoviesViewState>(), MoviesContract.View {
     }
 
     override fun render(viewState: MoviesViewState) {
+        movies_progressView.isVisible = viewState.isLoading
         moviesAdapter.submitList(viewState.moviesTemplateItemViewModel)
     }
 

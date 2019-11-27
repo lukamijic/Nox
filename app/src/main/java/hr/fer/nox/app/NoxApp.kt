@@ -11,6 +11,7 @@ import hr.fer.nox.home.di.HomeModule
 import hr.fer.nox.login.di.LoginModule
 import hr.fer.nox.moviedetails.di.MovieDetailsModule
 import hr.fer.nox.movies.di.MoviesModule
+import hr.fer.nox.movieslib.di.MoviesLibModule
 import hr.fer.nox.navigation.di.NavigationModule
 import hr.fer.nox.splash.di.SplashModule
 import org.koin.android.ext.koin.androidContext
@@ -30,13 +31,15 @@ class NoxApp: Application() {
 
     private val featureModules = listOf(SplashModule, LoginModule, HomeModule, MoviesModule, MovieDetailsModule, CreateAccountModule)
 
+    private val libModules = listOf(MoviesLibModule)
+
     override fun onCreate() {
         super.onCreate()
 
         instance = this
         startKoin {
             androidContext(this@NoxApp)
-            modules(coreModules + featureModules)
+            modules(coreModules + featureModules + libModules)
         }
         initStetho()
     }

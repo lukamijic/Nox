@@ -9,6 +9,6 @@ interface MoviesContract {
 
     interface Presenter : ViewPresenter<View, MoviesViewState> {
 
-        fun showMovieDetails(movieId: String)
+        fun showMovieDetails(movieId: Int)
     }
 }
