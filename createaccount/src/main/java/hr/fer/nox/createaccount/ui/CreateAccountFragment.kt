@@ -31,7 +31,8 @@ class CreateAccountFragment : BaseFragment<CreateAccountViewState>(), CreateAcco
     private var isPasswordShown = false
 
     override fun initialiseView(view: View, savedInstanceState: Bundle?) {
-        createaccount_usernameInput.setButtonClickListener(View.OnClickListener { createaccount_usernameInput.setText("") })
+        createaccount_nameInput.setButtonClickListener(View.OnClickListener { createaccount_nameInput.setText("") })
+        createaccount_surnameInput.setButtonClickListener(View.OnClickListener { createaccount_surnameInput.setText("") })
         createaccount_emailInput.setButtonClickListener(View.OnClickListener { createaccount_emailInput.setText("") })
 
         createaccount_passwordInput.setButtonClickListener(View.OnClickListener { togglePassword(!isPasswordShown) })
@@ -40,13 +41,15 @@ class CreateAccountFragment : BaseFragment<CreateAccountViewState>(), CreateAcco
 
         createaccount_createAccountButton.setOnClickListener {
             presenter.createAccount(
-                createaccount_usernameInput.getText(),
+                createaccount_nameInput.getText(),
+                createaccount_surnameInput.getText(),
                 createaccount_emailInput.getText(),
                 createaccount_passwordInput.getText()
             )
         }
 
-        createaccount_usernameInput.showActionButton()
+        createaccount_nameInput.showActionButton()
+        createaccount_surnameInput.showActionButton()
         createaccount_emailInput.showActionButton()
     }
 
@@ -72,7 +75,8 @@ class CreateAccountFragment : BaseFragment<CreateAccountViewState>(), CreateAcco
 
     override fun onViewStateRestored(savedInstanceState: Bundle?) {
         super.onViewStateRestored(savedInstanceState)
-        createaccount_usernameInput.restoreTextState()
+        createaccount_nameInput.restoreTextState()
+        createaccount_surnameInput.restoreTextState()
         createaccount_passwordInput.restoreTextState()
     }
 

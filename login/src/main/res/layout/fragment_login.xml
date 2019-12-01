@@ -37,7 +37,7 @@
         android:id="@+id/login_usernameInput"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        app:hintText="@string/login_username_hint"
+        app:hintText="@string/login_email_hint"
         app:inputTextSize="@dimen/subtitle_text_size"
         app:borderColor="@color/login_actionable_input_view_border_color"
         app:errorTextColor="@color/text_color_error"
@@ -102,10 +102,27 @@
         android:text="@string/login_log_in_text"
         android:layout_marginEnd="@dimen/extra_large_margin"
         android:layout_marginStart="@dimen/extra_large_margin"
-        android:layout_marginTop="@dimen/large_margin"
+        android:layout_marginTop="@dimen/extra_large_margin"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/login_passwordInput"/>
+
+    <com.facebook.login.widget.LoginButton
+        android:id="@+id/login_facebookLogin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/login_button"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="@dimen/normal_margin"/>
+
+    <com.google.android.gms.common.SignInButton
+        android:id="@+id/login_googleLogin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="@id/login_facebookLogin"
+        app:layout_constraintEnd_toEndOf="@id/login_facebookLogin"
+        app:layout_constraintTop_toBottomOf="@id/login_facebookLogin"/>
 
     <Button
         android:id="@+id/login_createAccount"

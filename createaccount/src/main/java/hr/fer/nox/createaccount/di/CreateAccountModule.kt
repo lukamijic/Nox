@@ -14,7 +14,7 @@ val CreateAccountModule = module {
     scope(named(CREATE_ACCOUNT_VIEW_SCOPE)) {
 
         scoped {
-            val presenter = CreateAccountPresenter(get(), get()).apply {
+            val presenter = CreateAccountPresenter(get(), get(), get()).apply {
                 mainThreadScheduler = get(named(MAIN_SCHEDULER))
                 backgroundScheduler = get(named(BACKGROUND_SCHEDULER))
                 routingActionsDispatcher = get()

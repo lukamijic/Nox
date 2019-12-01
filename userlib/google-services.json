@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "779913819288",
+    "firebase_url": "https://nox-lab1.firebaseio.com",
+    "project_id": "nox-lab1",
+    "storage_bucket": "nox-lab1.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:779913819288:android:07be03c235c6287672cced",
+        "android_client_info": {
+          "package_name": "hr.fer.nox.userlib"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "779913819288-b3s581s2kp614u41ju6hdh8lipgqtvs1.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "hr.fer.nox.userlib",
+            "certificate_hash": "43d2ef9fddb209b434140e63be6a36ef1afc31c2"
+          }
+        },
+        {
+          "client_id": "779913819288-uk4kpfebful8e9k79ogr3c41frv29pna.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBFaKb1wLR56N2933grHBAKxMak27_O2oo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "779913819288-uk4kpfebful8e9k79ogr3c41frv29pna.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

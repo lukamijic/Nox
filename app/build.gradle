@@ -5,7 +5,7 @@ apply plugin: 'kotlin-android-extensions'
 android {
     compileSdkVersion 28
     defaultConfig {
-        applicationId "hr.fer.Nox"
+        applicationId "hr.fer.nox"
         minSdkVersion buildConfig.minSdk
         targetSdkVersion buildConfig.targetSdk
         versionCode 1
@@ -36,6 +36,7 @@ dependencies {
     implementation project(':createaccount')
     implementation project(':movieslib')
     implementation project(':search')
+    implementation project(':userlib')
 
     // Kotlin
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
@@ -57,6 +58,9 @@ dependencies {
     // Stetho
     implementation "com.facebook.stetho:stetho:$versions.stetho"
     implementation "com.facebook.stetho:stetho-okhttp3:$versions.stetho"
+
+    // Facebook
+    implementation "com.facebook.android:facebook-login:$versions.facebookLogin"
 
     //Testing
     testImplementation "junit:junit:$versions.jUnit"

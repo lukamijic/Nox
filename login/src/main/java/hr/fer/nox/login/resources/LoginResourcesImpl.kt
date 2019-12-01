@@ -9,7 +9,7 @@ class LoginResourcesImpl(
 
     override fun noInternetConnectionErrorMessage(): String = resourceUtils.getStringText(R.string.login_no_connection_error_message)
 
-    override fun invalidUsernameAndPasswordErrorMessage(): String = resourceUtils.getStringText(R.string.login_invalid_username_and_password_error_message)
+    override fun invalidUsernameAndPasswordErrorMessage(): String = resourceUtils.getStringText(R.string.login_invalid_email_and_password_error_message)
 
     override fun loginCredentialsEmptyErrorMessage(): String = resourceUtils.getStringText(R.string.login_credentials_empty_error_message)
 }
