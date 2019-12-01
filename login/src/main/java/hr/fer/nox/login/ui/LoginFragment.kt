@@ -1,12 +1,19 @@
 package hr.fer.nox.login.ui
 
+import android.content.Intent
 import android.os.Bundle
 import android.text.InputType
 import android.view.View
 import androidx.annotation.LayoutRes
-import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.view.isGone
 import androidx.fragment.app.Fragment
+import com.facebook.CallbackManager
+import com.facebook.FacebookCallback
+import com.facebook.FacebookException
+import com.facebook.login.LoginResult
+import com.google.android.gms.auth.api.signin.GoogleSignIn
+import com.google.android.gms.auth.api.signin.GoogleSignInClient
+import com.google.android.gms.common.api.ApiException
 import hr.fer.nox.coreui.base.BaseFragment
 import hr.fer.nox.coreui.base.BaseView
 import hr.fer.nox.coreui.base.ViewPresenter
@@ -17,15 +24,16 @@ import hr.fer.nox.login.di.LOGIN_VIEW_SCOPE
 import hr.fer.nox.ui.ActionableInputView
 import io.reactivex.disposables.CompositeDisposable
 import kotlinx.android.synthetic.main.fragment_login.*
-import org.koin.android.ext.android.getKoin
 import org.koin.android.ext.android.inject
 import org.koin.core.parameter.parametersOf
 
-class LoginFragment: BaseFragment<LoginViewState>(), LoginContract.View {
+class LoginFragment : BaseFragment<LoginViewState>(), LoginContract.View {
 
     companion object {
 
         const val TAG = "LoginFragment"
+
+        private val RC_GOOGLE_SIGN_IN = 1337
 
         @LayoutRes
         private val LAYOUT_RESOURCE: Int = R.layout.fragment_login
@@ -36,10 +44,13 @@ class LoginFragment: BaseFragment<LoginViewState>(), LoginContract.View {
     private val presenter: LoginContract.Presenter by scopedInject()
     private val keyboardUtils: KeyboardUtils by inject()
     private val keyboardWatcher: KeyboardWatcher by inject(parameters = { parametersOf(requireActivity()) })
+    private val googleSignInClient: GoogleSignInClient by scopedInject(parameters = { parametersOf(context) })
 
     private var viewDisposables = CompositeDisposable()
 
     private var isPasswordShown = false
+
+    private lateinit var facebookCallbackManager: CallbackManager
 
     override fun initialiseView(view: View, savedInstanceState: Bundle?) {
         login_usernameInput.setButtonClickListener(View.OnClickListener { login_usernameInput.setText("") })
@@ -53,6 +64,12 @@ class LoginFragment: BaseFragment<LoginViewState>(), LoginContract.View {
         }
 
         login_createAccount.setOnClickListener { presenter.showCreateAccount() }
+
+        setupFacebookLogin()
+
+        login_googleLogin.setOnClickListener {
+            startActivityForResult(googleSignInClient.signInIntent, RC_GOOGLE_SIGN_IN)
+        }
 
         keyboardWatcher.initialize()
     }
@@ -119,6 +136,40 @@ class LoginFragment: BaseFragment<LoginViewState>(), LoginContract.View {
         }
         login_passwordInput.setCursorAtEnd()
         isPasswordShown = showPassword
+    }
+
+    private fun setupFacebookLogin() {
+        facebookCallbackManager = CallbackManager.Factory.create()
+        login_facebookLogin.fragment = this
+        login_facebookLogin.setPermissions("email", "public_profile")
+        login_facebookLogin.registerCallback(facebookCallbackManager, object : FacebookCallback<LoginResult> {
+            override fun onSuccess(result: LoginResult) {
+                presenter.facebookLogin(result.accessToken)
+            }
+
+            override fun onCancel() {
+
+            }
+
+            override fun onError(error: FacebookException?) {
+
+            }
+        })
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        facebookCallbackManager.onActivityResult(requestCode, resultCode, data)
+
+        if (requestCode == RC_GOOGLE_SIGN_IN) {
+            val task = GoogleSignIn.getSignedInAccountFromIntent(data)
+            try {
+                val account = task.getResult(ApiException::class.java)
+                account?.run { presenter.googleLogin(account) }
+            } catch (e: ApiException) {
+                throw e
+            }
+        }
     }
 
     override fun onViewStateRestored(savedInstanceState: Bundle?) {

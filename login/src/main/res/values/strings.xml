@@ -1,11 +1,13 @@
 <resources>
     <string name="app_name">login</string>
-    <string name="login_username_hint">Username</string>
+    <string name="login_email_hint">Email</string>
     <string name="login_password_hint">Password</string>
     <string name="login_create_account_text">Create Account</string>
     <string name="login_log_in_text">Log in</string>
 
     <string name="login_no_connection_error_message">No internet connection</string>
-    <string name="login_invalid_username_and_password_error_message">Invalid username and password</string>
+    <string name="login_invalid_email_and_password_error_message">Invalid email and password</string>
     <string name="login_credentials_empty_error_message">Email/Password fields are empty</string>
+
+    <string name="login_continue_with_google">Continue with Google</string>
 </resources>

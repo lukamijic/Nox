@@ -9,6 +9,6 @@ interface CreateAccountContract {
 
     interface Presenter : ViewPresenter<View, CreateAccountViewState> {
 
-        fun createAccount(username: String, email: String, password: String)
+        fun createAccount(name: String, surname: String, email: String, password: String)
     }
 }
