@@ -6,6 +6,7 @@ import androidx.fragment.app.FragmentPagerAdapter
 import hr.fer.nox.coreui.util.ResourceUtils
 import hr.fer.nox.search.R
 import hr.fer.nox.search.ui.movies.SearchMoviesFragment
+import hr.fer.nox.search.ui.users.SearchUsersFragment
 
 private const val TAB_COUNT = 2
 
@@ -23,7 +24,7 @@ class SearchContainerPagerAdapter(
     override fun getItem(position: Int): Fragment =
         when (position) {
             0 -> SearchMoviesFragment.newInstance()
-            else -> SearchMoviesFragment.newInstance()
+            else -> SearchUsersFragment.newInstance()
         }
 
     override fun getCount(): Int = TAB_COUNT

@@ -14,6 +14,8 @@ interface Router {
 
     fun showMovieDetails(movieId: Int)
 
+    fun showUserDetails(userId: String)
+
     fun showSearch()
 
     fun goBack()

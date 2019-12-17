@@ -16,7 +16,8 @@ import kotlinx.android.synthetic.main.fragment_create_account.*
 
 class CreateAccountFragment : BaseFragment<CreateAccountViewState>(), CreateAccountContract.View {
 
-    companion object {
+    companion
+    object {
 
         const val TAG = "CreateAccountFragment"
 

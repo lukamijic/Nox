@@ -2,6 +2,7 @@ package hr.fer.nox.userlib.di
 
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
+import hr.fer.nox.userlib.model.User
 import hr.fer.nox.userlib.source.UserSource
 import hr.fer.nox.userlib.source.UserSourceImpl
 import hr.fer.nox.userlib.usecase.*
@@ -24,4 +25,10 @@ val UserLibModule = module {
     single { FacebookLogin(get()) }
 
     single { GoogleLogin(get()) }
+
+    single { QuerySearchUsers(get())}
+
+    single { SearchUsers(get())}
+
+    single { User(get()) }
 }

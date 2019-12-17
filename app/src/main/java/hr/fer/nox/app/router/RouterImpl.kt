@@ -63,6 +63,13 @@ class RouterImpl(
         }
     }
 
+    // TODO: implement this
+    override fun showUserDetails(userId: String) {
+        fragmentManager.inTransactionAndAddToBackStack {
+            add(MAIN_CONTAINER_ID, MovieDetailsFragment.newInstance(1), MovieDetailsFragment.TAG)
+        }
+    }
+
     override fun showSearch() {
         fragmentManager.inTransaction {
             applyFadeInFadoOutAnimation()
