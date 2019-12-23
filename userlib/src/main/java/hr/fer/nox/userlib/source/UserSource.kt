@@ -2,6 +2,7 @@ package hr.fer.nox.userlib.source
 
 import com.facebook.AccessToken
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
+import hr.fer.nox.userlib.model.UserDetails
 import io.reactivex.Completable
 import io.reactivex.Flowable
 
@@ -18,4 +19,8 @@ interface UserSource {
     fun facebookLogin(accessToken: AccessToken): Completable
 
     fun googleLogin(googleSignInAccount: GoogleSignInAccount): Completable
+
+    fun searchUsers(query: String): Completable
+
+    fun getUserDetails(userId: String): Flowable<UserDetails>
 }

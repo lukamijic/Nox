@@ -4,4 +4,5 @@
     <string name="search_moviesHint">Search Movies</string>
     <string name="search_noMovies">No Movies Found</string>
     <string name="search_noUsers">No users found</string>
+    <string name="profile_picture">profile picture</string>
 </resources>

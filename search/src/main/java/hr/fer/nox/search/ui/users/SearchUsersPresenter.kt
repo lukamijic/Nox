@@ -14,11 +14,13 @@ class SearchUsersPresenter(
 
     override fun initialViewState(): SearchUsersViewState = SearchUsersViewState(emptyList(), false)
 
+
     override fun onStart() {
         query(
             querySearchUsers()
                 .map(this::toViewStateAction)
         )
+
     }
 
     override fun searchUsers(searchTerm: String) {
@@ -35,11 +37,13 @@ class SearchUsersPresenter(
     }
 
     override fun showUserDetails(userId: String) {
-        dispatchRoutingAction { router -> router.showUserDetails(userId)  }
+        dispatchRoutingAction { router -> router.showUserDetails(userId) }
     }
 
     private fun toViewStateAction(users: List<User>): (SearchUsersViewState) -> Unit = {
         it.isLoading = false
-        it.users = users.map { user -> UserItemViewModel(user.id, user.name, user.email) }
+        it.users = users.map {
+                user -> UserItemViewModel(user.id, user.name, user.email)
+        }
     }
 }

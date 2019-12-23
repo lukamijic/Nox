@@ -29,21 +29,19 @@ class SearchUsersFragment: BaseFragment<SearchUsersViewState>(), SearchUsersCont
         @LayoutRes
         private val LAYOUT_RESOURCE: Int = R.layout.fragment_search_users
 
-        private const val COLUMN_COUNT = 3
+        private const val COLUMN_COUNT = 1
 
         fun newInstance(): Fragment = SearchUsersFragment()
 
     }
 
     private val presenter: SearchUsersContract.Presenter by scopedInject()
-    private val imageUtils: ImageUtils by inject()
 
     private lateinit var usersAdapter: UsersAdapter
 
     override fun initialiseView(view: View, savedInstanceState: Bundle?) {
         usersAdapter = UsersAdapter(
-            LayoutInflater.from(context),
-            imageUtils
+            LayoutInflater.from(context)
         ) { userItemViewModel: UserItemViewModel -> presenter.showUserDetails(userItemViewModel.userId) }
 
         search_users_recyclerView.apply {

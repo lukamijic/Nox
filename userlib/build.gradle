@@ -42,6 +42,14 @@ dependencies {
     implementation "io.reactivex.rxjava2:rxandroid:$versions.rxAndroid"
     implementation "io.reactivex.rxjava2:rxjava:$versions.rxJava"
 
+    //Retrofit
+    implementation "com.squareup.retrofit2:retrofit:$versions.retrofit"
+
+    //Moshi
+    implementation "com.squareup.moshi:moshi-kotlin:$versions.moshi"
+    implementation "com.squareup.retrofit2:converter-moshi:$versions.moshiConverter"
+    kapt "com.squareup.moshi:moshi-kotlin-codegen:$versions.kotlinCodegen"
+
     // Firebase
     implementation "com.google.firebase:firebase-database:$versions.firebaseDatabase"
     implementation "com.google.firebase:firebase-auth:$versions.firebaseAuth"

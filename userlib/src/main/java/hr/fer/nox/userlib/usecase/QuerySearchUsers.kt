@@ -8,8 +8,16 @@ import io.reactivex.Flowable
 
 class QuerySearchUsers(
     private val userSource: UserSource
-): QueryUseCase<List<User>> {
+) : QueryUseCase<List<User>> {
 
-    override fun invoke(): Flowable<List<User>> = Flowable.just(listOf(User("id", "Karlo", "Razumovic", "karlo.razumovic@gmail.com")))
+    //override fun invoke() : Flowable<List<User>> = userSource.searchUsers()
+    override fun invoke(): Flowable<List<User>> {
+        return Flowable.just(
+            listOf(
+                User("id", "Karlo2", "Razumovic", "karlo.razumovic@gmail.com"),
+                User("id2", "Štef", "Štefanović", "štef.štefanovic@gmail.com")
+            )
+        )
+    }
     // TODO: implement this
 }

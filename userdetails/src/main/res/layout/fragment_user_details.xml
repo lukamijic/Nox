@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/colorPrimaryDark"
+    android:animateLayoutChanges="true">
+
+    <LinearLayout
+        android:id="@+id/userdetails_toolbar"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/userdetails_toolbar_height"
+        android:elevation="@dimen/normal_elevation"
+        android:background="@color/colorPrimary"
+        android:orientation="horizontal"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <Button
+            android:id="@+id/userdetails_backButton"
+            android:layout_width="@dimen/userdetails_back_arrow_size"
+            android:layout_height="@dimen/userdetails_back_arrow_size"
+            android:layout_gravity="center_vertical"
+            android:background="@drawable/ic_back_arrow_white"
+            android:layout_marginStart="@dimen/normal_margin"/>
+
+    </LinearLayout>
+
+    <hr.fer.nox.ui.AnimatedProgressView
+        android:id="@+id/userdetails_progressView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:elevation="@dimen/big_elevation"
+        android:visibility="invisible"
+        app:layout_constraintTop_toBottomOf="@id/userdetails_toolbar"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/userdetails_detailsContainer"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/userdetails_toolbar"
+        android:orientation="vertical">
+
+        <ImageView
+            android:layout_width="160dp"
+            android:layout_height="160dp"
+            android:foregroundGravity="right"
+            android:src="@drawable/profile_pic_default"
+            android:contentDescription="@string/profile_picture" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/text_color"
+            android:id="@+id/user_details_name"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/text_color"
+            android:id="@+id/user_details_surname"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/text_color"
+            android:id="@+id/user_details_email"/>
+
+
+
+
+    </LinearLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

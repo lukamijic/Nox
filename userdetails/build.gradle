@@ -1,0 +1,65 @@
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+
+android {
+    compileSdkVersion buildConfig.compileSdk
+
+
+    defaultConfig {
+        minSdkVersion buildConfig.minSdk
+        targetSdkVersion buildConfig.targetSdk
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+
+    //Modules
+    implementation project(':core')
+    implementation project(':coreui')
+    implementation project(':commonui')
+    implementation project(':navigation')
+    implementation project(':userlib')
+
+    //AndroidX
+    implementation "com.google.android.material:material:$versions.material"
+    implementation "androidx.appcompat:appcompat:$versions.appcompat"
+    implementation "androidx.constraintlayout:constraintlayout:$versions.constraintLayout"
+
+    // DI
+    implementation "org.koin:koin-android:$versions.koin"
+    implementation "org.koin:koin-androidx-scope:$versions.koin"
+
+    //AndroidKtx
+    implementation "androidx.core:core-ktx:$versions.ktx"
+
+    //Overscroll
+    implementation "me.everything:overscroll-decor-android:$versions.overscroll"
+
+    // RxJava
+    implementation "io.reactivex.rxjava2:rxandroid:$versions.rxAndroid"
+    implementation "io.reactivex.rxjava2:rxjava:$versions.rxJava"
+
+    //Youtube
+    implementation "com.pierfrancescosoffritti.androidyoutubeplayer:core:$versions.youtube"
+
+    //Testing
+    testImplementation "junit:junit:$versions.jUnit"
+    androidTestImplementation "androidx.test:runner:$versions.testRunner"
+    androidTestImplementation "androidx.test.espresso:espresso-core:$versions.espresso"
+}

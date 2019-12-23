@@ -15,6 +15,7 @@ import hr.fer.nox.movies.ui.container.MoviesContainerFragment
 import hr.fer.nox.navigation.router.Router
 import hr.fer.nox.search.ui.container.SearchContainerFragment
 import hr.fer.nox.splash.ui.SplashFragment
+import hr.fer.nox.userdetails.ui.UserDetailsFragment
 
 private const val LAST_FRAGMENT = 0
 
@@ -63,10 +64,10 @@ class RouterImpl(
         }
     }
 
-    // TODO: implement this
+
     override fun showUserDetails(userId: String) {
         fragmentManager.inTransactionAndAddToBackStack {
-            add(MAIN_CONTAINER_ID, MovieDetailsFragment.newInstance(1), MovieDetailsFragment.TAG)
+            add(MAIN_CONTAINER_ID, UserDetailsFragment.newInstance(""), UserDetailsFragment.TAG)
         }
     }
 

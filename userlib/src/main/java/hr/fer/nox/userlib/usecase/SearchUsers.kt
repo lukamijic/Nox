@@ -8,6 +8,6 @@ class SearchUsers(
     private val userSource: UserSource
 ) : CommandUseCaseWithParameter<String> {
 
-    override fun invoke(parameter: String): Completable = Completable.complete()
-    // TODO: implement this
+    override fun invoke(parameter: String): Completable = userSource.searchUsers(parameter)
+
 }
