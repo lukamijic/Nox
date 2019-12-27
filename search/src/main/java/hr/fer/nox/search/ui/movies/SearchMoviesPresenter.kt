@@ -1,5 +1,6 @@
 package hr.fer.nox.search.ui.movies
 
+
 import hr.fer.nox.coreui.base.BasePresenter
 import hr.fer.nox.movieslib.model.Movie
 import hr.fer.nox.movieslib.usecase.QuerySearchMovies

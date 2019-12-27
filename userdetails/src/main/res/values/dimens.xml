@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="userdetails_toolbar_height">48dp</dimen>
+    <dimen name="userdetails_back_arrow_size">24dp</dimen>
+    <dimen name="userdetails_border_height">0.5dp</dimen>
+    <dimen name="userdetails_small_poster_width">90dp</dimen>
+    <dimen name="userdetails_small_poster_height">135dp</dimen>
+    <dimen name="userdetails_score_icon_size">48dp</dimen>
+    <dimen name="userdetails_like_icon_size">24dp</dimen>
+    <dimen name="userdetails_add_to_watchlist_icon_size">24dp</dimen>
+    <dimen name="userdetails_watched_icon_size">24dp</dimen>
+    <dimen name="userdetails_actor_width">120dp</dimen>
+    <dimen name="userdetails_actor_height">180dp</dimen>
+</resources>

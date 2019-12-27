@@ -9,6 +9,7 @@ import hr.fer.nox.coreui.base.BaseView
 import hr.fer.nox.coreui.base.ViewPresenter
 import hr.fer.nox.home.R
 import hr.fer.nox.home.di.HOME_VIEW_SCOPE
+import hr.fer.nox.navigation.router.Router
 import hr.fer.nox.ui.NavigationItemView
 import kotlinx.android.synthetic.main.fragment_home.*
 import org.koin.android.ext.android.getKoin
@@ -48,6 +49,7 @@ class HomeFragment: BaseFragment<HomeViewState>(), HomeContract.View {
             EXPLORE to HomeContract.Presenter::showExplore,
             RECOMMENDATIONS to HomeContract.Presenter::showRecommendations,
             PROFILE to HomeContract.Presenter::showProfile
+            //PROFILE to showUserDetails("id")
         )
     }
 

@@ -37,6 +37,7 @@ dependencies {
     implementation project(':movieslib')
     implementation project(':search')
     implementation project(':userlib')
+    implementation project(':userdetails')
 
     // Kotlin
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"

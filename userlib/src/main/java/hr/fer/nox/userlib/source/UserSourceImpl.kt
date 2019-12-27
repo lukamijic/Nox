@@ -10,17 +10,26 @@ import com.google.firebase.auth.GoogleAuthProvider
 import com.google.firebase.database.FirebaseDatabase
 import durdinapps.rxfirebase2.RxFirebaseAuth
 import durdinapps.rxfirebase2.RxFirebaseDatabase
+import hr.fer.nox.userlib.mapper.UserDetailsMapper
+import hr.fer.nox.userlib.mapper.UserMapper
 import hr.fer.nox.userlib.model.User
+import hr.fer.nox.userlib.model.UserDetails
+import hr.fer.nox.userlib.service.UserService
 import hr.fer.nox.userlib.util.EmptyGraphJSONObjectCallback
 import io.reactivex.Completable
 import io.reactivex.Flowable
+import io.reactivex.processors.PublishProcessor
 import io.reactivex.schedulers.Schedulers
 import java.lang.RuntimeException
 
 class UserSourceImpl(
+    private val userService: UserService,
+    private val userMapper: UserMapper,
+    private val userDetailsMapper: UserDetailsMapper,
     private val firebaseAuth: FirebaseAuth,
     private val firebaseDatabase: FirebaseDatabase
 ) : UserSource {
+    private val searchUsersPublishProcessor: PublishProcessor<List<User>> = PublishProcessor.create()
 
     override fun createAccount(email: String, password: String): Flowable<String> =
         RxFirebaseAuth.createUserWithEmailAndPassword(firebaseAuth, email, password)
@@ -65,4 +74,14 @@ class UserSourceImpl(
                     googleSignInAccount.email ?: ""
                 )
             }
+
+    override fun searchUsers(query: String): Completable =
+        userService
+            .searchUsers(query)
+            .map { userMapper.map(it.results) }
+            .flatMapCompletable { users -> Completable.fromAction { searchUsersPublishProcessor.onNext(users) }}
+
+
+
+    override fun getUserDetails(userId: String): Flowable<UserDetails> = userService.getUserDetails(userId).map { userDetailsMapper.map(it) }
 }
