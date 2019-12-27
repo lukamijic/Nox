@@ -37,7 +37,7 @@ class SearchUsersPresenter(
     }
 
     override fun showUserDetails(userId: String) {
-        dispatchRoutingAction { router -> router.showUserDetails(userId) }
+        dispatchRoutingAction { router -> router.showUserDetails(userId, false) }
     }
 
     private fun toViewStateAction(users: List<User>): (SearchUsersViewState) -> Unit = {

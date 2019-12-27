@@ -8,11 +8,9 @@ import androidx.fragment.app.Fragment
 import hr.fer.nox.coreui.base.BaseFragment
 import hr.fer.nox.coreui.base.BaseView
 import hr.fer.nox.coreui.base.ViewPresenter
-import hr.fer.nox.coreui.util.ImageUtils
 import hr.fer.nox.userdetails.R
 import hr.fer.nox.userdetails.di.USERS_DETAILS_VIEW_SCOPE
 import kotlinx.android.synthetic.main.fragment_user_details.*
-import org.koin.android.ext.android.inject
 import org.koin.core.parameter.parametersOf
 
 class UserDetailsFragment: BaseFragment<UserDetailsViewState>(), UserDetailsContract.View {
@@ -25,17 +23,19 @@ class UserDetailsFragment: BaseFragment<UserDetailsViewState>(), UserDetailsCont
         private val LAYOUT_RESOURCE: Int = R.layout.fragment_user_details
 
         private const val USER_ID_KEY = "user_id"
+        private const val IS_PROFILE_TAB = "is_profile_tab"
 
-        fun newInstance(userId: String): Fragment =
+        fun newInstance(userId: String, isProfileTab: Boolean): Fragment =
             UserDetailsFragment().apply {
                 arguments = Bundle().apply {
                     putString(USER_ID_KEY, userId)
+                    putBoolean(IS_PROFILE_TAB, isProfileTab)
                 }
             }
     }
 
     private val presenter: UserDetailsContract.Presenter by scopedInject(
-        parameters = { parametersOf(getUserIdFromBundle()) }
+        parameters = { parametersOf(getUserIdFromBundle(), isProfileTabFromBundle()) }
     )
 
 
@@ -50,6 +50,16 @@ class UserDetailsFragment: BaseFragment<UserDetailsViewState>(), UserDetailsCont
                 userdetails_detailsContainer.isVisible = false
                 return
             }
+            user_details_email.text = email
+            user_details_name.text = name
+            user_details_surname.text = surname
+            user_details_age.text = age.toString()
+            user_details_gender.text = gender
+            if (isProfileTabFromBundle()){
+                userdetails_toolbar.visibility = View.GONE
+            } else{
+                userdetails_toolbar.visibility = View.VISIBLE
+            }
 
         }
     }
@@ -58,6 +68,7 @@ class UserDetailsFragment: BaseFragment<UserDetailsViewState>(), UserDetailsCont
     }
 
     private fun getUserIdFromBundle(): String = arguments?.getString(USER_ID_KEY) ?: throw IllegalArgumentException("User id not found")
+    private fun isProfileTabFromBundle(): Boolean = arguments?.getBoolean(IS_PROFILE_TAB) ?: throw java.lang.IllegalArgumentException("Is profile not found")
 
     override fun getLayoutResource(): Int = LAYOUT_RESOURCE
     override fun getScopeName(): String = USERS_DETAILS_VIEW_SCOPE

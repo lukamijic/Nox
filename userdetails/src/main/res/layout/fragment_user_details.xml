@@ -13,6 +13,7 @@
         android:elevation="@dimen/normal_elevation"
         android:background="@color/colorPrimary"
         android:orientation="horizontal"
+        android:visibility="visible"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -72,6 +73,20 @@
             android:layout_height="wrap_content"
             android:textColor="@color/text_color"
             android:id="@+id/user_details_email"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/text_color"
+            android:id="@+id/user_details_age"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/text_color"
+            android:id="@+id/user_details_gender"/>
+
+
 
 
 

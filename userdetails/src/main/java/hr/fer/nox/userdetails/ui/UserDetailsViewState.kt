@@ -22,5 +22,15 @@ data class UserDetailsViewState(
             "",
             false
             )
+
+        val NOT_EMPTY = UserDetailsViewState(
+            "userId",
+            "Karlo",
+            "Razumovic",
+            "karlo.razumovic@gmail.com",
+            25,
+            "Male",
+                false
+        )
     }
 }
