@@ -55,7 +55,14 @@ class RouterImpl(
     override fun showMovies() {
         fragmentManager.inTransaction {
             applyFadeInFadoOutAnimation()
-            replace(R.id.home_container, MoviesContainerFragment.newInstance(), MoviesContainerFragment.TAG)
+            replace(R.id.home_container, MoviesContainerFragment.movies(), MoviesContainerFragment.TAG)
+        }
+    }
+
+    override fun showRecommendations() {
+        fragmentManager.inTransaction {
+            applyFadeInFadoOutAnimation()
+            replace(R.id.home_container, MoviesContainerFragment.recommendations(), MoviesContainerFragment.TAG)
         }
     }
 
