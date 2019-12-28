@@ -51,12 +51,6 @@ dependencies {
     implementation "io.reactivex.rxjava2:rxandroid:$versions.rxAndroid"
     implementation "io.reactivex.rxjava2:rxjava:$versions.rxJava"
 
-    // Facebook
-    implementation "com.facebook.android:facebook-login:$versions.facebookLogin"
-
-    // Google Services Auth
-    implementation "com.google.android.gms:play-services-auth:$versions.googleServicesAuth"
-
     //Testing
     testImplementation "junit:junit:$versions.jUnit"
     androidTestImplementation "androidx.test:runner:$versions.testRunner"

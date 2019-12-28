@@ -9,6 +9,7 @@ import hr.fer.nox.navigation.router.Router
 import hr.fer.nox.userlib.usecase.CreateAccount
 import hr.fer.nox.userlib.usecase.CreateAccountInfo
 import io.reactivex.Completable
+import java.util.regex.Pattern
 
 class CreateAccountPresenter(
     private val createAccountResources: CreateAccountResources,
@@ -16,12 +17,26 @@ class CreateAccountPresenter(
     private val createAccount: CreateAccount
 ): BasePresenter<CreateAccountContract.View, CreateAccountViewState>(), CreateAccountContract.Presenter {
 
+    private val emailPattern = Pattern.compile("^[a-zA-Z0-9_+&*-]+(?:\\."+
+            "[a-zA-Z0-9_+&*-]+)*@" +
+            "(?:[a-zA-Z0-9-]+\\.)+[a-z" +
+            "A-Z]{2,7}$")
+
     override fun initialViewState(): CreateAccountViewState = CreateAccountViewState("", false)
 
     override fun createAccount(name: String, surname: String, email: String, password: String) {
         if (name.isEmpty() || surname.isEmpty() || email.isEmpty() || password.isEmpty()) {
             viewStateAction {
                 errorMessage = createAccountResources.createAccountCredentialsEmptyErrorMessage()
+                isLoading = false
+            }
+
+            return
+        }
+
+        if(!emailPattern.matcher(email).matches()) {
+            viewStateAction {
+                errorMessage = createAccountResources.invalidEmailErrorMessage()
                 isLoading = false
             }
 

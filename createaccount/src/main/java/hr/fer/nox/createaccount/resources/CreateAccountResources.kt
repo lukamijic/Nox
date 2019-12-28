@@ -5,4 +5,6 @@ interface CreateAccountResources {
     fun noInternetConnectionErrorMessage(): String
 
     fun createAccountCredentialsEmptyErrorMessage(): String
+
+    fun invalidEmailErrorMessage(): String
 }

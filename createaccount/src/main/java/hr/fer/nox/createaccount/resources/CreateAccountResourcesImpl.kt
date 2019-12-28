@@ -10,4 +10,6 @@ class CreateAccountResourcesImpl(
     override fun noInternetConnectionErrorMessage(): String = resourceUtils.getStringText(R.string.createaccount_no_connection_error_message)
 
     override fun createAccountCredentialsEmptyErrorMessage(): String = resourceUtils.getStringText(R.string.createaccount_credentials_empty_error_message)
+
+    override fun invalidEmailErrorMessage(): String = resourceUtils.getStringText(R.string.createaccount_invalid_email)
 }

@@ -4,6 +4,8 @@
     <string name="login_password_hint">Password</string>
     <string name="login_create_account_text">Create Account</string>
     <string name="login_log_in_text">Log in</string>
+    <string name="login_facebook">Facebook</string>
+    <string name="login_google">Google</string>
 
     <string name="login_no_connection_error_message">No internet connection</string>
     <string name="login_invalid_email_and_password_error_message">Invalid email and password</string>
