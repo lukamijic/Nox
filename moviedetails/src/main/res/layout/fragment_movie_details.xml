@@ -184,7 +184,7 @@
                 android:layout_marginTop="@dimen/small_margin"
                 app:layout_constraintTop_toBottomOf="@id/moviedetails_firstBorder"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toStartOf="@id/moviedetails_addToWatchListIcon"/>
+                app:layout_constraintEnd_toEndOf="parent"/>
 
             <ImageView
                 android:id="@+id/moviedetails_addToWatchListIcon"
@@ -192,6 +192,7 @@
                 android:layout_height="@dimen/moviedetails_add_to_watchlist_icon_size"
                 android:src="@drawable/ic_add_to_watchlist"
                 android:layout_marginTop="@dimen/small_margin"
+                android:visibility="gone"
                 app:layout_constraintStart_toEndOf="@id/moviedetails_likeIcon"
                 app:layout_constraintEnd_toStartOf="@id/moviedetails_watchedIcon"
                 app:layout_constraintTop_toBottomOf="@id/moviedetails_firstBorder"/>
@@ -202,6 +203,7 @@
                 android:layout_height="@dimen/moviedetails_watched_icon_size"
                 android:src="@drawable/ic_watch"
                 android:layout_marginTop="@dimen/small_margin"
+                android:visibility="gone"
                 app:layout_constraintTop_toBottomOf="@id/moviedetails_firstBorder"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@id/moviedetails_addToWatchListIcon"/>
@@ -212,7 +214,7 @@
                 android:layout_height="@dimen/moviedetails_border_height"
                 android:background="@android:color/white"
                 android:layout_marginTop="@dimen/tiny_margin"
-                app:layout_constraintTop_toBottomOf="@id/moviedetails_addToWatchListIcon"
+                app:layout_constraintTop_toBottomOf="@id/moviedetails_likeIcon"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"/>
             

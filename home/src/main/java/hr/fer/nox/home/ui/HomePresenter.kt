@@ -16,6 +16,7 @@ class HomePresenter: BasePresenter<HomeContract.View, HomeViewState>(), HomeCont
     }
 
     override fun showRecommendations() {
+        dispatchRoutingAction(Router::showRecommendations)
     }
 
     override fun showProfile() {

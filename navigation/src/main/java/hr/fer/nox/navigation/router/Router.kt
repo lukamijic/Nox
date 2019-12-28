@@ -12,6 +12,8 @@ interface Router {
 
     fun showMovies()
 
+    fun showRecommendations()
+
     fun showMovieDetails(movieId: Int)
 
     fun showUserDetails(userId: String, isProfileTab: Boolean)
