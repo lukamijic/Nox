@@ -1,19 +1,14 @@
 package hr.fer.nox.login.ui
 
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.text.InputType
 import android.view.View
+import android.widget.Toast
 import androidx.annotation.LayoutRes
 import androidx.core.view.isGone
 import androidx.fragment.app.Fragment
-import com.facebook.CallbackManager
-import com.facebook.FacebookCallback
-import com.facebook.FacebookException
-import com.facebook.login.LoginResult
-import com.google.android.gms.auth.api.signin.GoogleSignIn
-import com.google.android.gms.auth.api.signin.GoogleSignInClient
-import com.google.android.gms.common.api.ApiException
 import hr.fer.nox.coreui.base.BaseFragment
 import hr.fer.nox.coreui.base.BaseView
 import hr.fer.nox.coreui.base.ViewPresenter
@@ -33,8 +28,6 @@ class LoginFragment : BaseFragment<LoginViewState>(), LoginContract.View {
 
         const val TAG = "LoginFragment"
 
-        private val RC_GOOGLE_SIGN_IN = 1337
-
         @LayoutRes
         private val LAYOUT_RESOURCE: Int = R.layout.fragment_login
 
@@ -44,13 +37,10 @@ class LoginFragment : BaseFragment<LoginViewState>(), LoginContract.View {
     private val presenter: LoginContract.Presenter by scopedInject()
     private val keyboardUtils: KeyboardUtils by inject()
     private val keyboardWatcher: KeyboardWatcher by inject(parameters = { parametersOf(requireActivity()) })
-    private val googleSignInClient: GoogleSignInClient by scopedInject(parameters = { parametersOf(context) })
 
     private var viewDisposables = CompositeDisposable()
 
     private var isPasswordShown = false
-
-    private lateinit var facebookCallbackManager: CallbackManager
 
     override fun initialiseView(view: View, savedInstanceState: Bundle?) {
         login_usernameInput.setButtonClickListener(View.OnClickListener { login_usernameInput.setText("") })
@@ -63,12 +53,18 @@ class LoginFragment : BaseFragment<LoginViewState>(), LoginContract.View {
             presenter.login(login_usernameInput.getText(), login_passwordInput.getText())
         }
 
-        login_createAccount.setOnClickListener { presenter.showCreateAccount() }
-
-        setupFacebookLogin()
+        login_facebookLogin.setOnClickListener {
+            val intent = Intent(Intent.ACTION_VIEW, Uri.parse("https://nox.herokuapp.com/oauth2/authorize/facebook?redirect_uri=nox://callback"))
+            startActivity(intent)
+        }
 
         login_googleLogin.setOnClickListener {
-            startActivityForResult(googleSignInClient.signInIntent, RC_GOOGLE_SIGN_IN)
+            val intent = Intent(Intent.ACTION_VIEW, Uri.parse("https://nox.herokuapp.com/oauth2/authorize/facebook?redirect_uri=nox://callback"))
+            startActivity(intent)
+        }
+
+        login_createAccount.setOnClickListener {
+            presenter.showCreateAccount()
         }
 
         keyboardWatcher.initialize()
@@ -85,6 +81,8 @@ class LoginFragment : BaseFragment<LoginViewState>(), LoginContract.View {
     override fun onResume() {
         super.onResume()
         initializeViews()
+
+        handleIncomingAccessToken()
     }
 
     private fun initializeViews() {
@@ -92,6 +90,12 @@ class LoginFragment : BaseFragment<LoginViewState>(), LoginContract.View {
         viewDisposables.add(keyboardWatcher.keyboardListener().subscribe { keyboardShown -> handleKeyboardEvents(keyboardShown) })
         viewDisposables.add(login_usernameInput.focusChange().subscribe { focus -> handleCredentialsInputFocus(login_usernameInput, focus) })
         viewDisposables.add(login_passwordInput.focusChange().subscribe { focus -> handleCredentialsInputFocus(login_passwordInput, focus) })
+    }
+
+    private fun handleIncomingAccessToken() {
+        val uri: Uri? = activity?.intent?.data
+
+        uri?.getQueryParameter("token")?.run { presenter.storeAccessToken(this) }
     }
 
     override fun onPause() {
@@ -136,40 +140,6 @@ class LoginFragment : BaseFragment<LoginViewState>(), LoginContract.View {
         }
         login_passwordInput.setCursorAtEnd()
         isPasswordShown = showPassword
-    }
-
-    private fun setupFacebookLogin() {
-        facebookCallbackManager = CallbackManager.Factory.create()
-        login_facebookLogin.fragment = this
-        login_facebookLogin.setPermissions("email", "public_profile")
-        login_facebookLogin.registerCallback(facebookCallbackManager, object : FacebookCallback<LoginResult> {
-            override fun onSuccess(result: LoginResult) {
-                presenter.facebookLogin(result.accessToken)
-            }
-
-            override fun onCancel() {
-
-            }
-
-            override fun onError(error: FacebookException?) {
-
-            }
-        })
-    }
-
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-        facebookCallbackManager.onActivityResult(requestCode, resultCode, data)
-
-        if (requestCode == RC_GOOGLE_SIGN_IN) {
-            val task = GoogleSignIn.getSignedInAccountFromIntent(data)
-            try {
-                val account = task.getResult(ApiException::class.java)
-                account?.run { presenter.googleLogin(account) }
-            } catch (e: ApiException) {
-                throw e
-            }
-        }
     }
 
     override fun onViewStateRestored(savedInstanceState: Bundle?) {

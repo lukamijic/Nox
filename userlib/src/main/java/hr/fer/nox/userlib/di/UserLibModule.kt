@@ -1,12 +1,12 @@
 package hr.fer.nox.userlib.di
 
-import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.database.FirebaseDatabase
 import hr.fer.nox.userlib.mapper.UserDetailsMapper
 import hr.fer.nox.userlib.mapper.UserDetailsMapperImpl
 import hr.fer.nox.userlib.mapper.UserMapper
 import hr.fer.nox.userlib.mapper.UserMapperImpl
 import hr.fer.nox.userlib.model.User
+import hr.fer.nox.userlib.preferences.UserPreferences
+import hr.fer.nox.userlib.preferences.UserPreferencesImpl
 import hr.fer.nox.userlib.service.UserApi
 import hr.fer.nox.userlib.service.UserService
 import hr.fer.nox.userlib.service.UserServiceImpl
@@ -18,21 +18,15 @@ import retrofit2.Retrofit
 
 val UserLibModule = module {
 
-    single { FirebaseAuth.getInstance() }
+    single<UserPreferences> { UserPreferencesImpl(get()) }
 
-    single { FirebaseDatabase.getInstance() }
-
-    single<UserSource> { UserSourceImpl(get(), get(), get(), get(), get()) }
+    single<UserSource> { UserSourceImpl(get(), get(), get(), get()) }
 
     single { CreateAccount(get()) }
 
-    single { IsUserLoggedIn(get()) }
+    single { QueryIsUserLoggedIn(get()) }
 
     single { LoginWithEmailAndPassword(get()) }
-
-    single { FacebookLogin(get()) }
-
-    single { GoogleLogin(get()) }
 
     single { QuerySearchUsers(get())}
 
@@ -40,21 +34,17 @@ val UserLibModule = module {
 
     single { User(get()) }
 
-    single<UserService> {
-        UserServiceImpl(get())
-    }
+    single { ClearAccessToken(get()) }
 
-    single {
-        get<Retrofit>().create(UserApi::class.java)
-    }
+    single { StoreAccessToken(get()) }
 
-    single<UserDetailsMapper> {
-        UserDetailsMapperImpl()
-    }
+    single<UserService> { UserServiceImpl(get()) }
 
-    single<UserMapper> {
-        UserMapperImpl()
-    }
+    single { get<Retrofit>().create(UserApi::class.java) }
+
+    single<UserDetailsMapper> { UserDetailsMapperImpl() }
+
+    single<UserMapper> { UserMapperImpl() }
 
     single { QueryUserDetails(get()) }
 }

@@ -11,12 +11,8 @@ class CreateAccount(
     override fun invoke(parameter: CreateAccountInfo): Completable =
         with(parameter) {
             userSource.createAccount(email, password)
-                .flatMapCompletable {
-                    if (it.isNotEmpty()) userSource.storeUserData(it, name, surname, email) else Completable.complete()
-                }
         }
 }
-
 
 data class CreateAccountInfo(
     val name: String,

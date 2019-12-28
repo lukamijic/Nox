@@ -34,10 +34,6 @@ buildscript {
             'retrofit'              : "2.5.0",
             'kotlinCodegen'         : "1.8.0",
             'okHttp'                : "4.0.0",
-            'firebaseAuth'          : "19.2.0",
-            'firebaseDatabase'      : "19.2.0",
-            'facebookLogin'         : "5.11.2",
-            'googleServicesAuth'    : "17.0.0"
     ]
 
     repositories {
