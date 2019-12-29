@@ -5,5 +5,5 @@ import hr.fer.nox.movieslib.model.MovieDetails
 
 interface MovieDetailsMapper {
 
-    fun map(apiMovieDetails: ApiMovieDetails, isLiked: Boolean): MovieDetails
+    fun map(apiMovieDetails: ApiMovieDetails): MovieDetails
 }

@@ -1,7 +1,6 @@
-package hr.fer.nox.userlib.preferences
+package hr.fer.nox.preferences
 
 import android.content.SharedPreferences
-import hr.fer.nox.userlib.model.AccessToken
 
 class UserPreferencesImpl(
     private val sharedPreferences: SharedPreferences

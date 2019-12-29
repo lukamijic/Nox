@@ -2,10 +2,10 @@ package hr.fer.nox.userlib.source
 
 import hr.fer.nox.userlib.mapper.UserDetailsMapper
 import hr.fer.nox.userlib.mapper.UserMapper
-import hr.fer.nox.userlib.model.AccessToken
+import hr.fer.nox.preferences.AccessToken
 import hr.fer.nox.userlib.model.User
 import hr.fer.nox.userlib.model.UserDetails
-import hr.fer.nox.userlib.preferences.UserPreferences
+import hr.fer.nox.preferences.UserPreferences
 import hr.fer.nox.userlib.service.UserService
 import io.reactivex.Completable
 import io.reactivex.Flowable

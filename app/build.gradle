@@ -27,6 +27,7 @@ dependencies {
     implementation project(':navigation')
     implementation project(':commonui')
     implementation project(':coreui')
+    implementation project(':preferences')
     implementation project(':core')
     implementation project(':login')
     implementation project(':home')

@@ -1,5 +1,6 @@
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
 
 android {
@@ -15,10 +16,6 @@ android {
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
-    kotlinOptions {
-        jvmTarget = "1.8"
-    }
-
     buildTypes {
         release {
             minifyEnabled false
@@ -31,33 +28,11 @@ android {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
-
-    //Kotlin
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
-
-    implementation project(':preferences')
 
     // DI
     implementation "org.koin:koin-android:$versions.koin"
-    implementation "org.koin:koin-android-scope:$versions.koin"
-
-    // Networking
-    implementation "com.github.pwittchen:reactivenetwork-rx2:$versions.reactiveNetwork"
-
-    // RxJava
-    implementation "io.reactivex.rxjava2:rxandroid:$versions.rxAndroid"
-    implementation "io.reactivex.rxjava2:rxjava:$versions.rxJava"
-
-    //Retrofit
-    implementation "com.squareup.retrofit2:retrofit:$versions.retrofit"
-    implementation "com.squareup.retrofit2:adapter-rxjava2:$versions.retrofit"
-
-    //OkHttp
-    implementation "com.squareup.okhttp3:logging-interceptor:$versions.okHttp"
-
-    //Moshi
-    implementation "com.squareup.retrofit2:converter-moshi:$versions.moshiConverter"
-    kapt "com.squareup.moshi:moshi-kotlin-codegen:$versions.kotlinCodegen"
+    implementation "org.koin:koin-androidx-scope:$versions.koin"
 
     //Testing
     testImplementation "junit:junit:$versions.jUnit"

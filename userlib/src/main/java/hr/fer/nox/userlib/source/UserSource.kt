@@ -1,6 +1,6 @@
 package hr.fer.nox.userlib.source
 
-import hr.fer.nox.userlib.model.AccessToken
+import hr.fer.nox.preferences.AccessToken
 import hr.fer.nox.userlib.model.UserDetails
 import io.reactivex.Completable
 import io.reactivex.Flowable

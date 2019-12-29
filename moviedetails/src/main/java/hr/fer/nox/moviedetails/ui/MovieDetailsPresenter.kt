@@ -32,7 +32,7 @@ class MovieDetailsPresenter(
             it.movieDuration = movieDetailsResources.getMovieDuration(movieDurationInMinutes)
             it.movieGenres = getGenresText(movieGenres)
             it.videoId = videoId
-            it.isLiked = isLiked
+            it.isLiked = true
             it.isOnWatchList = false
             it.isWatched = false
             it.moviePosterUrl = moviePosterUrl ?: ""
