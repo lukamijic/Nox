@@ -10,7 +10,7 @@ class CreateAccount(
 
     override fun invoke(parameter: CreateAccountInfo): Completable =
         with(parameter) {
-            userSource.createAccount(email, password)
+            userSource.createAccount(email, name, surname, password)
         }
 }
 

@@ -26,7 +26,7 @@ val NetworkingModule = module {
         "https://api.themoviedb.org/"
     }
 
-    single {  }
+    single(named(NOX_BASE_URL_IDENTIFIER)) { "https://nox.herokuapp.com/" }
 
     single { androidApplication().getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager }
 
@@ -48,7 +48,7 @@ val NetworkingModule = module {
             .build()
     }
 
-    single {
+    single(named(MOVIE_DATABASE_RETROFIT)) {
         Retrofit.Builder()
             .baseUrl(get<String>(named(MOVIE_DATABASE_URL_IDENTIFIER)))
             .addConverterFactory(MoshiConverterFactory.create())
@@ -56,7 +56,20 @@ val NetworkingModule = module {
             .client(get())
             .build()
     }
+
+    single(named(NOX_RETROFIT)) {
+        Retrofit.Builder()
+            .baseUrl(get<String>(named(NOX_BASE_URL_IDENTIFIER)))
+            .addConverterFactory(MoshiConverterFactory.create())
+            .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+            .client(get())
+            .build()
+    }
+
 }
 
-private val API_KEY_IDENTIFIER = "API_KEY"
-private val MOVIE_DATABASE_URL_IDENTIFIER = "MOVIE_DATABASE_URL"
+const val API_KEY_IDENTIFIER = "API_KEY"
+const val MOVIE_DATABASE_RETROFIT = "MOVIE_DATABASE_RETROFIT"
+const val MOVIE_DATABASE_URL_IDENTIFIER = "MOVIE_DATABASE_URL"
+const val NOX_BASE_URL_IDENTIFIER = "NOX_URL"
+const val NOX_RETROFIT = "NOX_RETROFIT"

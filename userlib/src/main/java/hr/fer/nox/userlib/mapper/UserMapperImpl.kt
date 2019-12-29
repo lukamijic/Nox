@@ -1,6 +1,6 @@
 package hr.fer.nox.userlib.mapper
 
-import hr.fer.nox.userlib.model.ApiUserShort
+import hr.fer.nox.userlib.model.api.ApiUserShort
 import hr.fer.nox.userlib.model.User
 
 
