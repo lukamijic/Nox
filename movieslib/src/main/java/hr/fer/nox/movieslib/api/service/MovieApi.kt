@@ -1,7 +1,7 @@
 package hr.fer.nox.movieslib.api.service
 
 import hr.fer.nox.movieslib.api.models.ApiMovieDetails
-import hr.fer.nox.movieslib.api.models.ApiMoviesList
+import hr.fer.nox.movieslib.api.models.ApiMovieShort
 import io.reactivex.Single
 import retrofit2.http.GET
 import retrofit2.http.Path
@@ -9,18 +9,18 @@ import retrofit2.http.Query
 
 interface MovieApi {
 
-    @GET("3/movie/{movie_id}?language=en-US&append_to_response=videos%2Ccredits")
-    fun getMovieDetails(@Path("movie_id") movieId: Int): Single<ApiMovieDetails>
+    @GET("/movies/{movieId}")
+    fun getMovieDetails(@Path("movieId") movieId: Int): Single<ApiMovieDetails>
 
-    @GET("3/movie/upcoming?language=en-US")
-    fun getPopularMovies(): Single<ApiMoviesList>
+    @GET("/movies/popular")
+    fun getPopularMovies(): Single<List<ApiMovieShort>>
 
-    @GET("3/movie/now_playing?language=en-US")
-    fun getNewReleasesMovies(): Single<ApiMoviesList>
+    @GET("/movies/new-releases")
+    fun getNewReleasesMovies(): Single<List<ApiMovieShort>>
 
-    @GET("3/movie/upcoming?language=en-US")
-    fun getUpcomingMovies(): Single<ApiMoviesList>
+    @GET("/movies/upcoming")
+    fun getUpcomingMovies(): Single<List<ApiMovieShort>>
 
-    @GET("3/search/movie?language=en-US&include_adult=false")
-    fun searchMovies(@Query("query") searchTerm: String): Single<ApiMoviesList>
+    @GET("/movies/search")
+    fun searchMovies(@Query("query") searchTerm: String): Single<List<ApiMovieShort>>
 }

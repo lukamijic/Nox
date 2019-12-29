@@ -4,9 +4,7 @@ import hr.fer.nox.movieslib.api.models.ApiMovieDetails
 import hr.fer.nox.movieslib.model.Actor
 import hr.fer.nox.movieslib.model.MovieDetails
 
-class MovieDetailsMapperImpl(
-    private val baseImageUrl: String
-): MovieDetailsMapper {
+class MovieDetailsMapperImpl: MovieDetailsMapper {
 
     companion object {
 
@@ -15,29 +13,28 @@ class MovieDetailsMapperImpl(
         private const val YOUTUBE_VIDEO = "youtube"
     }
 
-    override fun map(apiMovieDetails: ApiMovieDetails, isLiked: Boolean): MovieDetails {
-        val directorName = apiMovieDetails.credits.crew.firstOrNull { it.job.toLowerCase() == DIRECTOR_JOB_TITLE }?.name ?: ""
-        val videos = apiMovieDetails.videos.videos
+    override fun map(apiMovieDetails: ApiMovieDetails): MovieDetails {
+        val directorName = apiMovieDetails.credits?.crew?.firstOrNull { it.job.toLowerCase() == DIRECTOR_JOB_TITLE }?.name ?: ""
+        val videos = apiMovieDetails.videos
 
-        val videoYoutubeUrl = videos.firstOrNull { it.site.toLowerCase() == YOUTUBE_VIDEO && it.type.toLowerCase() == TRAILER_VIDEO_TYPE}?.key
-            ?: (videos.firstOrNull { it.site.toLowerCase() == YOUTUBE_VIDEO }?.key ?: "")
+        val videoYoutubeUrl = videos?.firstOrNull { it.site.toLowerCase() == YOUTUBE_VIDEO && it.type.toLowerCase() == TRAILER_VIDEO_TYPE}?.key
+            ?: (videos?.firstOrNull { it.site.toLowerCase() == YOUTUBE_VIDEO }?.key ?: "")
 
         return with(apiMovieDetails) {
             MovieDetails(
                 id,
                 title,
                 releaseDate.split("-").getOrNull(0)?.toIntOrNull() ?: 0,
-                durationInMinutes,
-                genres.map { it.genreName },
+                runtimeInMinutes ?: 0,
+                genres ?: emptyList(),
                 videoYoutubeUrl,
-                isLiked,
-                posterPath?.run { baseImageUrl + this },
+                posterPath?.run { this },
                 synopsis,
-                "8.5/10",
-                "83%",
-                "75/100",
+                score.imdbScore,
+                score.rottenTomatoScore,
+                score.metacriticScore,
                 directorName,
-                credits.cast.map { Actor(it.actor, it.characterName, it.actorImagePath?.run { baseImageUrl+ this }) }
+                credits?.cast?.map { Actor(it.actor, it.characterName, it.actorImagePath?.run { this }) } ?: emptyList()
             )
         }
     }

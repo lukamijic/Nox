@@ -1,6 +1,4 @@
-package hr.fer.nox.userlib.preferences
-
-import hr.fer.nox.userlib.model.AccessToken
+package hr.fer.nox.preferences
 
 interface UserPreferences {
 

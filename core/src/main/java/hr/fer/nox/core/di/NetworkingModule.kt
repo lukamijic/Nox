@@ -7,6 +7,8 @@ import hr.fer.nox.core.networking.ConnectivityManagerWrapper
 import hr.fer.nox.core.networking.ConnectivityManagerWrapperImpl
 import hr.fer.nox.core.networking.NetworkUtils
 import hr.fer.nox.core.networking.NetworkUtilsImpl
+import hr.fer.nox.preferences.AccessToken
+import hr.fer.nox.preferences.UserPreferences
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import org.koin.android.ext.koin.androidApplication
@@ -18,14 +20,6 @@ import retrofit2.converter.moshi.MoshiConverterFactory
 
 val NetworkingModule = module {
 
-    single(named(API_KEY_IDENTIFIER)) {
-        "d2b00cc05927175409fe8e98eb5d0d5c"
-    }
-
-    single(named(MOVIE_DATABASE_URL_IDENTIFIER)) {
-        "https://api.themoviedb.org/"
-    }
-
     single(named(NOX_BASE_URL_IDENTIFIER)) { "https://nox.herokuapp.com/" }
 
     single { androidApplication().getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager }
@@ -35,29 +29,29 @@ val NetworkingModule = module {
     single<NetworkUtils> { NetworkUtilsImpl(androidApplication(), get()) }
 
     single {
+        val userPreferences: UserPreferences = get()
+
         val httpLoggingInterceptor = HttpLoggingInterceptor()
         httpLoggingInterceptor.level = HttpLoggingInterceptor.Level.BASIC
         OkHttpClient.Builder()
             .addInterceptor { chain ->
-                val newUrl = chain.request().url.newBuilder()
-                    .addQueryParameter("api_key", get(named(API_KEY_IDENTIFIER)))
-                    .build()
-                chain.proceed(chain.request().newBuilder().url(newUrl).build())
+                val token = userPreferences.getAccessToken()
+                if (token != AccessToken.EMPTY) {
+                    val newRequest = chain
+                        .request()
+                        .newBuilder()
+                        .addHeader("Authorization", "Bearer ${token.token}")
+                        .build()
+                    chain.proceed(newRequest)
+                } else {
+                    chain.proceed(chain.request())
+                }
             }
             .addInterceptor(httpLoggingInterceptor)
             .build()
     }
 
-    single(named(MOVIE_DATABASE_RETROFIT)) {
-        Retrofit.Builder()
-            .baseUrl(get<String>(named(MOVIE_DATABASE_URL_IDENTIFIER)))
-            .addConverterFactory(MoshiConverterFactory.create())
-            .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
-            .client(get())
-            .build()
-    }
-
-    single(named(NOX_RETROFIT)) {
+    single {
         Retrofit.Builder()
             .baseUrl(get<String>(named(NOX_BASE_URL_IDENTIFIER)))
             .addConverterFactory(MoshiConverterFactory.create())
@@ -68,8 +62,4 @@ val NetworkingModule = module {
 
 }
 
-const val API_KEY_IDENTIFIER = "API_KEY"
-const val MOVIE_DATABASE_RETROFIT = "MOVIE_DATABASE_RETROFIT"
-const val MOVIE_DATABASE_URL_IDENTIFIER = "MOVIE_DATABASE_URL"
 const val NOX_BASE_URL_IDENTIFIER = "NOX_URL"
-const val NOX_RETROFIT = "NOX_RETROFIT"

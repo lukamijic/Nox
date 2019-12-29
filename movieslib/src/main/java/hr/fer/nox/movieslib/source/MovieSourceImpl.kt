@@ -17,19 +17,19 @@ class MovieSourceImpl(
 
     private val searchMoviesPublishProcessor: PublishProcessor<List<Movie>> = PublishProcessor.create()
 
-    override fun getMovieDetails(movieId: Int): Flowable<MovieDetails> = movieService.getMovieDetails(movieId).map { movieDetailsMapper.map(it, true) }
+    override fun getMovieDetails(movieId: Int): Flowable<MovieDetails> = movieService.getMovieDetails(movieId).map { movieDetailsMapper.map(it) }
 
-    override fun getPopularMovies(): Flowable<List<Movie>> = movieService.getPopularMovies().map { movieMapper.map(it.results) }
+    override fun getPopularMovies(): Flowable<List<Movie>> = movieService.getPopularMovies().map { movieMapper.map(it) }
 
-    override fun getNewReleasesMovies(): Flowable<List<Movie>> = movieService.getNewReleasesMovies().map { movieMapper.map(it.results) }
+    override fun getNewReleasesMovies(): Flowable<List<Movie>> = movieService.getNewReleasesMovies().map { movieMapper.map(it) }
 
-    override fun getUpcomingMovies(): Flowable<List<Movie>> = movieService.getUpcomingMovies().map { movieMapper.map(it.results) }
+    override fun getUpcomingMovies(): Flowable<List<Movie>> = movieService.getUpcomingMovies().map { movieMapper.map(it) }
 
     override fun querySearchMovies(): Flowable<List<Movie>> = searchMoviesPublishProcessor
 
     override fun searchMovies(searchTerm: String): Completable =
         movieService
             .searchMovies(searchTerm)
-            .map { movieMapper.map(it.results) }
+            .map { movieMapper.map(it) }
             .flatMapCompletable { movies -> Completable.fromAction { searchMoviesPublishProcessor.onNext(movies) }}
 }

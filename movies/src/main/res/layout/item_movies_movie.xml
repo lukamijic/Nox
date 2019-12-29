@@ -16,7 +16,7 @@
         android:layout_height="match_parent"
         android:scaleType="centerCrop"
         android:background="@color/colorPrimaryDark"
-        tools:src="@drawable/ic_close"/>
+        android:src="@drawable/ic_default_movie"/>
 
 
 </androidx.cardview.widget.CardView>

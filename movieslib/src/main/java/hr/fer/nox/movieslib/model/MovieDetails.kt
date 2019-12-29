@@ -7,7 +7,6 @@ data class MovieDetails(
     val movieDurationInMinutes: Int,
     val movieGenres: List<String>,
     val videoId: String,
-    val isLiked: Boolean,
     val moviePosterUrl: String?,
     val movieSynopsis: String,
     val imdbScore: String,

@@ -1,4 +1,4 @@
-package hr.fer.nox.userlib.model
+package hr.fer.nox.preferences
 
 data class AccessToken(
     val token: String
