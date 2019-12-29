@@ -45,7 +45,7 @@ class CreateAccountPresenter(
 
         runCommand(
             createAccountCommand(name, surname, email, password)
-                .doOnComplete { dispatchRoutingAction(Router::showHome)  }
+                .doOnComplete { dispatchRoutingAction(Router::showLogin)  }
                 .doOnError { t ->
                     viewStateAction {
                         errorMessage = t.message ?: ""

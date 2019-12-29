@@ -1,5 +1,6 @@
 package hr.fer.nox.movieslib.di
 
+import hr.fer.nox.core.di.MOVIE_DATABASE_RETROFIT
 import hr.fer.nox.movieslib.api.service.MovieApi
 import hr.fer.nox.movieslib.api.service.MovieService
 import hr.fer.nox.movieslib.api.service.MovieServiceImpl
@@ -21,7 +22,7 @@ val MoviesLibModule = module {
     single(named(BASE_IMAGE_URL_KEY)) { "https://image.tmdb.org/t/p/w300/" }
 
     single {
-        get<Retrofit>().create(MovieApi::class.java)
+        get<Retrofit>(named(MOVIE_DATABASE_RETROFIT)).create(MovieApi::class.java)
     }
 
     single<MovieService> {

@@ -1,4 +1,4 @@
-package hr.fer.nox.userlib.model
+package hr.fer.nox.userlib.model.api
 
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass

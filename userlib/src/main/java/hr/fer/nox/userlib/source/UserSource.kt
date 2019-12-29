@@ -7,7 +7,7 @@ import io.reactivex.Flowable
 
 interface UserSource {
 
-    fun createAccount(email: String, password: String): Completable
+    fun createAccount(email: String, firstName: String, lastName: String, password: String): Completable
 
     fun loginWithEmailAndPassword(email: String, password: String): Completable
 
