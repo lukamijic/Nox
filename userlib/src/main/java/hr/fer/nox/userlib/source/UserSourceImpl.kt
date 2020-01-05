@@ -33,9 +33,7 @@ class UserSourceImpl(
 
     override fun loginWithEmailAndPassword(email: String, password: String): Completable =
         userService.login(email, password)
-            .flatMapCompletable {
-                Completable.fromAction { storeAccessToken(it.accessToken) }
-            }
+            .flatMapCompletable { storeAccessToken(it.accessToken) }
 
     override fun storeAccessToken(accessToken: String?): Completable =
         Completable

@@ -26,7 +26,7 @@ class MovieDetailsMapperImpl: MovieDetailsMapper {
                 runtimeInMinutes ?: 0,
                 genres,
                 videoYoutubeUrl,
-                posterPath?.replace("original", "w300"),
+                posterPath,
                 synopsis,
                 score.imdbScore,
                 score.rottenTomatoScore,
