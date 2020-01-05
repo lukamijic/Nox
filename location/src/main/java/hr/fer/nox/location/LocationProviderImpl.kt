@@ -9,15 +9,15 @@ class LocationProviderImpl(
     private val locationManager: LocationManager
 ): LocationProvider, LocationListener {
 
-    override fun getLocation(): Location? {
+    override fun getLocation(): Location {
         val isNetEnabled = locationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER)
         if (isNetEnabled) {
             locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 0, 0.0f, this)
             val loc = locationManager.getLastKnownLocation(LocationManager.NETWORK_PROVIDER)
-            return loc?.run { Location(latitude.toFloat(), longitude.toFloat()) }
+            return loc?.run { Location(latitude.toFloat(), longitude.toFloat()) } ?: Location.EMPTY
         }
 
-        return null
+        return Location.EMPTY
     }
 
     override fun onLocationChanged(location: android.location.Location?) {

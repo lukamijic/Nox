@@ -15,7 +15,7 @@ val MovieDetailsModule = module {
 
         scoped {
             val movieId: Int = it[0]
-            val presenter = MovieDetailsPresenter(movieId, get(), get()).apply {
+            val presenter = MovieDetailsPresenter(movieId, get(), get(), get(), get(), get()).apply {
                 mainThreadScheduler = get(named(MAIN_SCHEDULER))
                 backgroundScheduler = get(named(BACKGROUND_SCHEDULER))
                 routingActionsDispatcher = get()

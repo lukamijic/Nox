@@ -4,5 +4,5 @@ import hr.fer.nox.location.model.Location
 
 interface LocationProvider {
 
-    fun getLocation(): Location?
+    fun getLocation(): Location
 }

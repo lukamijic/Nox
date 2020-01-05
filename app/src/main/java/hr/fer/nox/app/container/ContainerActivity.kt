@@ -28,7 +28,6 @@ class ContainerActivity : BaseActivity() {
         disposable = isUserLoggedIn().subscribe {isLoggedIn ->
             if (isLoggedIn) router.showHome() else router.showLogin()
         }
-        permissionHandler.locationPermission()
     }
 
     override fun onStart() {
