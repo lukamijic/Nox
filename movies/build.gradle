@@ -35,6 +35,8 @@ dependencies {
     implementation project(':commonui')
     implementation project(':navigation')
     implementation project(':movieslib')
+    implementation project(':location')
+    implementation project(':permissions')
 
     //AndroidX
     implementation "com.google.android.material:material:$versions.material"

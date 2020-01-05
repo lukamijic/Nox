@@ -1,17 +1,21 @@
-apply plugin: 'com.android.application'
+apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
 
 android {
-    compileSdkVersion 28
+    compileSdkVersion buildConfig.compileSdk
+
+
     defaultConfig {
-        applicationId "hr.fer.nox"
         minSdkVersion buildConfig.minSdk
         targetSdkVersion buildConfig.targetSdk
         versionCode 1
         versionName "1.0"
+
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
+
     buildTypes {
         release {
             minifyEnabled false
@@ -23,33 +27,12 @@ android {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
-    //Modules
-    implementation project(':navigation')
-    implementation project(':commonui')
-    implementation project(':coreui')
-    implementation project(':preferences')
-    implementation project(':core')
-    implementation project(':login')
-    implementation project(':home')
-    implementation project(':splash')
-    implementation project(':movies')
-    implementation project(':moviedetails')
-    implementation project(':createaccount')
-    implementation project(':movieslib')
-    implementation project(':search')
-    implementation project(':userlib')
-    implementation project(':userdetails')
-    implementation project(':location')
-    implementation project(':permissions')
-
-    // Kotlin
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+
+    implementation project(':core')
 
     //AndroidX
     implementation "androidx.appcompat:appcompat:$versions.appCompat"
-
-    //AndroidKtx
-    implementation "androidx.core:core-ktx:$versions.ktx"
 
     // DI
     implementation "org.koin:koin-android:$versions.koin"
@@ -59,11 +42,6 @@ dependencies {
     implementation "io.reactivex.rxjava2:rxandroid:$versions.rxAndroid"
     implementation "io.reactivex.rxjava2:rxjava:$versions.rxJava"
 
-    // Stetho
-    implementation "com.facebook.stetho:stetho:$versions.stetho"
-    implementation "com.facebook.stetho:stetho-okhttp3:$versions.stetho"
-
-    //Testing
     testImplementation "junit:junit:$versions.jUnit"
     androidTestImplementation "androidx.test:runner:$versions.testRunner"
     androidTestImplementation "androidx.test.espresso:espresso-core:$versions.espresso"

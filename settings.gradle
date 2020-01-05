@@ -1,1 +1,1 @@
-include ':app', ':navigation', ':commonui', ':coreui', ':core', ':splash', ':login', ':home', ':movies', ':moviedetails', ':createaccount', ':movieslib', ':search', ':userlib', ':userdetails', ':preferences'
+include ':app', ':navigation', ':commonui', ':coreui', ':core', ':splash', ':login', ':home', ':movies', ':moviedetails', ':createaccount', ':movieslib', ':search', ':userlib', ':userdetails', ':preferences', ':location', ':permissions'
