@@ -25,6 +25,8 @@ class MovieSourceImpl(
 
     override fun getUpcomingMovies(): Flowable<List<Movie>> = movieService.getUpcomingMovies().map { movieMapper.map(it) }
 
+    override fun getWeatherRecommendation(lat: Float, long: Float): Flowable<List<Movie>> = getNewReleasesMovies()
+
     override fun querySearchMovies(): Flowable<List<Movie>> = searchMoviesPublishProcessor
 
     override fun searchMovies(searchTerm: String): Completable =

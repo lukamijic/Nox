@@ -137,7 +137,7 @@ val MoviesModule = module {
         }
 
         scoped<QueryMovieList> {
-            QueryWeatherRecommendations(get())
+            QueryWeatherRecommendations(get(), get(), get(), get())
         }
     }
 }

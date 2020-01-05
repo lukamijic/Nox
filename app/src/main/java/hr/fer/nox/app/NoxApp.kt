@@ -8,11 +8,13 @@ import hr.fer.nox.core.di.NetworkingModule
 import hr.fer.nox.core.di.ThreadingModule
 import hr.fer.nox.createaccount.di.CreateAccountModule
 import hr.fer.nox.home.di.HomeModule
+import hr.fer.nox.location.di.LocationModule
 import hr.fer.nox.login.di.LoginModule
 import hr.fer.nox.moviedetails.di.MovieDetailsModule
 import hr.fer.nox.movies.di.MoviesModule
 import hr.fer.nox.movieslib.di.MoviesLibModule
 import hr.fer.nox.navigation.di.NavigationModule
+import hr.fer.nox.permissions.di.PermissionsModule
 import hr.fer.nox.preferences.di.PreferencesModule
 import hr.fer.nox.search.di.SearchModule
 import hr.fer.nox.splash.di.SplashModule
@@ -31,7 +33,7 @@ class NoxApp: Application() {
             private set
     }
 
-    private val coreModules = listOf(AppModule, NavigationModule, ThreadingModule, NetworkingModule, PreferencesModule)
+    private val coreModules = listOf(AppModule, NavigationModule, ThreadingModule, NetworkingModule, PreferencesModule, LocationModule, PermissionsModule)
 
     private val featureModules = listOf(SplashModule, LoginModule, HomeModule, MoviesModule, MovieDetailsModule, CreateAccountModule, SearchModule, UserDetailsModule)
 
