@@ -9,5 +9,5 @@ class QueryUserRecommendations(
     private val movieSource: MovieSource
 ): QueryMovieList {
 
-    override fun invoke(): Flowable<List<Movie>> = movieSource.getPopularMovies()
+    override fun invoke(): Flowable<List<Movie>> = movieSource.getRecommendedMovies()
 }

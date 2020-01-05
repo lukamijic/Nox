@@ -7,5 +7,8 @@ interface MovieDetailsContract {
 
     interface View : BaseView
 
-    interface Presenter : ViewPresenter<View, MovieDetailsViewState>
+    interface Presenter : ViewPresenter<View, MovieDetailsViewState> {
+
+        fun likeAction()
+    }
 }

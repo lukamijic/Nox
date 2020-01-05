@@ -4,16 +4,22 @@ import hr.fer.nox.coreui.base.BasePresenter
 import hr.fer.nox.moviedetails.model.ActorViewModel
 import hr.fer.nox.moviedetails.resources.MovieDetailsResources
 import hr.fer.nox.movieslib.model.MovieDetails
+import hr.fer.nox.movieslib.usecase.LikeMovie
+import hr.fer.nox.movieslib.usecase.QueryIsMyMovieLiked
 import hr.fer.nox.movieslib.usecase.QueryMovieDetails
-import io.reactivex.Flowable
+import hr.fer.nox.movieslib.usecase.UnlikeMovie
+import io.reactivex.Completable
 import java.lang.StringBuilder
-import java.util.concurrent.TimeUnit
 
 class MovieDetailsPresenter(
     private val movieId: Int,
     private val movieDetailsResources: MovieDetailsResources,
-    private val queryMovieDetails: QueryMovieDetails
-): BasePresenter<MovieDetailsContract.View, MovieDetailsViewState>(), MovieDetailsContract.Presenter {
+    private val queryMovieDetails: QueryMovieDetails,
+    private val queryIsMyMovieLiked: QueryIsMyMovieLiked,
+    private val likeMovie: LikeMovie,
+    private val unlikeMovie: UnlikeMovie
+) : BasePresenter<MovieDetailsContract.View, MovieDetailsViewState>(),
+    MovieDetailsContract.Presenter {
 
     override fun initialViewState(): MovieDetailsViewState = MovieDetailsViewState.EMPTY
 
@@ -22,7 +28,34 @@ class MovieDetailsPresenter(
             queryMovieDetails(movieId)
                 .map(this::toViewStateAction)
         )
+
+        runCommand(isMovieLiked())
     }
+
+    override fun likeAction() {
+        runCommand(
+            queryIsMyMovieLiked(movieId)
+                .firstOrError()
+                .flatMapCompletable { isLiked ->
+                    if (isLiked) {
+                        unlikeMovie(movieId)
+                    } else {
+                        likeMovie(movieId)
+                    }
+                }.andThen(isMovieLiked())
+        )
+    }
+
+    private fun isMovieLiked(): Completable =
+        queryIsMyMovieLiked(movieId)
+            .firstOrError()
+            .flatMapCompletable { isLiked ->
+                Completable.fromAction {
+                    mutateViewState {
+                        it.isLiked = isLiked
+                    }
+                }
+            }
 
     private fun toViewStateAction(movieDetails: MovieDetails): (MovieDetailsViewState) -> Unit = {
         with(movieDetails) {
@@ -32,7 +65,6 @@ class MovieDetailsPresenter(
             it.movieDuration = movieDetailsResources.getMovieDuration(movieDurationInMinutes)
             it.movieGenres = getGenresText(movieGenres)
             it.videoId = videoId
-            it.isLiked = true
             it.isOnWatchList = false
             it.isWatched = false
             it.moviePosterUrl = moviePosterUrl ?: ""
@@ -41,7 +73,8 @@ class MovieDetailsPresenter(
             it.tomatoScore = tomatoScore
             it.metacriticScore = metacriticScore
             it.directorName = directorName
-            it.actors = actors.map { ActorViewModel(it.actorName, it.characterName, it.actorImageUrl) }
+            it.actors =
+                actors.map { ActorViewModel(it.actorName, it.characterName, it.actorImageUrl) }
             it.isLoading = false
         }
     }

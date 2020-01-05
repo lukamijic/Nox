@@ -60,6 +60,7 @@ class MovieDetailsFragment: BaseFragment<MovieDetailsViewState>(), MovieDetailsC
         moviedetails_backButton.setOnClickListener { goBack() }
         moviedetails_smallPoster.setOnClickListener { showMoviePoster() }
         moviedetails_smallSynopsis.setOnClickListener { showFullSynopsis() }
+        moviedetails_likeIcon.setOnClickListener { presenter.likeAction() }
     }
 
     override fun render(viewState: MovieDetailsViewState) {

@@ -25,7 +25,9 @@ class MovieSourceImpl(
 
     override fun getUpcomingMovies(): Flowable<List<Movie>> = movieService.getUpcomingMovies().map { movieMapper.map(it) }
 
-    override fun getWeatherRecommendation(lat: Float, long: Float): Flowable<List<Movie>> = getNewReleasesMovies()
+    override fun getRecommendedMovies(): Flowable<List<Movie>> = movieService.getRecommendedMovies().map { movieMapper.map(it) }
+
+    override fun getWeatherRecommendation(lat: Float, long: Float): Flowable<List<Movie>> = movieService.getWeatherRecommendation(lat, long).map { movieMapper.map(it) }
 
     override fun querySearchMovies(): Flowable<List<Movie>> = searchMoviesPublishProcessor
 
@@ -34,4 +36,12 @@ class MovieSourceImpl(
             .searchMovies(searchTerm)
             .map { movieMapper.map(it) }
             .flatMapCompletable { movies -> Completable.fromAction { searchMoviesPublishProcessor.onNext(movies) }}
+
+    override fun getMyLikedMovies(): Flowable<List<Movie>> = movieService.getMyLikedMovies().map { movieMapper.map(it) }
+
+    override fun getLikedMovies(userId: String): Flowable<List<Movie>> = movieService.getLikedMovies(userId).map { movieMapper.map(it) }
+
+    override fun likeMovie(movieId: Int): Completable = movieService.likeMovie(movieId)
+
+    override fun unlikeMovie(movieId: Int): Completable = movieService.unlikeMovie(movieId)
 }

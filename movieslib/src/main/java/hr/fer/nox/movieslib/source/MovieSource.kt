@@ -15,9 +15,19 @@ interface MovieSource {
 
     fun getUpcomingMovies(): Flowable<List<Movie>>
 
+    fun getRecommendedMovies(): Flowable<List<Movie>>
+
     fun getWeatherRecommendation(lat: Float, long: Float): Flowable<List<Movie>>
 
     fun querySearchMovies(): Flowable<List<Movie>>
 
     fun searchMovies(searchTerm: String): Completable
+
+    fun getMyLikedMovies(): Flowable<List<Movie>>
+
+    fun getLikedMovies(userId: String): Flowable<List<Movie>>
+
+    fun likeMovie(movieId: Int): Completable
+
+    fun unlikeMovie(movieId: Int): Completable
 }
