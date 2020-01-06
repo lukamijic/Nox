@@ -56,4 +56,9 @@ class UserSourceImpl(
 
     override fun getUserDetails(userId: String): Flowable<UserDetails> =
         userService.getUserDetails(userId).map { userDetailsMapper.map(it) }
+
+    override fun getAllUsers(): Flowable<List<User>> {
+       return userService.getAllUsers().map{userMapper.map(it)}
+
+    }
 }

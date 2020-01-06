@@ -74,18 +74,21 @@
             android:textColor="@color/text_color"
             android:id="@+id/user_details_email"/>
 
+        <!-- AGE
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textColor="@color/text_color"
             android:id="@+id/user_details_age"/>
+        -->
 
+        <!-- GENDER
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textColor="@color/text_color"
             android:id="@+id/user_details_gender"/>
-
+        -->
 
 
 

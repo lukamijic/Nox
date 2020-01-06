@@ -5,10 +5,11 @@ import hr.fer.nox.coreui.base.BasePresenter
 import hr.fer.nox.userlib.usecase.QuerySearchUsers
 import hr.fer.nox.userlib.model.User
 import hr.fer.nox.search.model.UserItemViewModel
+import hr.fer.nox.userlib.usecase.GetAllUsers
 import hr.fer.nox.userlib.usecase.SearchUsers
 
 class SearchUsersPresenter(
-    private val querySearchUsers: QuerySearchUsers,
+    private val getAllUsers: GetAllUsers,
     private val searchUsers: SearchUsers
 ) : BasePresenter<SearchUsersContract.View, SearchUsersViewState>(), SearchUsersContract.Presenter {
 
@@ -17,7 +18,7 @@ class SearchUsersPresenter(
 
     override fun onStart() {
         query(
-            querySearchUsers()
+            getAllUsers()
                 .map(this::toViewStateAction)
         )
 

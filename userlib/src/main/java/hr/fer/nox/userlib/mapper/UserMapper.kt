@@ -8,4 +8,5 @@ interface UserMapper {
     fun map(apiUserShort: ApiUserShort): User
 
     fun map(apiUsersShort: List<ApiUserShort>): List<User>
+
 }

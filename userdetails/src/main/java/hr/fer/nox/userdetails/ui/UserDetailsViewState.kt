@@ -3,11 +3,10 @@ package hr.fer.nox.userdetails.ui
 
 data class UserDetailsViewState(
     var userId: String,
-    var name: String,
-    var surname: String,
+    var name: String?,
+    var surname: String?,
     var email: String,
-    var age: Int?,
-    var gender: String,
+    var imageUrl: String?,
     var isLoading: Boolean
 ) {
 
@@ -19,7 +18,6 @@ data class UserDetailsViewState(
             "",
             "",
             null,
-            "",
             false
             )
 
@@ -28,9 +26,8 @@ data class UserDetailsViewState(
             "Karlo",
             "Razumovic",
             "karlo.razumovic@gmail.com",
-            25,
-            "Male",
-                false
+            null,
+            false
         )
     }
 }

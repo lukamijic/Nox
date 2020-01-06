@@ -42,5 +42,7 @@ val UserLibModule = module {
 
     single<UserMapper> { UserMapperImpl() }
 
-    single { QueryUserDetails(get()) }
+    single { GetAllUsers(get()) }
+
+    single { QueryUserDetails(get())}
 }

@@ -22,8 +22,12 @@ class UserServiceImpl(private val userApi: UserApi) : UserService {
 
 
     override fun getUserDetails(userId: String): Flowable<ApiUserDetails> {
-        //return userApi.getUserDetails(userId)
-        return Flowable.just(
+        if (userId.equals("ME")){
+            return userApi.getMyUserDetails()
+        } else {
+            return userApi.getUserDetails(userId)
+        }
+        /*return Flowable.just(
             ApiUserDetails(
                 "id",
                 "Karlo3",
@@ -33,6 +37,10 @@ class UserServiceImpl(private val userApi: UserApi) : UserService {
                 99,
                 2
             )
-        )
+        ) */
+    }
+
+    override fun getAllUsers(): Flowable<List<ApiUserShort>> {
+        return userApi.getAllUsers()
     }
 }

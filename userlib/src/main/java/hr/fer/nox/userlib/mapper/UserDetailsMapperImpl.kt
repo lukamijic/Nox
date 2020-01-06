@@ -16,9 +16,7 @@ class UserDetailsMapperImpl(
                 name,
                 surname,
                 email,
-                gender,
-                age,
-                iq
+                imageUrl
             )
         }
     }

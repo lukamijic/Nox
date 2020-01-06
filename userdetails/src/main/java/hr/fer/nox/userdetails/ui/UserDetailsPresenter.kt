@@ -23,9 +23,7 @@ class UserDetailsPresenter(
     private fun toViewStateAction(userDetails: UserDetails): (UserDetailsViewState) -> Unit = {
         with(userDetails) {
             it.userId = userId
-            it.age = age
             it.email = email
-            it.gender = gender
             it.isLoading = false
             it.name = name
             it.surname = surname

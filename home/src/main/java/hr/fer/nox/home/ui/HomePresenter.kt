@@ -20,8 +20,7 @@ class HomePresenter: BasePresenter<HomeContract.View, HomeViewState>(), HomeCont
     }
 
     override fun showProfile() {
-        // TODO: cahnge the "ID" to logged user id
-        dispatchRoutingAction { router -> router.showUserDetails("ID", true) }
+        dispatchRoutingAction { router -> router.showUserDetails("ME", true) }
 
     }
 }

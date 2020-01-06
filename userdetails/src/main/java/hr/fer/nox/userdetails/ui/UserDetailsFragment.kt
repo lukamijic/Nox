@@ -53,8 +53,6 @@ class UserDetailsFragment: BaseFragment<UserDetailsViewState>(), UserDetailsCont
             user_details_email.text = email
             user_details_name.text = name
             user_details_surname.text = surname
-            user_details_age.text = age.toString()
-            user_details_gender.text = gender
             if (isProfileTabFromBundle()){
                 userdetails_toolbar.visibility = View.GONE
             } else{
