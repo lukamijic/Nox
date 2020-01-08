@@ -59,7 +59,7 @@ class LoginFragment : BaseFragment<LoginViewState>(), LoginContract.View {
         }
 
         login_googleLogin.setOnClickListener {
-            val intent = Intent(Intent.ACTION_VIEW, Uri.parse("https://nox.herokuapp.com/oauth2/authorize/facebook?redirect_uri=nox://callback"))
+            val intent = Intent(Intent.ACTION_VIEW, Uri.parse("https://nox.herokuapp.com/oauth2/authorize/google?redirect_uri=nox://callback"))
             startActivity(intent)
         }
 

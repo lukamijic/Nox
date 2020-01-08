@@ -24,7 +24,7 @@ class MovieDetailsMapperImpl: MovieDetailsMapper {
                 title,
                 releaseDate.split("-").getOrNull(0)?.toIntOrNull() ?: 0,
                 runtimeInMinutes ?: 0,
-                genres,
+                genres ?: emptyList(),
                 videoYoutubeUrl,
                 posterPath,
                 synopsis,

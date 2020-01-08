@@ -3,6 +3,6 @@
 
     <string name="home_movies_navigation_item">Movies</string>
     <string name="home_explore_navigation_item">Explore</string>
-    <string name="home_recommendations_navigation_item">Recommendations</string>
+    <string name="home_recommendations_navigation_item">Recommended</string>
     <string name="home_profile_navigation_item">Profile</string>
 </resources>

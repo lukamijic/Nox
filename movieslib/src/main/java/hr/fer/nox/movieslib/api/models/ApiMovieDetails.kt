@@ -9,7 +9,7 @@ data class ApiMovieDetails(
     @Json(name = "title") val title: String,
     @Json(name = "synopsis") val synopsis: String,
     @Json(name = "releaseDate") val releaseDate: String,
-    @Json(name = "genres") val genres: List<String>,
+    @Json(name = "genres") val genres: List<String>?,
     @Json(name = "runtimeInMinutes") val runtimeInMinutes: Int?,
     @Json(name = "posterPath") val posterPath: String?,
     @Json(name = "score") val score: ApiScore,

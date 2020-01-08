@@ -11,7 +11,7 @@ val SplashModule = module {
     scope(named(SPLASH_VIEW_SCOPE)) {
 
         scoped {
-            SplashPresenter(it[0]).apply {
+            SplashPresenter(it[0], get()).apply {
                 mainThreadScheduler = get(named(MAIN_SCHEDULER))
                 backgroundScheduler = get(named(BACKGROUND_SCHEDULER))
                 routingActionsDispatcher = get()
