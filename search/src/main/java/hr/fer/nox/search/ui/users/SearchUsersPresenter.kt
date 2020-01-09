@@ -26,12 +26,14 @@ class SearchUsersPresenter(
 
     override fun searchUsers(searchTerm: String) {
         if (searchTerm.length >= 3) {
-            mutateViewState { it.isLoading = true }
+            mutateViewState {
+                it.isLoading = true
+                it.users = emptyList()
+            }
             runCommand(searchUsers.invoke(searchTerm))
         } else if (searchTerm.isEmpty()) {
             mutateViewState {
                 it.isLoading = false
-                it.users = emptyList()
             }
         }
 

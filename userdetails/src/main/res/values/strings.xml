@@ -1,3 +1,7 @@
 <resources>
     <string name="profile_picture">profile picture</string>
+    <string name="user_follow">Follow</string>
+    <string name="user_unfollow">Unfollow</string>
+    <string name="liked_movies">Liked Movies</string>
+    <string name="followed_users">Followed users</string>
 </resources>

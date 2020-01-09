@@ -1,6 +1,5 @@
 package hr.fer.nox.userlib.source
 
-import hr.fer.nox.userlib.mapper.UserDetailsMapper
 import hr.fer.nox.userlib.mapper.UserMapper
 import hr.fer.nox.preferences.AccessToken
 import hr.fer.nox.userlib.model.User
@@ -15,7 +14,6 @@ import io.reactivex.processors.PublishProcessor
 class UserSourceImpl(
     private val userService: UserService,
     private val userMapper: UserMapper,
-    private val userDetailsMapper: UserDetailsMapper,
     private val userPreferences: UserPreferences
 ) : UserSource {
 
@@ -55,7 +53,7 @@ class UserSourceImpl(
             }
 
     override fun getUserDetails(userId: String): Flowable<UserDetails> =
-        userService.getUserDetails(userId).map { userDetailsMapper.map(it) }
+        userService.getUserDetails(userId).map { userMapper.map(it) }
 
     override fun getAllUsers(): Flowable<List<User>> {
        return userService.getAllUsers().map{userMapper.map(it)}

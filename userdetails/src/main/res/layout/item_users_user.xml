@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="60dp"
+    android:layout_margin="@dimen/tiny_margin"
+    android:background="@color/colorPrimaryDark"
+    android:elevation="@dimen/normal_elevation"
+    app:cardBackgroundColor="@color/colorPrimary"
+    app:cardCornerRadius="@dimen/big_round_corners">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
+
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:layout_margin="@dimen/tiny_margin"
+            android:elevation="@dimen/normal_elevation"
+            android:orientation="vertical"
+            android:layout_alignParentStart="true"
+            android:paddingStart="7dp"
+            android:paddingEnd="7dp">
+
+            <TextView
+                android:id="@+id/user_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/text_color" />
+
+            <TextView
+                android:id="@+id/user_email"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/text_color" />
+        </LinearLayout>
+
+        <ImageView
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_alignParentEnd="true"
+            android:foregroundGravity="right"
+            android:src="@drawable/profile_pic_default"
+            android:contentDescription="@string/profile_picture" />
+    </RelativeLayout>
+
+
+</androidx.cardview.widget.CardView>

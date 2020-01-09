@@ -45,7 +45,10 @@ class LoginPresenter(
                         errorMessage = it.message ?:""
                     }
                 }
-                .doOnComplete { dispatchRoutingAction(Router::showHome) }
+                .doOnComplete {
+                    dispatchRoutingAction(Router::showHome)
+                    // TODO: get logged use info
+                }
         )
     }
 

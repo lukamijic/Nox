@@ -7,5 +7,9 @@ interface UserDetailsContract {
 
     interface View : BaseView
 
-    interface Presenter : ViewPresenter<View, UserDetailsViewState>
+    interface Presenter : ViewPresenter<View, UserDetailsViewState> {
+        fun showUserDetails(userId: String)
+
+        fun showMovieDetails(movieId: Int)
+    }
 }

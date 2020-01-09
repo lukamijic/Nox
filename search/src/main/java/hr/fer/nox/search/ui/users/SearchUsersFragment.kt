@@ -50,6 +50,7 @@ class SearchUsersFragment: BaseFragment<SearchUsersViewState>(), SearchUsersCont
         }
 
         search_users_searchBar.searchConsumer = { searchTerm -> presenter.searchUsers(searchTerm)}
+        //search_users_searchBar.setManualSearchAction()
         search_users_searchBar.setAutomaticSearchAction()
     }
 
@@ -57,7 +58,7 @@ class SearchUsersFragment: BaseFragment<SearchUsersViewState>(), SearchUsersCont
         search_users_progressView.isVisible = viewState.isLoading
         search_users_noUsersFound.isVisible = viewState.users.isEmpty()
         usersAdapter.submitList(viewState.users)
-    }
+}
 
     override fun getLayoutResource(): Int = LAYOUT_RESOURCE
     override fun getScopeName(): String = SEARCH_USERS_VIEW_SCOPE

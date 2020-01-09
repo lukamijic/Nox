@@ -33,7 +33,7 @@ interface MovieApi {
     fun getMyLikedMovies(): Single<List<ApiMovieShort>>
 
     @GET("/like/movies/{userId}")
-    fun getLikedMovies(@Query("userId") userId: String): Single<List<ApiMovieShort>>
+    fun getLikedMovies(@Path("userId") userId: String): Single<List<ApiMovieShort>>
 
     @POST("/like/{movieId}")
     fun likeMovie(@Path("movieId") movieId: Int): Completable

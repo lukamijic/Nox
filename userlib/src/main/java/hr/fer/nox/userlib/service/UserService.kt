@@ -24,4 +24,8 @@ interface UserService {
     fun getUserDetails(userId: String) : Flowable<ApiUserDetails>
 
     fun getAllUsers(): Flowable<List<ApiUserShort>>
+
+    fun followUser(userId: String) : Completable
+
+    fun unfollowUser(userId: String) : Completable
 }
