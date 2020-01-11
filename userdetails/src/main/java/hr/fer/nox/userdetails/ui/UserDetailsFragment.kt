@@ -59,22 +59,24 @@ class UserDetailsFragment: BaseFragment<UserDetailsViewState>(), UserDetailsCont
 
     override fun initialiseView(view: View, savedInstanceState: Bundle?) {
 
-        usersAdapter = UsersAdapter(
+      /*  usersAdapter = UsersAdapter(
             LayoutInflater.from(context)
         ) { userItemViewModel: UserItemViewModel -> presenter.showUserDetails(userItemViewModel.userId) }
-
+*/
         moviesAdapter = MoviesAdapter(
             LayoutInflater.from(context), imageUtils
         ) {movieItemViewModel : MovieItemViewModel -> presenter.showMovieDetails(movieItemViewModel.movieId)}
 
+
         userdetails_backButton.setOnClickListener { goBack() }
-        user_details_followed_users.apply {
+
+        /*user_details_followed_users.apply {
             layoutManager = GridLayoutManager(context, 1, RecyclerView.VERTICAL, false)
             adapter = usersAdapter
-        }
+        }*/
         user_details_liked_movies.apply{
             adapter = moviesAdapter
-            layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+            layoutManager =  GridLayoutManager(context, 3, RecyclerView.VERTICAL, false)
         }
     }
 
@@ -97,6 +99,7 @@ class UserDetailsFragment: BaseFragment<UserDetailsViewState>(), UserDetailsCont
             } else{
                 userdetails_toolbar.visibility = View.VISIBLE
             }
+            /*
             if (!isMyProfile(userId)){
                 user_details_follow_user.visibility = View.VISIBLE
                 if (isUserFollowed(userId)) {
@@ -122,12 +125,14 @@ class UserDetailsFragment: BaseFragment<UserDetailsViewState>(), UserDetailsCont
                 usersAdapter.submitList(emptyList())
             } else {
 
+
                 user_details_follow_user.visibility = View.GONE
 
 
                 viewState.followedUsers = BasePresenter.loggedUserDetails.likedUsers.map { user ->
                     UserItemViewModel(user.id, user.name, user.email)
                 }
+
                 if (viewState.followedUsers.count()>0) {
                     user_details_followed_users_label.visibility = View.VISIBLE
                     user_details_followed_users.visibility = View.VISIBLE
@@ -138,7 +143,7 @@ class UserDetailsFragment: BaseFragment<UserDetailsViewState>(), UserDetailsCont
                     usersAdapter.submitList(emptyList())
                 }
 
-            }
+            } */
             if (viewState.likedMovies.count() > 0) {
                 moviesAdapter.submitList(viewState.likedMovies)
                 user_details_liked_movies_label.visibility = View.VISIBLE
