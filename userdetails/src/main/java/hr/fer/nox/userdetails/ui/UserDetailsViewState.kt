@@ -18,7 +18,7 @@ data class UserDetailsViewState(
 
     companion object {
 
-        val EMPTY = UserDetailsViewState(
+        val INITIAL = UserDetailsViewState(
            "",
             "",
             "",
@@ -26,18 +26,7 @@ data class UserDetailsViewState(
             null,
             emptyList(),
             emptyList(),
-            false
+            true
             )
-
-        val NOT_EMPTY = UserDetailsViewState(
-            "userId",
-            "Karlo",
-            "Razumovic",
-            "karlo.razumovic@gmail.com",
-            null,
-            listOf(UserItemViewModel("userId", "Karlo", "mail@gmial.com")),
-            emptyList(),
-            false
-        )
     }
 }

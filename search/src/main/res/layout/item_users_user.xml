@@ -30,22 +30,14 @@
                 android:id="@+id/user_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textColor="@color/text_color" />
+                style="@style/SubtitleTextStyle" />
 
             <TextView
                 android:id="@+id/user_email"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textColor="@color/text_color" />
+                style="@style/NormalGrayTextStyle"/>
         </LinearLayout>
-
-        <ImageView
-            android:layout_width="60dp"
-            android:layout_height="60dp"
-            android:layout_alignParentEnd="true"
-            android:foregroundGravity="right"
-            android:src="@drawable/profile_pic_default"
-            android:contentDescription="@string/profile_picture" />
     </RelativeLayout>
 
 

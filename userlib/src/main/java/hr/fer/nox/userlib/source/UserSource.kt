@@ -18,6 +18,8 @@ interface UserSource {
 
     fun searchUsers(query: String): Completable
 
+    fun getMyUserDetails(): Flowable<UserDetails>
+
     fun getUserDetails(userId: String): Flowable<UserDetails>
 
     fun getAllUsers(): Flowable<List<User>>

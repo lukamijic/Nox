@@ -12,6 +12,7 @@ import hr.fer.nox.home.ui.HomeFragment
 import hr.fer.nox.login.ui.LoginFragment
 import hr.fer.nox.moviedetails.ui.MovieDetailsFragment
 import hr.fer.nox.movies.ui.container.MoviesContainerFragment
+import hr.fer.nox.navigation.model.UserInfo
 import hr.fer.nox.navigation.router.Router
 import hr.fer.nox.search.ui.container.SearchContainerFragment
 import hr.fer.nox.splash.ui.SplashFragment
@@ -25,10 +26,16 @@ private const val MAIN_CONTAINER_ID = R.id.main_activity_container
 class RouterImpl(
     private val activity: Activity,
     private val fragmentManager: FragmentManager
-): Router {
+) : Router {
 
     override fun showSplash() {
-        fragmentManager.inTransaction { replace(MAIN_CONTAINER_ID, SplashFragment.newInstance(), SplashFragment.TAG) }
+        fragmentManager.inTransaction {
+            replace(
+                MAIN_CONTAINER_ID,
+                SplashFragment.newInstance(),
+                SplashFragment.TAG
+            )
+        }
     }
 
     override fun showLogin() {
@@ -54,39 +61,70 @@ class RouterImpl(
     override fun showMovies() {
         fragmentManager.inTransaction {
             applyFadeInFadoOutAnimation()
-            replace(R.id.home_container, MoviesContainerFragment.movies(), MoviesContainerFragment.TAG)
+            replace(
+                R.id.home_container,
+                MoviesContainerFragment.movies(),
+                MoviesContainerFragment.TAG
+            )
         }
     }
 
     override fun showRecommendations() {
         fragmentManager.inTransaction {
             applyFadeInFadoOutAnimation()
-            replace(R.id.home_container, MoviesContainerFragment.recommendations(), MoviesContainerFragment.TAG)
+            replace(
+                R.id.home_container,
+                MoviesContainerFragment.recommendations(),
+                MoviesContainerFragment.TAG
+            )
         }
     }
 
     override fun showMovieDetails(movieId: Int) {
         fragmentManager.inTransactionAndAddToBackStack {
-            add(MAIN_CONTAINER_ID, MovieDetailsFragment.newInstance(movieId), MovieDetailsFragment.TAG)
+            add(
+                MAIN_CONTAINER_ID,
+                MovieDetailsFragment.newInstance(movieId),
+                MovieDetailsFragment.TAG
+            )
         }
     }
 
-
-    override fun showUserDetails(userId: String, isProfileTab: Boolean) {
-        fragmentManager.inTransactionAndAddToBackStack {
-            //add(MAIN_CONTAINER_ID, UserDetailsFragment.newInstance(userId, isProfileTab), UserDetailsFragment.TAG)
-            replace(R.id.home_container, UserDetailsFragment.newInstance(userId, isProfileTab), UserDetailsFragment.TAG)
+    override fun showUserDetails(userInfo: UserInfo) {
+        if (userInfo == UserInfo.ME) {
+            fragmentManager.inTransaction {
+                applyFadeInFadoOutAnimation()
+                replace(
+                    R.id.home_container,
+                    UserDetailsFragment.newInstance(userInfo),
+                    UserDetailsFragment.TAG
+                )
+            }
+        } else {
+            fragmentManager.inTransactionAndAddToBackStack {
+                applyFadeInFadoOutAnimation()
+                add(
+                    MAIN_CONTAINER_ID,
+                    UserDetailsFragment.newInstance(userInfo),
+                    UserDetailsFragment.TAG
+                )
+            }
         }
     }
 
     override fun showSearch() {
         fragmentManager.inTransaction {
             applyFadeInFadoOutAnimation()
-            replace(R.id.home_container, SearchContainerFragment.newInstance(), SearchContainerFragment.TAG)
+            replace(
+                R.id.home_container,
+                SearchContainerFragment.newInstance(),
+                SearchContainerFragment.TAG
+            )
         }
     }
 
-    override fun goBack() = if (fragmentManager.backStackEntryCount == LAST_FRAGMENT) closeScreen() else fragmentManager.popBackStack()
+    override fun goBack() =
+        if (fragmentManager.backStackEntryCount == LAST_FRAGMENT) closeScreen() else fragmentManager.popBackStack()
 
     private fun closeScreen() = activity.finish()
 
@@ -95,6 +133,11 @@ class RouterImpl(
     }
 
     fun FragmentTransaction.applySlideInSlideOutAnimation() {
-        setCustomAnimations(R.anim.fragment_right_enter, R.anim.fragment_left_exit, R.anim.fragment_left_enter, R.anim.fragment_right_exit)
+        setCustomAnimations(
+            R.anim.fragment_right_enter,
+            R.anim.fragment_left_exit,
+            R.anim.fragment_left_enter,
+            R.anim.fragment_right_exit
+        )
     }
 }

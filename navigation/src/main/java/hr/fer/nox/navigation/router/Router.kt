@@ -1,5 +1,7 @@
 package hr.fer.nox.navigation.router
 
+import hr.fer.nox.navigation.model.UserInfo
+
 interface Router {
 
     fun showSplash()
@@ -16,7 +18,7 @@ interface Router {
 
     fun showMovieDetails(movieId: Int)
 
-    fun showUserDetails(userId: String, isProfileTab: Boolean)
+    fun showUserDetails(userInfo: UserInfo)
 
     fun showSearch()
 

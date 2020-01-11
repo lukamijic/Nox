@@ -52,6 +52,9 @@ class UserSourceImpl(
                 }
             }
 
+    override fun getMyUserDetails(): Flowable<UserDetails> =
+        userService.getMyUserDetails().map { userMapper.map(it) }
+
     override fun getUserDetails(userId: String): Flowable<UserDetails> =
         userService.getUserDetails(userId).map { userMapper.map(it) }
 

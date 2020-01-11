@@ -54,62 +54,42 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
-            <ImageView
-                android:id="@+id/user_details_profile_picture"
-                android:layout_width="160dp"
-                android:layout_height="160dp"
-                android:foregroundGravity="right"
-                android:src="@drawable/profile_pic_default"
-                android:contentDescription="@string/profile_picture" />
-            <androidx.appcompat.widget.AppCompatButton
+
+            <TextView
+                android:id="@+id/user_details_name"
                 android:layout_width="wrap_content"
-                android:layout_height="120dp"
-                android:text="@string/user_follow"
-                android:visibility="gone"
-                android:id="@+id/user_details_follow_user"
-                ></androidx.appcompat.widget.AppCompatButton>
+                android:layout_height="wrap_content"
+                style="@style/TitleTextStyle"
+                android:layout_marginTop="@dimen/normal_margin"
+                android:layout_marginStart="@dimen/normal_margin"
+                tools:text="Karlo"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/TitleTextStyle"
+                android:id="@+id/user_details_surname"
+                android:layout_marginTop="@dimen/normal_margin"
+                android:layout_marginStart="@dimen/small_margin"/>
         </LinearLayout>
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColor="@color/text_color"
-            android:id="@+id/user_details_name"/>
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textColor="@color/text_color"
-            android:id="@+id/user_details_surname"/>
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textColor="@color/text_color"
-            android:id="@+id/user_details_email"/>
-
-        <!-- AGE
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textColor="@color/text_color"
-            android:id="@+id/user_details_age"/>
-        -->
-
-        <!-- GENDER
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textColor="@color/text_color"
-            android:id="@+id/user_details_gender"/>
-        -->
+            style="@style/SubtitleGrayTextStyle"
+            android:id="@+id/user_details_email"
+            android:layout_marginTop="@dimen/small_margin"
+            android:layout_marginStart="@dimen/normal_margin"/>
 
         <TextView
             android:id="@+id/user_details_liked_movies_label"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/liked_movies"
-            android:textColor="@color/text_color"/>
+            style="@style/SubtitleGrayTextStyle"
+            android:layout_marginTop="@dimen/small_margin"
+            android:layout_marginStart="@dimen/normal_margin"/>
+
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/user_details_liked_movies"
             android:layout_width="match_parent"
@@ -117,26 +97,6 @@
             android:layout_marginTop="@dimen/normal_margin"
             android:layout_marginBottom="@dimen/normal_margin"
             tools:listitem="@layout/item_movies_movie"/>
-
-        <TextView
-            android:id="@+id/user_details_followed_users_label"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/followed_users"
-            android:visibility="gone"
-            android:textColor="@color/text_color"/>
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/user_details_followed_users"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/normal_margin"
-            android:layout_marginBottom="@dimen/normal_margin"
-            android:visibility="gone"
-            tools:listitem="@layout/item_users_user"/>
-
-
-
     </LinearLayout>
 
 

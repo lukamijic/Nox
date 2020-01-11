@@ -35,8 +35,6 @@ dependencies {
     implementation project(':commonui')
     implementation project(':navigation')
     implementation project(':permissions')
-    implementation project(':userdetails')
-    implementation project(':userlib')
 
     //AndroidX
     implementation "androidx.appcompat:appcompat:$versions.appcompat"

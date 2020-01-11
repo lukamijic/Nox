@@ -21,6 +21,8 @@ interface UserService {
 
     fun searchUsers(searchTerm: String): Single<ApiUsersList>
 
+    fun getMyUserDetails(): Flowable<ApiUserDetails>
+
     fun getUserDetails(userId: String) : Flowable<ApiUserDetails>
 
     fun getAllUsers(): Flowable<List<ApiUserShort>>

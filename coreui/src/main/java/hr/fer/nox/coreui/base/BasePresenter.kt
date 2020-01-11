@@ -22,10 +22,6 @@ abstract class BasePresenter<in View, ViewState : Any> : ViewPresenter<View, Vie
     lateinit var mainThreadScheduler: Scheduler
     lateinit var backgroundScheduler: Scheduler
 
-    companion object{
-        lateinit var loggedUserDetails: LoggedUserDetails
-    }
-
     lateinit var routingActionsDispatcher: RoutingActionDispatcher
 
     private lateinit var viewState: ViewState

@@ -41,4 +41,6 @@ val UserLibModule = module {
     single { GetAllUsers(get()) }
 
     single { QueryUserDetails(get())}
+
+    single { QueryMyUserDetails(get()) }
 }

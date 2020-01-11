@@ -17,6 +17,7 @@ import hr.fer.nox.search.di.SEARCH_MOVIES_VIEW_SCOPE
 import hr.fer.nox.search.model.MovieItemViewModel
 import hr.fer.nox.search.ui.movies.adapter.MoviesAdapter
 import kotlinx.android.synthetic.main.fragment_search_movies.*
+import me.everything.android.ui.overscroll.OverScrollDecoratorHelper
 import org.koin.android.ext.android.inject
 
 class SearchMoviesFragment: BaseFragment<SearchMoviesViewState>(), SearchMoviesContract.View {
@@ -48,6 +49,10 @@ class SearchMoviesFragment: BaseFragment<SearchMoviesViewState>(), SearchMoviesC
         searchmovies_recyclerView.apply {
             layoutManager = GridLayoutManager(context, COLUMN_COUNT, RecyclerView.VERTICAL, false)
             adapter = moviesAdapter
+            OverScrollDecoratorHelper.setUpOverScroll(
+                this,
+                OverScrollDecoratorHelper.ORIENTATION_VERTICAL
+            )
         }
 
         searchmovies_searchBar.searchConsumer = { searchTerm -> presenter.searchMovies(searchTerm)}

@@ -1,6 +1,7 @@
 package hr.fer.nox.search.ui.users
 
 import hr.fer.nox.coreui.base.BasePresenter
+import hr.fer.nox.navigation.model.UserInfo
 
 import hr.fer.nox.userlib.usecase.QuerySearchUsers
 import hr.fer.nox.userlib.model.User
@@ -21,7 +22,6 @@ class SearchUsersPresenter(
             getAllUsers()
                 .map(this::toViewStateAction)
         )
-
     }
 
     override fun searchUsers(searchTerm: String) {
@@ -40,13 +40,13 @@ class SearchUsersPresenter(
     }
 
     override fun showUserDetails(userId: String) {
-        dispatchRoutingAction { router -> router.showUserDetails(userId, false) }
+        dispatchRoutingAction { router -> router.showUserDetails(UserInfo(userId)) }
     }
 
     private fun toViewStateAction(users: List<User>): (SearchUsersViewState) -> Unit = {
         it.isLoading = false
         it.users = users.map {
-                user -> UserItemViewModel(user.id, user.name, user.email)
+                user -> UserItemViewModel(user.id, "${user.name} ${user.surname}", user.email)
         }
     }
 }

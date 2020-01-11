@@ -29,14 +29,12 @@ class UserServiceImpl(private val userApi: UserApi) : UserService {
     override fun searchUsers(searchTerm: String): Single<ApiUsersList> =
         userApi.searchUsers(searchTerm)
 
+    override fun getMyUserDetails(): Flowable<ApiUserDetails>  =
+        userApi.getMyUserDetails()
 
-    override fun getUserDetails(userId: String): Flowable<ApiUserDetails> {
-        if (userId.equals("ME")) {
-            return userApi.getMyUserDetails()
-        } else {
-            return userApi.getUserDetails(userId)
-        }
-    }
+    override fun getUserDetails(userId: String): Flowable<ApiUserDetails> =
+        userApi.getUserDetails(userId)
+
 
     override fun getAllUsers(): Flowable<List<ApiUserShort>> {
         return userApi.getAllUsers()

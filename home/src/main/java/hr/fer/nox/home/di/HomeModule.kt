@@ -11,7 +11,7 @@ val HomeModule = module {
     scope(named(HOME_VIEW_SCOPE)) {
 
         scoped {
-            val presenter = HomePresenter(get(), get()).apply {
+            val presenter = HomePresenter().apply {
                 mainThreadScheduler = get(named(MAIN_SCHEDULER))
                 backgroundScheduler = get(named(BACKGROUND_SCHEDULER))
                 routingActionsDispatcher = get()

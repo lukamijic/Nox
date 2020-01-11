@@ -17,6 +17,7 @@ import hr.fer.nox.search.di.SEARCH_USERS_VIEW_SCOPE
 import hr.fer.nox.search.model.UserItemViewModel
 import hr.fer.nox.search.ui.users.adapter.UsersAdapter
 import kotlinx.android.synthetic.main.fragment_search_users.*
+import me.everything.android.ui.overscroll.OverScrollDecoratorHelper
 import org.koin.android.ext.android.inject
 
 
@@ -47,10 +48,13 @@ class SearchUsersFragment: BaseFragment<SearchUsersViewState>(), SearchUsersCont
         search_users_recyclerView.apply {
             layoutManager = GridLayoutManager(context, COLUMN_COUNT, RecyclerView.VERTICAL, false)
             adapter = usersAdapter
+            OverScrollDecoratorHelper.setUpOverScroll(
+                this,
+                OverScrollDecoratorHelper.ORIENTATION_VERTICAL
+            )
         }
 
         search_users_searchBar.searchConsumer = { searchTerm -> presenter.searchUsers(searchTerm)}
-        //search_users_searchBar.setManualSearchAction()
         search_users_searchBar.setAutomaticSearchAction()
     }
 
