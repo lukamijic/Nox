@@ -1,6 +1,5 @@
 package hr.fer.nox.userlib.source
 
-import hr.fer.nox.userlib.mapper.UserDetailsMapper
 import hr.fer.nox.userlib.mapper.UserMapper
 import hr.fer.nox.preferences.AccessToken
 import hr.fer.nox.userlib.model.User
@@ -15,11 +14,10 @@ import io.reactivex.processors.PublishProcessor
 class UserSourceImpl(
     private val userService: UserService,
     private val userMapper: UserMapper,
-    private val userDetailsMapper: UserDetailsMapper,
     private val userPreferences: UserPreferences
 ) : UserSource {
 
-    private val searchUsersPublishProcessor: PublishProcessor<List<User>> =
+    private val searchUsersPublishProcessor: PublishProcessor<List<UserDetails>> =
         PublishProcessor.create()
     private val accessTokenBehaviorProcessor: BehaviorProcessor<AccessToken> =
         BehaviorProcessor.createDefault(userPreferences.getAccessToken())
@@ -42,10 +40,13 @@ class UserSourceImpl(
 
     override fun getAccessToken(): Flowable<AccessToken> = accessTokenBehaviorProcessor
 
+    override fun querySearchedUser(): Flowable<List<UserDetails>> =
+        searchUsersPublishProcessor
+
     override fun searchUsers(query: String): Completable =
         userService
             .searchUsers(query)
-            .map { userMapper.map(it.results) }
+            .map { userMapper.mapUserDetails(it) }
             .flatMapCompletable { users ->
                 Completable.fromAction {
                     searchUsersPublishProcessor.onNext(
@@ -54,6 +55,14 @@ class UserSourceImpl(
                 }
             }
 
+    override fun getMyUserDetails(): Flowable<UserDetails> =
+        userService.getMyUserDetails().map { userMapper.map(it) }
+
     override fun getUserDetails(userId: String): Flowable<UserDetails> =
-        userService.getUserDetails(userId).map { userDetailsMapper.map(it) }
+        userService.getUserDetails(userId).map { userMapper.map(it) }
+
+    override fun getAllUsers(): Flowable<List<User>> {
+       return userService.getAllUsers().map{userMapper.map(it)}
+
+    }
 }

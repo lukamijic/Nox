@@ -12,27 +12,39 @@ class UserServiceImpl(private val userApi: UserApi) : UserService {
         firstName: String,
         lastName: String,
         password: String
-    ): Completable = Completable.fromSingle(userApi.signUp(ApiSignUpRequest(email, firstName, lastName, password)))
+    ): Completable = Completable.fromSingle(
+        userApi.signUp(
+            ApiSignUpRequest(
+                email,
+                firstName,
+                lastName,
+                password
+            )
+        )
+    )
 
     override fun login(email: String, password: String): Single<ApiLoginResponse> =
         userApi.login(ApiLoginRequest(email, password))
 
-    override fun searchUsers(searchTerm: String): Single<ApiUsersList> =
+    override fun searchUsers(searchTerm: String): Single<List<ApiUserDetails>> =
         userApi.searchUsers(searchTerm)
 
+    override fun getMyUserDetails(): Flowable<ApiUserDetails>  =
+        userApi.getMyUserDetails()
 
-    override fun getUserDetails(userId: String): Flowable<ApiUserDetails> {
-        //return userApi.getUserDetails(userId)
-        return Flowable.just(
-            ApiUserDetails(
-                "id",
-                "Karlo3",
-                "Razumovic",
-                "karlo.razumovic@gmail.com",
-                "apache-helicopter",
-                99,
-                2
-            )
-        )
+    override fun getUserDetails(userId: String): Flowable<ApiUserDetails> =
+        userApi.getUserDetails(userId)
+
+
+    override fun getAllUsers(): Flowable<List<ApiUserShort>> {
+        return userApi.getAllUsers()
+    }
+
+    override fun followUser(userId: String): Completable {
+        return userApi.followUser(userId)
+    }
+
+    override fun unfollowUser(userId: String): Completable {
+        return userApi.unfollowUser(userId)
     }
 }

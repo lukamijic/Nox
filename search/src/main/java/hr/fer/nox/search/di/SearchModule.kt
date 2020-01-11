@@ -41,7 +41,7 @@ val SearchModule = module {
 
     scope(named(SEARCH_USERS_VIEW_SCOPE)) {
         scoped {
-            val presenter = SearchUsersPresenter(get(), get()).apply {
+            val presenter = SearchUsersPresenter(get(), get(), get()).apply {
                 mainThreadScheduler = get(named(MAIN_SCHEDULER))
                 backgroundScheduler = get(named(BACKGROUND_SCHEDULER))
                 routingActionsDispatcher = get()

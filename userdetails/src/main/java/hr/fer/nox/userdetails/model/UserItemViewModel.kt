@@ -1,4 +1,4 @@
-package hr.fer.nox.search.model
+package hr.fer.nox.userdetails.model
 
 import hr.fer.nox.coreui.util.DiffUtilViewModel
 

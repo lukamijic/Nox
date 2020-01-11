@@ -5,10 +5,10 @@ import hr.fer.nox.userlib.model.UserDetails
 import hr.fer.nox.userlib.source.UserSource
 import io.reactivex.Flowable
 
-
-class QuerySearchUsers(
+class QueryMyUserDetails(
     private val userSource: UserSource
-) : QueryUseCase<List<UserDetails>> {
+): QueryUseCase<UserDetails> {
 
-    override fun invoke(): Flowable<List<UserDetails>> = userSource.querySearchedUser()
+    override fun invoke(): Flowable<UserDetails> =
+        userSource.getMyUserDetails()
 }

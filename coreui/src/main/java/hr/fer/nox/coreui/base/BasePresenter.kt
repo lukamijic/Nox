@@ -5,6 +5,7 @@ import androidx.annotation.WorkerThread
 import hr.fer.nox.core.Either
 import hr.fer.nox.navigation.router.Router
 import hr.fer.nox.navigation.routing.RoutingActionDispatcher
+import hr.fer.nox.userlib.model.LoggedUserDetails
 import io.reactivex.Completable
 import io.reactivex.Flowable
 import io.reactivex.Scheduler

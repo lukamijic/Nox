@@ -1,36 +1,32 @@
 package hr.fer.nox.userdetails.ui
 
+import hr.fer.nox.movieslib.model.Movie
+import hr.fer.nox.userdetails.model.MovieItemViewModel
+import hr.fer.nox.userdetails.model.UserItemViewModel
+
 
 data class UserDetailsViewState(
     var userId: String,
-    var name: String,
-    var surname: String,
+    var name: String?,
+    var surname: String?,
     var email: String,
-    var age: Int?,
-    var gender: String,
+    var imageUrl: String?,
+    var followedUsers: List<UserItemViewModel>,
+    var likedMovies: List<MovieItemViewModel>,
     var isLoading: Boolean
 ) {
 
     companion object {
 
-        val EMPTY = UserDetailsViewState(
+        val INITIAL = UserDetailsViewState(
            "",
             "",
             "",
             "",
             null,
-            "",
-            false
+            emptyList(),
+            emptyList(),
+            true
             )
-
-        val NOT_EMPTY = UserDetailsViewState(
-            "userId",
-            "Karlo",
-            "Razumovic",
-            "karlo.razumovic@gmail.com",
-            25,
-            "Male",
-                false
-        )
     }
 }

@@ -13,7 +13,7 @@ val UserDetailsModule = module {
 
         scoped {
             val userId: String = it[0]
-            val presenter = UserDetailsPresenter(userId, get()).apply {
+            val presenter = UserDetailsPresenter(userId, get(), get(), get(), get()).apply {
                 mainThreadScheduler = get(named(MAIN_SCHEDULER))
                 backgroundScheduler = get(named(BACKGROUND_SCHEDULER))
                 routingActionsDispatcher = get()

@@ -17,6 +17,7 @@ import hr.fer.nox.search.di.SEARCH_USERS_VIEW_SCOPE
 import hr.fer.nox.search.model.UserItemViewModel
 import hr.fer.nox.search.ui.users.adapter.UsersAdapter
 import kotlinx.android.synthetic.main.fragment_search_users.*
+import me.everything.android.ui.overscroll.OverScrollDecoratorHelper
 import org.koin.android.ext.android.inject
 
 
@@ -47,6 +48,10 @@ class SearchUsersFragment: BaseFragment<SearchUsersViewState>(), SearchUsersCont
         search_users_recyclerView.apply {
             layoutManager = GridLayoutManager(context, COLUMN_COUNT, RecyclerView.VERTICAL, false)
             adapter = usersAdapter
+            OverScrollDecoratorHelper.setUpOverScroll(
+                this,
+                OverScrollDecoratorHelper.ORIENTATION_VERTICAL
+            )
         }
 
         search_users_searchBar.searchConsumer = { searchTerm -> presenter.searchUsers(searchTerm)}
@@ -57,7 +62,7 @@ class SearchUsersFragment: BaseFragment<SearchUsersViewState>(), SearchUsersCont
         search_users_progressView.isVisible = viewState.isLoading
         search_users_noUsersFound.isVisible = viewState.users.isEmpty()
         usersAdapter.submitList(viewState.users)
-    }
+}
 
     override fun getLayoutResource(): Int = LAYOUT_RESOURCE
     override fun getScopeName(): String = SEARCH_USERS_VIEW_SCOPE

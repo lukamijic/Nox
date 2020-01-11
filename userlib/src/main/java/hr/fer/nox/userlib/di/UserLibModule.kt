@@ -1,7 +1,5 @@
 package hr.fer.nox.userlib.di
 
-import hr.fer.nox.userlib.mapper.UserDetailsMapper
-import hr.fer.nox.userlib.mapper.UserDetailsMapperImpl
 import hr.fer.nox.userlib.mapper.UserMapper
 import hr.fer.nox.userlib.mapper.UserMapperImpl
 import hr.fer.nox.userlib.model.User
@@ -16,7 +14,7 @@ import retrofit2.Retrofit
 
 val UserLibModule = module {
 
-    single<UserSource> { UserSourceImpl(get(), get(), get(), get()) }
+    single<UserSource> { UserSourceImpl(get(), get(), get()) }
 
     single { CreateAccount(get()) }
 
@@ -38,9 +36,11 @@ val UserLibModule = module {
 
     single { get<Retrofit>().create(UserApi::class.java) }
 
-    single<UserDetailsMapper> { UserDetailsMapperImpl() }
-
     single<UserMapper> { UserMapperImpl() }
 
-    single { QueryUserDetails(get()) }
+    single { GetAllUsers(get()) }
+
+    single { QueryUserDetails(get())}
+
+    single { QueryMyUserDetails(get()) }
 }
